@@ -2,7 +2,7 @@
   import Card from "./Card.svelte";
 </script>
 
-<div class="flex justify-around h-62 mt-8">
+<div class="flex justify-around h-62 mt-12 w-6/8 ml-12">
   <Card
     width={"w-1/5"}
     height={"min-h-full"}
