@@ -7,9 +7,9 @@
 
 <main class="text-center p-4 mx-0">
   <Router url="{url}">
-    <nav>
+    <!-- <nav>
       <Link to="/">Home</Link>
-    </nav>
+    </nav> -->
     <div>
       <Route path="/"><Home /></Route>
     </div>
@@ -17,5 +17,9 @@
 </main>
 
 <style>
+  main {
+    background-color: #181818;
+    position: relative;
+  }
   
 </style>
