@@ -2,11 +2,14 @@
   // based on tutorial: https://codechips.me/tailwind-ui-react-vs-svelte/
   import { onMount } from "svelte";
   import { scale } from "svelte/transition";
+  import AccountForms from "./AccountForms.svelte";
 
   export let user;
 
   let show = false; // menu state
   let menu = null; // menu wrapper DOM reference
+  let chooseLogin = true; // user connects to the site
+  let chooseSignup = false; // user creates new account
 
   onMount(() => {
     const handleOutsideClick = (e) => {
@@ -78,3 +81,10 @@
     {/if}
   </div>
 </div>
+
+<!---------------               LOGIN / SIGNUP FORM              ------------>
+{#if !user}
+  <AccountForms loginForm={chooseLogin} signupForm={chooseSignup} />
+{/if}
+
+
