@@ -45,7 +45,7 @@
   <div>
     <button
       on:click={() => (show = !show)}
-      class="menu focus:outline-none focus:shadow-solid text-slate-200 hover:text-slate-400 text-2xl cursor-pointer mr-4 mt-2"
+      class="menu focus:outline-none focus:shadow-solid text-slate-200 hover:text-slate-400 text-2xl cursor-pointer mr-4"
     >
       {#if user}
         <i class="fa-solid fa-user" />
