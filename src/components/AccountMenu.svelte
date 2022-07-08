@@ -8,21 +8,26 @@
 
   let show = false; // menu state
   let menu = null; // menu wrapper DOM reference
-  let chooseLogin = true; // user connects to the site
-  let chooseSignup = false; // user creates new account
+  // SIGNUP / LOGIN FORM
+  let accForms = false; // signup/login form state
+  let chooseLogin: boolean; // user connects to the site
+  let chooseSignup: boolean; // user creates new account
 
   onMount(() => {
     const handleOutsideClick = (e) => {
       if (show && !menu.contains(e.target)) {
         show = false;
+        accForms = false;
       }
     };
 
     const handleEscape = (e) => {
       if (show && e.key === "Escape") {
         show = false;
+        accForms = false;
       }
     };
+    console.log(menu);
 
     // add events when element is added to the DOM, useCaptuer = false
     document.addEventListener("click", handleOutsideClick, false);
@@ -36,7 +41,7 @@
   });
 </script>
 
-<div class="relative " bind:this={menu}>
+<div class="relative" bind:this={menu}>
   <div>
     <button
       on:click={() => (show = !show)}
@@ -68,11 +73,13 @@
         {:else}
           <a
             href={"#"}
+            on:click={()=>{accForms = true;chooseLogin = true; chooseSignup = false;}}
             class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
             >Login</a
           >
           <a
             href={"#"}
+            on:click={()=>{accForms = true;chooseLogin = false; chooseSignup = true;}}
             class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
             >Signup</a
           >
@@ -84,7 +91,7 @@
 
 <!---------------               LOGIN / SIGNUP FORM              ------------>
 {#if !user}
-  <AccountForms loginForm={chooseLogin} signupForm={chooseSignup} />
+  <AccountForms show={ accForms } loginForm={chooseLogin} signupForm={chooseSignup} />
 {/if}
 
 
