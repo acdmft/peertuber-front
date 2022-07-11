@@ -7,7 +7,7 @@
 <!---------       TOP MENU            ----------->
 <Header />
 <!-----------      TOP SEPARATOR       ------------>
-<div class="h-14"></div>
+<div class="h-20"></div>
 <!-----------       LEFT MENU       ------------>
 <LeftSidebar />
 <!----------         LEFT SEPARATOR    ------------->
