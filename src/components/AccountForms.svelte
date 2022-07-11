@@ -1,4 +1,20 @@
 <script lang="ts">
+  import { createForm } from "svelte-forms-lib";
+  import { signupSchema, loginSchema } from "../lib/schema.js";
+
+  const { form, errors, handleChange, handleSubmit } = createForm({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    },
+    validationSchema: signupSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values));
+    },
+  });
+
   import { onMount } from "svelte";
   export let signupForm;
   export let loginForm;
@@ -44,32 +60,53 @@
           </button>
         </div>
         <!------------ ----------------------- -------------->
-        <form class="h-96 w-80">
+        <form on:submit|preventDefault={handleSubmit} class="h-96 w-80">
           <input
             type="text"
-            id="username"
+            name="name"
+            bind:value={$form.name}
             placeholder="name"
+            on:change={handleChange}
             class="w-4/5 pl-2 mt-4 h-12 mx-auto rounded outline outline-transparent hover:outline-1 hover:outline-gray-500"
           />
+          {#if $errors.name}
+            <span class="text-orange-700">{$errors.name}</span>
+          {/if}
           <input
             type="text"
-            id="email"
+            name="email"
+            bind:value={$form.email}
             placeholder="email"
+            on:change={handleChange}
             class="w-4/5 pl-2 mt-4 h-12 mx-auto rounded outline outline-transparent hover:outline-1 hover:outline-gray-500"
           />
+          {#if $errors.email}
+            <span class="text-orange-700">{$errors.email}</span>
+          {/if}
           <input
             type="password"
-            id="password"
+            name="password"
+            bind:value={$form.password}
             placeholder="password"
+            on:change={handleChange}
             class="w-4/5 pl-2 mt-4 h-12 mx-auto rounded outline outline-transparent hover:outline-1 hover:outline-gray-500"
           />
+          {#if $errors.password}
+            <span class="text-orange-700">{$errors.password}</span>
+          {/if}
           <input
             type="password"
-            id="password-confirm"
+            name="confirmPassword"
+            bind:value={$form.confirmPassword}
             placeholder="password confirmation"
+            on:change={handleChange}
             class="w-4/5 pl-2 mt-4 h-12 mx-auto rounded outline outline-transparent hover:outline-1 hover:outline-gray-500"
           />
+          {#if $errors.confirmPassword}
+            <span class="text-orange-700">{$errors.confirmPassword}</span>
+          {/if}
           <button
+            type="submit"
             class="bg-sky-500 hover:bg-sky-600 py-4 px-2 text-white rounded-lg font-semibold my-2 w-4/5 mx-auto mt-4"
             >Create account</button
           >

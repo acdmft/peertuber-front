@@ -27,7 +27,6 @@
         accForms = false;
       }
     };
-    console.log(menu);
 
     // add events when element is added to the DOM, useCaptuer = false
     document.addEventListener("click", handleOutsideClick, false);
