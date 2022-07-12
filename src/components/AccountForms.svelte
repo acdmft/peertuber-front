@@ -6,6 +6,7 @@
   export let show; // signup/login form state
   
   const handleCloseClick = () => {
+    console.log('handleCloseClick')
     show = false;
   };
   onMount(() => {
@@ -39,7 +40,7 @@
           >
             Join Peertuber
           </h2>
-          <button on:click={handleCloseClick} class="absolute top-1 right-2 text-neutral-200">
+          <button on:click={handleCloseClick} class="absolute top-1 right-2 text-neutral-200 hover:text-red-200">
             <i class="fa-solid fa-xmark" />
           </button>
         </div>
@@ -86,7 +87,7 @@
           >
             Log in to Peertuber
           </h2>
-          <button on:click={handleCloseClick} class="absolute top-1 right-2 text-neutral-200">
+          <button on:click={handleCloseClick} class="absolute top-1 right-2 text-neutral-200 hover:text-red-200">
             <i class="fa-solid fa-xmark" />
           </button>
         </div>
