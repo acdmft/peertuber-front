@@ -16,6 +16,7 @@
   onMount(() => {
     const handleOutsideClick = (e) => {
       if (show && !menu.contains(e.target)) {
+        console.log('handleOutsideClick', menu)
         show = false;
         accForms = false;
       }
@@ -27,7 +28,6 @@
         accForms = false;
       }
     };
-    console.log(menu);
 
     // add events when element is added to the DOM, useCaptuer = false
     document.addEventListener("click", handleOutsideClick, false);
@@ -87,11 +87,11 @@
       </div>
     {/if}
   </div>
+  <!---------------               LOGIN / SIGNUP FORM              ------------>
+  {#if !user}
+    <AccountForms show={ accForms } loginForm={chooseLogin} signupForm={chooseSignup} />
+  {/if}
 </div>
 
-<!---------------               LOGIN / SIGNUP FORM              ------------>
-{#if !user}
-  <AccountForms show={ accForms } loginForm={chooseLogin} signupForm={chooseSignup} />
-{/if}
 
 
