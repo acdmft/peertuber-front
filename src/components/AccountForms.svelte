@@ -1,7 +1,9 @@
 <script lang="ts">
   import { createForm } from "svelte-forms-lib";
   import { signupSchema, loginSchema } from "../lib/schema.js";
- 
+  import { onMount, afterUpdate } from "svelte";
+  
+  export let show: boolean; // signup/login form state 
   export let signupForm: boolean;
   export let loginForm: boolean;
   let schema = signupForm ? signupSchema: loginSchema;
@@ -19,15 +21,27 @@
     },
   });
 
-  import { onMount } from "svelte";
-  
-
-  export let show; // signup/login form state
-  
   const handleCloseClick = () => {
     console.log('handleCloseClick')
     show = false;
   };
+  // return form to initial state after closing
+  const cleanUpForm = () => {
+    Object.keys($form).forEach((key)=>{
+      $form[key] = "";
+    });
+    Object.keys($errors).forEach((key)=>{
+      $errors[key] = "";
+    });
+  }
+  afterUpdate(() => {
+    if (show) {
+      schema = signupForm ? signupSchema : loginSchema;
+    } else {
+      cleanUpForm();
+    }
+  });
+  
   onMount(() => {
     const handleEscape = (e) => {
       if (show && e.key === "Escape") {

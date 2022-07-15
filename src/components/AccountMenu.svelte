@@ -10,13 +10,12 @@
   let menu = null; // menu wrapper DOM reference
   // SIGNUP / LOGIN FORM
   let accForms = false; // signup/login form state
-  let chooseLogin: boolean; // user connects to the site
-  let chooseSignup: boolean; // user creates new account
+  let loginForm: boolean = false; // user connects to the site
+  let signupForm: boolean = false; // user creates new account
 
   onMount(() => {
     const handleOutsideClick = (e) => {
       if (show && !menu.contains(e.target)) {
-        console.log('handleOutsideClick', menu)
         show = false;
         accForms = false;
       }
@@ -73,13 +72,13 @@
         {:else}
           <a
             href={"#"}
-            on:click={()=>{accForms = true;chooseLogin = true; chooseSignup = false;}}
+            on:click={()=>{accForms = true;loginForm = true; signupForm = false;}}
             class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
             >Login</a
           >
           <a
             href={"#"}
-            on:click={()=>{accForms = true;chooseLogin = false; chooseSignup = true;}}
+            on:click={()=>{accForms = true;loginForm = false; signupForm = true;}}
             class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
             >Signup</a
           >
@@ -89,7 +88,7 @@
   </div>
   <!---------------               LOGIN / SIGNUP FORM              ------------>
   {#if !user}
-    <AccountForms show={ accForms } loginForm={chooseLogin} signupForm={chooseSignup} />
+    <AccountForms show={ accForms } {loginForm} {signupForm} />
   {/if}
 </div>
 
