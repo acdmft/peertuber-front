@@ -3,6 +3,8 @@
   import { onMount } from "svelte";
   import { scale } from "svelte/transition";
   import AccountForms from "./AccountForms.svelte";
+  import LoginForm from "./LoginForm.svelte";
+  import SignupForm from "./SignupForm.svelte";
 
   export let user;
 
@@ -12,6 +14,11 @@
   let accForms = false; // signup/login form state
   let loginForm: boolean = false; // user connects to the site
   let signupForm: boolean = false; // user creates new account
+
+  // close signup/login form
+  const handleCloseClick = () => {
+    accForms = false;
+  };
 
   onMount(() => {
     const handleOutsideClick = (e) => {
@@ -87,10 +94,31 @@
     {/if}
   </div>
   <!---------------               LOGIN / SIGNUP FORM              ------------>
-  {#if !user}
-    <AccountForms show={ accForms } {loginForm} {signupForm} />
+  {#if accForms}
+  <div class="fixed">
+    <div
+      class="h-screen w-full opacity-75 bg-zinc-900 fixed top-0 left-10 z-10"
+    />
+    <div class="form-wrapper bg-neutral-200 z-50 rounded-md fixed">
+      {#if signupForm}
+        <SignupForm on:click={handleCloseClick} />
+      {/if}
+
+      {#if loginForm}
+        <LoginForm on:click={handleCloseClick} />
+      {/if}
+    </div>
+  </div>
   {/if}
 </div>
+
+<style>
+  .form-wrapper {
+    top: calc(50vh - 190px);
+    right: calc(50vw - 150px);
+  }
+</style>
+
 
 
 

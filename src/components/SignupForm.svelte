@@ -17,7 +17,6 @@
   });
   // return form to initial state after closing
   const cleanUpForm = () => {
-    console.log(Object.keys($form));
     Object.keys($form).forEach((key) => {
       $form[key] = "";
     });
@@ -26,7 +25,6 @@
     });
   };
   onMount(() => {
-    console.log('cleanUpForm')
     cleanUpForm();
   });
 </script>
