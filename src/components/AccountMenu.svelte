@@ -2,16 +2,15 @@
   // based on tutorial: https://codechips.me/tailwind-ui-react-vs-svelte/
   import { onMount } from "svelte";
   import { scale } from "svelte/transition";
-  import AccountForms from "./AccountForms.svelte";
   import LoginForm from "./LoginForm.svelte";
   import SignupForm from "./SignupForm.svelte";
 
   export let user;
 
-  let show = false; // menu state
+  let show:boolean = false; // menu state
   let menu = null; // menu wrapper DOM reference
   // SIGNUP / LOGIN FORM
-  let accForms = false; // signup/login form state
+  let accForms:boolean = false; // signup/login form state
   let loginForm: boolean = false; // user connects to the site
   let signupForm: boolean = false; // user creates new account
 

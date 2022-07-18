@@ -3,6 +3,8 @@
   import { signupSchema } from "../lib/schema.js";
   import { onMount } from "svelte";
 
+  const api_url = import.meta.env.VITE_API_URL;
+
   const { form, errors, handleChange, handleSubmit } = createForm({
     initialValues: {
       name: "",
@@ -12,8 +14,23 @@
     },
     validationSchema: signupSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values));
-    },
+      fetch(`${api_url}/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      })
+      .then((res)=>{
+        if (res.status >= 200 && res.status < 400) {
+          alert('logged in successfully')
+        } else {
+          alert('something went wrong')
+        }
+      })
+      .catch((err) => console.log(err));
+      // alert(JSON.stringify(values));
+    }
   });
   // return form to initial state after closing
   const cleanUpForm = () => {
