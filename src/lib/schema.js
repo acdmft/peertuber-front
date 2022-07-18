@@ -12,5 +12,5 @@ export const signupSchema = yup.object().shape({
 
 export const loginSchema = yup.object().shape({
   email: yup.string().required("Email is required").email("Email is invalid"),
-  password: yup.string().required("Password is required").min(6, "Password is invalid"),
+  password: yup.string().required("Password is required").min(6, "Password must contain at least 6 characters"),
 });
