@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { user } from "../lib/stores";
   import { createForm } from "svelte-forms-lib";
   import { loginSchema } from "../lib/schema.js";
   import { onMount } from "svelte";
@@ -21,7 +22,9 @@
       })
       .then((res)=>{
         if (res.status >= 200 && res.status < 400) {
-          alert('logged in successfully')
+          alert('logged in successfully');
+          $user=true;
+
         } else {
           alert('something went wrong')
         }
