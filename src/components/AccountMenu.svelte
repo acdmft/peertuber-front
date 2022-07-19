@@ -1,45 +1,52 @@
 <script lang="ts">
   // based on tutorial: https://codechips.me/tailwind-ui-react-vs-svelte/
-  import { user } from "../lib/stores";
+  import { user, accForms } from "../lib/stores";
   import { onMount } from "svelte";
   import { scale } from "svelte/transition";
   import LoginForm from "./LoginForm.svelte";
   import SignupForm from "./SignupForm.svelte";
+  // TOAST NOTIFICATION
+  import { SvelteToast,toast } from '@zerodevx/svelte-toast';
 
   // export let user;
 
   let show:boolean = false; // menu state
   let menu = null; // menu wrapper DOM reference
-  // SIGNUP / LOGIN FORM
-  let accForms:boolean = false; // signup/login form state
+  // SIGNUP / LOGIN FORM state
   let loginForm: boolean = false; // user connects to the site
   let signupForm: boolean = false; // user creates new account
 
   // close signup/login form
   const handleCloseClick = () => {
-    accForms = false;
+    $accForms = false;
   };
   // LOGOUT 
   const api_url = import.meta.env.VITE_API_URL;
   const logout = () => {
     fetch(`${api_url}/logout`)
       .then((res)=> {
+        if (res.ok) {
+          toast.push("You are logged out!");
+        } else {
+          toast.push("Oops! Something went wrong!");
+        }
         $user = false;
-      });
+    });
+    show = false;
   };
 
   onMount(() => {
     const handleOutsideClick = (e) => {
       if (show && !menu.contains(e.target)) {
         show = false;
-        accForms = false;
+        $accForms = false;
       }
     };
 
     const handleEscape = (e) => {
       if (show && e.key === "Escape") {
         show = false;
-        accForms = false;
+        $accForms = false;
       }
     };
 
@@ -56,6 +63,7 @@
 </script>
 
 <div class="relative" bind:this={menu}>
+  <SvelteToast />
   <div>
     <button
       on:click={() => (show = !show)}
@@ -88,13 +96,13 @@
         {:else}
           <a
             href={"#"}
-            on:click={()=>{accForms = true;loginForm = true; signupForm = false;}}
+            on:click={()=>{show=false;$accForms = true;loginForm = true; signupForm = false;}}
             class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
             >Login</a
           >
           <a
             href={"#"}
-            on:click={()=>{accForms = true;loginForm = false; signupForm = true;}}
+            on:click={()=>{show=false;$accForms = true;loginForm = false; signupForm = true;}}
             class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
             >Signup</a
           >
@@ -103,7 +111,7 @@
     {/if}
   </div>
   <!---------------               LOGIN / SIGNUP FORM              ------------>
-  {#if accForms}
+  {#if $accForms}
   <div class="fixed">
     <div
       class="h-screen w-full opacity-75 bg-zinc-900 fixed top-0 left-10 z-10"

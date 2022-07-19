@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { user } from "../lib/stores";
+  import { user, accForms } from "../lib/stores";
   import { createForm } from "svelte-forms-lib";
   import { loginSchema } from "../lib/schema.js";
   import { onMount } from "svelte";
+  import { toast } from "@zerodevx/svelte-toast";
 
   const api_url = import.meta.env.VITE_API_URL;
 
@@ -21,17 +22,16 @@
         body: JSON.stringify(values),
       })
       .then((res)=>{
-        if (res.status >= 200 && res.status < 400) {
-          alert('logged in successfully');
+        console.log(res)
+        if (res.ok) {
+          toast.push("You are logged in!");
           $user=true;
-
         } else {
-          alert('something went wrong')
+         toast.push("something went wrong");
         }
+        $accForms=false;
       })
       .catch((err) => console.log(err));
-
-      // alert(JSON.stringify(values));
     }
   });
   // return form to initial state after closing
