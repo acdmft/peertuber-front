@@ -1,11 +1,12 @@
 <script lang="ts">
   // based on tutorial: https://codechips.me/tailwind-ui-react-vs-svelte/
+  import { user } from "../lib/stores";
   import { onMount } from "svelte";
   import { scale } from "svelte/transition";
   import LoginForm from "./LoginForm.svelte";
   import SignupForm from "./SignupForm.svelte";
 
-  export let user;
+  // export let user;
 
   let show:boolean = false; // menu state
   let menu = null; // menu wrapper DOM reference
@@ -17,6 +18,14 @@
   // close signup/login form
   const handleCloseClick = () => {
     accForms = false;
+  };
+  // LOGOUT 
+  const api_url = import.meta.env.VITE_API_URL;
+  const logout = () => {
+    fetch(`${api_url}/logout`)
+      .then((res)=> {
+        $user = false;
+      });
   };
 
   onMount(() => {
@@ -52,7 +61,7 @@
       on:click={() => (show = !show)}
       class="menu focus:outline-none focus:shadow-solid text-slate-200 hover:text-slate-400 text-2xl cursor-pointer mr-4"
     >
-      {#if user}
+      {#if $user}
         <i class="fa-solid fa-user" />
       {:else}
         <i class="fa-solid fa-right-to-bracket" />
@@ -64,7 +73,7 @@
         out:scale={{ duration: 75, start: 0.95 }}
         class="origin-top-right absolute right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md divide-y divide-gray-500"
       >
-        {#if user}
+        {#if $user}
           <a
             href={"#"}
             class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
@@ -73,6 +82,7 @@
           <a
             href={"#"}
             class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
+            on:click={logout}
             >Logout</a
           >
         {:else}
