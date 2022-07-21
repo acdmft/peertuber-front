@@ -13,7 +13,7 @@
     <!-----        LOGO      ---->
     <h1 class="text-neutral-200 font-semibold text-2xl mt-3">Peertuber</h1>
     <div class="justify-self-end mt-3">
-      <AccountMenu user={null} />
+      <AccountMenu />
     </div>
   </div> 
   <!-------     BOTTOM PART OF HEADER (CATEGORIES)    -------->

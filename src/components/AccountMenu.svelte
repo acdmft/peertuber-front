@@ -5,8 +5,9 @@
   import { scale } from "svelte/transition";
   import LoginForm from "./LoginForm.svelte";
   import SignupForm from "./SignupForm.svelte";
-  // TOAST NOTIFICATION
-  import { SvelteToast,toast } from '@zerodevx/svelte-toast';
+  // TOASTS
+  import { SvelteToast} from '@zerodevx/svelte-toast';
+  import { successToast, warningToast } from "../lib/toast-themes";
 
   // export let user;
 
@@ -26,9 +27,9 @@
     fetch(`${api_url}/logout`)
       .then((res)=> {
         if (res.ok) {
-          toast.push("You are logged out!");
+          successToast("You are logged out!");
         } else {
-          toast.push("Oops! Something went wrong!");
+          warningToast("Oops! Something went wrong!");
         }
         $user = false;
     });

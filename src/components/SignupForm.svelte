@@ -3,7 +3,8 @@
   import { createForm } from "svelte-forms-lib";
   import { signupSchema } from "../lib/schema.js";
   import { onMount } from "svelte";
-  import { toast } from "@zerodevx/svelte-toast";
+  // TOASTS
+  import { successToast, warningToast} from "../lib/toast-themes";
 
   const api_url = import.meta.env.VITE_API_URL;
 
@@ -25,10 +26,10 @@
       })
       .then((res)=>{
         if (res.ok) {
-          toast.push("Account created!");
+          successToast("Account created!");
           $user=true;
         } else {
-          toast.push("Something went wrong");
+          warningToast("Oops! Something went wrong");
         }
         $accForms=false;
       })
