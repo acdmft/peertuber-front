@@ -13,36 +13,36 @@
   <Card
     width={"w-1/5"}
     height={"min-h-full"}
-    img={ `http://${cardsData[0].instance}${cardsData[0].thumbnailImg}` }
-    channel_name={ cardsData[0].instance }
-    channel_url={ cardsData[0].instance }
+    img={ `http://${cardsData[0].instance.host}${cardsData[0].thumbnailImg}` }
+    channel_name={ cardsData[0].instance.name }
+    channel_url={ cardsData[0].instance.host }
     video_title={ cardsData[0].name }
     video_url={ cardsData[0].url }
   />
   <Card
     width={"w-1/5"}
     height={"min-h-full"}
-    img={ `http://${cardsData[1].instance}${cardsData[1].thumbnailImg}` }
-    channel_name={ cardsData[1].instance }
-    channel_url={ cardsData[1].instance }
+    img={ `http://${cardsData[1].instance.host}${cardsData[1].thumbnailImg}` }
+    channel_name={ cardsData[1].instance.name }
+    channel_url={ cardsData[1].instance.host }
     video_title={ cardsData[1].name }
     video_url={ cardsData[1].url }
   />
   <Card
     width={"w-1/5"}
     height={"min-h-full"}
-    img={ `http://${cardsData[2].instance}${cardsData[2].thumbnailImg}` }
-    channel_name={ cardsData[2].instance }
-    channel_url={ cardsData[2].instance }
+    img={ `http://${cardsData[2].instance.host}${cardsData[2].thumbnailImg}` }
+    channel_name={ cardsData[2].instance.name }
+    channel_url={ cardsData[2].instance.host }
     video_title={ cardsData[2].name }
     video_url={ cardsData[2].url }
   />
   <Card
     width={"w-1/5"}
     height={"min-h-full"}
-    img={ `http://${cardsData[3].instance}${cardsData[3].thumbnailImg}` }
-    channel_name={ cardsData[3].instance }
-    channel_url={ cardsData[3].instance }
+    img={ `http://${cardsData[3].instance.host}${cardsData[3].thumbnailImg}` }
+    channel_name={ cardsData[3].instance.name }
+    channel_url={ cardsData[3].instance.host }
     video_title={ cardsData[3].name }
     video_url={ cardsData[3].url }
   />
