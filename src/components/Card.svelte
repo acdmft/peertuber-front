@@ -10,10 +10,8 @@
 
 <div class="bg-green-300 {width} {height}">
   <!----------    CHANNEL NAME AND URL    ----------->
-  <div class="h-12 bg-amber-300 text-left px-2 leading-none">
-    <!-- <span class="text-sm text-gray-500 font-semibold ">{channel_name}</span>
-    <span class="text-xs text-gray-500 font-semibold ">{channel_url}</span> -->
-    <a href={`https://${channel_url}`} target="_blank">{channel_name}</a>
+  <div class="h-12 bg-amber-300 text-left px-2 leading-none flex justify-center">
+    <a href={`https://${channel_url}`} class="self-center" target="_blank">{channel_name}</a>
   </div>
   <div class="h-36 z-0">
     <img src={img} alt="video preview" class="w-full z-10" />
