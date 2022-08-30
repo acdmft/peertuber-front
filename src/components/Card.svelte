@@ -15,7 +15,7 @@
   </div>
   <div class="h-36 z-0 text-slate-600 flex relative text-5xl">
     <i class="fa-solid fa-film mx-auto self-center" />
-    <img src={img} alt="" class=" absolute top-0 left-0" />
+    <img src={img} alt="" class=" absolute min-w-full top-0 left-0" />
   </div>
   <!-----------    VIDEO DESCRIPTION      ---------->
   <div class="bg-green-300 h-20">
