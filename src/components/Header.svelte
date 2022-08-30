@@ -5,7 +5,7 @@
 
 <div
   id="container"
-  class="fixed top-0 left-0 right-0 bg-zinc-800 divide-gray-500 divide-y mx-0 my-0"
+  class="fixed z-10 top-0 left-0 right-0 bg-zinc-800 divide-gray-500 divide-y mx-0 my-0"
 >
   <!------      TOP PART OF HEADER     ------->
   <div id="top-menu" class="h-14 grid grid-cols-3 gap-4">

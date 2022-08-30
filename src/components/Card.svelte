@@ -13,12 +13,13 @@
   <div class="h-12 bg-amber-300 text-left px-2 leading-none flex justify-center">
     <a href={`https://${channel_url}`} class="self-center" target="_blank">{channel_name}</a>
   </div>
-  <div class="h-36 z-0">
-    <img src={img} alt="video preview" class="w-full z-10" />
+  <div class="h-36 z-0 text-slate-600 flex relative text-5xl">
+    <i class="fa-solid fa-film mx-auto self-center" />
+    <img src={img} alt="" class=" absolute top-0 left-0" />
   </div>
   <!-----------    VIDEO DESCRIPTION      ---------->
   <div class="bg-green-300 h-20">
-    <div class="text-left text-gray-600 font-semibold text-base px-2">
+    <div class="text-left text-gray-600 font-semibold text-base px-2 truncate text-ellipsis">
       <a href={video_url} target="_blank">
         {video_title}
       </a>
