@@ -6,12 +6,12 @@
   import LoginForm from "./LoginForm.svelte";
   import SignupForm from "./SignupForm.svelte";
   // TOASTS
-  import { SvelteToast} from '@zerodevx/svelte-toast';
+  import { SvelteToast } from "@zerodevx/svelte-toast";
   import { successToast, warningToast } from "../lib/toast-themes";
 
   // export let user;
 
-  let show:boolean = false; // menu state
+  let show: boolean = false; // menu state
   let menu = null; // menu wrapper DOM reference
   // SIGNUP / LOGIN FORM state
   let loginForm: boolean = false; // user connects to the site
@@ -21,17 +21,16 @@
   const handleCloseClick = () => {
     $accForms = false;
   };
-  // LOGOUT 
+  // LOGOUT
   const api_url = import.meta.env.VITE_API_URL;
   const logout = () => {
-    fetch(`${api_url}/logout`)
-      .then((res)=> {
-        if (res.ok) {
-          successToast("You are logged out!");
-        } else {
-          warningToast("Oops! Something went wrong!");
-        }
-        $user = false;
+    fetch(`${api_url}/logout`).then((res) => {
+      if (res.ok) {
+        successToast("You are logged out!");
+      } else {
+        warningToast("Oops! Something went wrong!");
+      }
+      $user = false;
     });
     show = false;
   };
@@ -51,7 +50,7 @@
       }
     };
 
-    // add events when element is added to the DOM, useCaptuer = false
+    // add events when element is added to the DOM, useCapture = false
     document.addEventListener("click", handleOutsideClick, false);
     document.addEventListener("keyup", handleEscape, false);
 
@@ -85,27 +84,33 @@
         {#if $user}
           <a
             href={"#"}
-            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
-            >Profile</a
+            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 ">Profile</a
           >
           <a
             href={"#"}
             class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
-            on:click={logout}
-            >Logout</a
+            on:click={logout}>Logout</a
           >
         {:else}
           <a
             href={"#"}
-            on:click={()=>{show=false;$accForms = true;loginForm = true; signupForm = false;}}
-            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
-            >Login</a
+            on:click={() => {
+              show = false;
+              $accForms = true;
+              loginForm = true;
+              signupForm = false;
+            }}
+            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 ">Login</a
           >
           <a
             href={"#"}
-            on:click={()=>{show=false;$accForms = true;loginForm = false; signupForm = true;}}
-            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
-            >Signup</a
+            on:click={() => {
+              show = false;
+              $accForms = true;
+              loginForm = false;
+              signupForm = true;
+            }}
+            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 ">Signup</a
           >
         {/if}
       </div>
@@ -113,20 +118,20 @@
   </div>
   <!---------------               LOGIN / SIGNUP FORM              ------------>
   {#if $accForms}
-  <div class="fixed">
-    <div
-      class="h-screen w-full opacity-75 bg-zinc-900 fixed top-0 left-10 z-10"
-    />
-    <div class="form-wrapper bg-neutral-200 z-50 rounded-md fixed">
-      {#if signupForm}
-        <SignupForm on:click={handleCloseClick} />
-      {/if}
+    <div class="fixed">
+      <div
+        class="h-screen w-full opacity-75 bg-zinc-900 fixed top-0 left-10 z-10"
+      />
+      <div class="form-wrapper bg-neutral-200 z-50 rounded-md fixed">
+        {#if signupForm}
+          <SignupForm on:click={handleCloseClick} />
+        {/if}
 
-      {#if loginForm}
-        <LoginForm on:click={handleCloseClick} />
-      {/if}
+        {#if loginForm}
+          <LoginForm on:click={handleCloseClick} />
+        {/if}
+      </div>
     </div>
-  </div>
   {/if}
 </div>
 
@@ -136,7 +141,3 @@
     right: calc(50vw - 150px);
   }
 </style>
-
-
-
-
