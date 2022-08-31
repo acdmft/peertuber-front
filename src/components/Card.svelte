@@ -7,10 +7,9 @@
   export let video_title;
   export let video_url;
 
+  // THREE DOTS MENU
   let threeDotsMenu = "hidden";
-  const toggleMenu = () => {
-    threeDotsMenu = threeDotsMenu == "hidden" ? "" : "hidden";
-  };
+  let show: boolean = false; // menu state
 </script>
 
 <div class="bg-green-300 {width} {height}">
@@ -31,24 +30,51 @@
   <!-----------    VIDEO DESCRIPTION      ---------->
   <div class="bg-green-300 h-14">
     <div
-      class="text-left relative text-xs text-gray-600 hover:text-gray-800 text-base px-2 truncate text-ellipsis"
+      class="flex justify-between text-left relative text-gray-600 hover:text-gray-800 text-base px-2  "
+      on:focus={() => (threeDotsMenu = "")}
+      on:mouseover={() => (threeDotsMenu = "")}
+      on:mouseleave={() => (threeDotsMenu = "hidden")}
     >
       <a
         href={video_url}
         target="_blank"
-        on:focus={toggleMenu}
-        on:mouseover={toggleMenu}
-        on:mouseleave={toggleMenu}
+        class="text-xs font-semibold w-11/12 border-2 border-transparent overflow-hidden  max-h-9"
       >
         {video_title}
       </a>
       <!-- TRHEEDOTS MENU ICON -->
-      <i
-        on:focus={toggleMenu}
-        on:mouseover={toggleMenu}
-        on:mouseleave={toggleMenu}
-        class="{threeDotsMenu} fa-solid fa-ellipsis-vertical hover:text-gray-900 cursor-pointer hover:outline hover:outline-slate-400 hover:outline-2 absolute top-0 right-0 mr-1"
-      />
+
+      <button
+        class="w-2"
+        on:click={() => {
+          show = !show;
+          console.log("tdm click");
+        }}
+      >
+        <i
+          class="{threeDotsMenu} fa-solid fa-ellipsis-vertical hover:text-gray-900 cursor-pointer p-0.5 hover:outline hover:outline-slate-400 hover:outline-2 "
+        />
+      </button>
+    </div>
+    <div class="relative">
+      {#if show}
+        <div
+          class="absolute bottom-2 z-10 right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md text-left"
+        >
+          <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
+            ><i class="fa-solid fa-share mr-2" />Copy URL</a
+          >
+          <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
+            ><i class="fa-solid fa-clock mr-2" />Add to Watch later</a
+          >
+          <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
+            ><i class="fa-solid fa-folder-plus mr-2" />Add to Library</a
+          >
+          <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
+            ><i class="fa-solid fa-flag mr-2" />Report</a
+          >
+        </div>
+      {/if}
     </div>
   </div>
 </div>

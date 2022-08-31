@@ -85,12 +85,12 @@
         {#if $user}
           <a
             href={"#"}
-            class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
+            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
             >Profile</a
           >
           <a
             href={"#"}
-            class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
+            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
             on:click={logout}
             >Logout</a
           >
@@ -98,13 +98,13 @@
           <a
             href={"#"}
             on:click={()=>{show=false;$accForms = true;loginForm = true; signupForm = false;}}
-            class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
+            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
             >Login</a
           >
           <a
             href={"#"}
             on:click={()=>{show=false;$accForms = true;loginForm = false; signupForm = true;}}
-            class="block px-4 text-slate-200 py-2 hover:bg-green-500 hover:text-green-100"
+            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
             >Signup</a
           >
         {/if}
