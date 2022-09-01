@@ -14,26 +14,25 @@
       password: "",
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
-      fetch(`${api_url}/login`,{
+    onSubmit: async (values) => {
+      let response = await fetch(`${api_url}/login`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
-      })
-      .then((res)=>{
-        console.log(res)
-        if (res.ok) {
+      });
+      if (response.ok) {
           successToast("You are logged in!");
-          $user=true;
+          let json = await response.json();
+          $user = json;
+          console.log($user);
+          $accForms=false;
         } else {
          warningToast("Oops! Something went wrong");
         }
-        $accForms=false;
-      })
-      .catch((err) => console.log(err));
-    }
+      }
+    
   });
   // return form to initial state after closing
   const cleanUpForm = () => {
