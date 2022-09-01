@@ -1,8 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { user } from "../lib/stores";
 
-  export let threeDotsMenu: String; 
-  let show: boolean = false;//menu state
+  export let threeDotsMenu: String;
+  let show: boolean = false; //menu state
   let menu = null; // menu wrapper DOM reference
 
   onMount(() => {
@@ -26,8 +27,8 @@
     };
   });
 </script>
-<div bind:this={menu}>
 
+<div bind:this={menu}>
   <button
     class="w-2"
     on:click={() => {
@@ -44,17 +45,19 @@
         class="absolute bottom-2 z-10 right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md text-left text-sm"
       >
         <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
-          ><i class="fa-solid fa-share mr-4 " />Copy URL</a
+          ><i class="fa-solid fa-share mr-4" />Copy URL</a
         >
-        <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
-          ><i class="fa-solid fa-clock mr-4 " />Add to Watch later</a
-        >
-        <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
-          ><i class="fa-solid fa-folder-plus mr-4 " />Add to Library</a
-        >
-        <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
-          ><i class="fa-solid fa-flag mr-4 " />Report</a
-        >
+        {#if $user}
+          <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
+            ><i class="fa-solid fa-clock mr-4" />Add to Watch later</a
+          >
+          <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
+            ><i class="fa-solid fa-folder-plus mr-4" />Add to Library</a
+          >
+          <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
+            ><i class="fa-solid fa-flag mr-4" />Report</a
+          >
+        {/if}
       </div>
     </div>
   {/if}

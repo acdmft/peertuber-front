@@ -43,9 +43,16 @@
         {video_title}
       </a>
       <!-- TRHEEDOTS MENU ICON -->
-
-      
       <CardMenu {threeDotsMenu} />
+    </div>
+    <!-- CARD FOOTER -->
+    <div class="text-sm text-slate-400 bottom-0 left-0">
+      <button class="hover:text-slate-600">
+        <i class="fa-solid fa-circle-check mr-2" />
+      </button>
+      <button class="hover:text-slate-600">
+        <i class="fa-solid fa-ban" />
+      </button>
     </div>
   </div>
 </div>
