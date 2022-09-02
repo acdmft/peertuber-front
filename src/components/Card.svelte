@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte";
+  import { user } from "../lib/stores";
   import CardMenu from "./CardMenu.svelte";
   export let width;
   export let height;
@@ -7,6 +9,21 @@
   export let channel_url;
   export let video_title;
   export let video_url;
+
+  const dispatch = createEventDispatcher();
+
+  function approve() {
+    dispatch('approve', {
+      approved: true
+    });
+  }
+
+  function ban() {
+    dispatch('ban', {
+      approved: false
+    })
+  }
+
 
   // THREE DOTS MENU
   let threeDotsMenu = "hidden";
@@ -45,14 +62,16 @@
       <!-- TRHEEDOTS MENU ICON -->
       <CardMenu {threeDotsMenu} />
     </div>
-    <!-- CARD FOOTER -->
-    <div class="text-sm text-slate-400 bottom-0 left-0">
-      <button class="hover:text-slate-600">
-        <i class="fa-solid fa-circle-check mr-2" />
-      </button>
-      <button class="hover:text-slate-600">
-        <i class="fa-solid fa-ban" />
-      </button>
-    </div>
+    <!-- CARD FOOTER (MODERATOR'S TOOLS)-->
+    {#if $user.isAdmin || $user.isModerator}
+      <div class="text-sm text-slate-400 bottom-0 left-0">
+        <button on:click={approve} class="hover:text-slate-600">
+          <i class="fa-solid fa-circle-check mr-2" />
+        </button>
+        <button on:click={ban} class="hover:text-slate-600">
+          <i class="fa-solid fa-ban" />
+        </button>
+      </div>
+    {/if}
   </div>
 </div>

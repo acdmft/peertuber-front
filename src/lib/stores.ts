@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
 export const count = writable(0);
-
-export const user = writable({});
+let val: any = {};
+export const user = writable(val);
 export const accForms = writable(false);

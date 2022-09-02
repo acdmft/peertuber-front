@@ -7,7 +7,16 @@
 
   const api_url = import.meta.env.VITE_API_URL;
   let videos = [];
-  // $: loadedVideos = videos.length;
+  let approved = 0;
+  let banned = 0;
+  function handleAppr() {
+    approved += 1;
+    console.log(approved);
+  }
+  function handleBan() {
+    banned += 1;
+    console.log(banned);
+  }
 
   onMount(async () => {
     const query = { 
@@ -46,9 +55,9 @@
 <!-- <div class="h-screen w-16" ></div> -->
 <!-----------       VIDEOROWS       ------------->
 {#if videos.length !== 0}
-  <VideoRow cardsData={videos.slice(0, 4)} />
-  <VideoRow cardsData={videos.slice(4, 8)} />
-  <VideoRow cardsData={videos.slice(8, 12)} />
+  <VideoRow cardsData={videos.slice(0, 4)} on:approve={handleAppr} on:ban={handleBan} />
+  <VideoRow cardsData={videos.slice(4, 8)} on:approve={handleAppr} on:ban={handleBan} />
+  <VideoRow cardsData={videos.slice(8, 12)} on:approve={handleAppr} on:ban={handleBan} />
 {:else}
   <p class="mt-10">loading...</p>
 {/if}
