@@ -1,5 +1,8 @@
 <script lang="ts">
   import CardMenu from "./CardMenu.svelte";
+  import { createEventDispatcher } from "svelte";
+  import { user } from "../lib/stores";
+
   export let width;
   export let height;
   export let img;
@@ -7,12 +10,25 @@
   export let channel_url;
   export let video_title;
   export let video_url;
+  export let video_id;
 
+  const dispatch = createEventDispatcher();
   // THREE DOTS MENU
   let threeDotsMenu = "hidden";
+  // Like icon
+  let likeIcon: string = "regular";
+  let buttonColor: string = "";
+  // LIKE DISPATCHER
+  function like() {
+    dispatch("like", {
+      videoID: video_id,
+    });
+    likeIcon = "solid";
+    buttonColor = "text-slate-600";
+  }
 </script>
 
-<div class="bg-green-300 {width} {height}">
+<div class="bg-green-300 {width} {height} ">
   <!----------    CHANNEL NAME AND URL    ----------->
   <div
     class="h-12 bg-amber-300 text-left px-2 leading-none flex justify-center font-black overflow-hidden text-ellipsis"
@@ -20,39 +36,44 @@
     <a
       href={`https://${channel_url}`}
       class="self-center max-h-full text-gray-600 hover:text-gray-800"
-      target="_blank">{channel_name}</a
+      >{channel_name}</a
     >
   </div>
-  <div class="h-36 z-0 text-slate-600 flex relative text-5xl">
+  <!-------      IMAGE OF VIDEO PREVIEW    ------->
+  <div class="h-32 z-0 text-slate-600 flex relative text-5xl">
     <i class="fa-solid fa-film mx-auto self-center" />
-    <img src={img} alt="" class="absolute min-w-full top-0 left-0" />
+    <a href={video_url} target="_blank">
+      <img src={img} alt="" class="absolute min-w-full top-0 left-0" />
+    </a>
   </div>
   <!-----------    VIDEO DESCRIPTION      ---------->
-  <div class="bg-green-300 h-14">
+  <div class="bg-green-300 h-8 pt-1">
     <div
-      class="flex justify-between text-left relative text-gray-600 hover:text-gray-800 text-base px-2  "
+      class="flex justify-between text-left relative text-gray-600 hover:text-gray-800 text-base px-2"
       on:focus={() => (threeDotsMenu = "")}
       on:mouseover={() => (threeDotsMenu = "")}
       on:mouseleave={() => (threeDotsMenu = "hidden")}
     >
       <a
-        href={video_url}
+        href={"#"}
         target="_blank"
-        class="text-xs font-semibold w-11/12 border-2 border-transparent overflow-hidden  max-h-9"
+        class="text-xs font-semibold w-11/12 border-2 border-transparent overflow-hidden max-h-9"
       >
         {video_title}
       </a>
       <!-- TRHEEDOTS MENU ICON -->
       <CardMenu {threeDotsMenu} />
     </div>
-    <!-- CARD FOOTER -->
-    <div class="text-sm text-slate-400 bottom-0 left-0">
-      <button class="hover:text-slate-600">
-        <i class="fa-solid fa-circle-check mr-2" />
+  </div>
+  <!-- CARD FOOTER -->
+  <div class="h-6 text-sm text-slate-400 pt-1 flex justify-content-start">
+    {#if $user}
+      <button
+        class="hover:text-slate-600 ml-4 {buttonColor}"
+        on:click|once={like}
+      >
+        <i class="fa-{likeIcon} fa-thumbs-up" />
       </button>
-      <button class="hover:text-slate-600">
-        <i class="fa-solid fa-ban" />
-      </button>
-    </div>
+    {/if}
   </div>
 </div>

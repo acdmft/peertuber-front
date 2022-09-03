@@ -18,6 +18,8 @@
     channel_url={ cardsData[0].instance.host }
     video_title={ cardsData[0].name }
     video_url={ cardsData[0].url }
+    video_id={ cardsData[0]._id}
+    on:like
   />
   <Card
     width={"w-1/5"}
@@ -27,6 +29,8 @@
     channel_url={ cardsData[1].instance.host }
     video_title={ cardsData[1].name }
     video_url={ cardsData[1].url }
+    video_id={ cardsData[1]._id}
+    on:like
   />
   <Card
     width={"w-1/5"}
@@ -36,6 +40,8 @@
     channel_url={ cardsData[2].instance.host }
     video_title={ cardsData[2].name }
     video_url={ cardsData[2].url }
+    video_id={ cardsData[2]._id}
+    on:like
   />
   <Card
     width={"w-1/5"}
@@ -45,5 +51,7 @@
     channel_url={ cardsData[3].instance.host }
     video_title={ cardsData[3].name }
     video_url={ cardsData[3].url }
+    video_id={ cardsData[3]._id}
+    on:like
   />
 </div>
