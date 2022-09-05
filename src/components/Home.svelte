@@ -16,7 +16,7 @@
           host
           name
         }
-        _id
+        id
         name 
         url 
         thumbnailImg 
@@ -30,7 +30,7 @@
       body: JSON.stringify(query),
     });
     const result = await res.json();
-    console.log(result.data.videos);
+    console.log(result);
     // videos.push(result.data.videos);
     videos = result.data.videos;
   });
