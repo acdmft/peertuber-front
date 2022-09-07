@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { user } from "../lib/stores";
+
   let homeIcon = "text-slate-200";
   let clockIcon = "text-slate-200";
   let heartIcon = "text-slate-200";
@@ -7,7 +9,7 @@
   let aboutIcon = "text-slate-200";
 
   export let page: string;
-
+  // highlight the icon depending on the current page
   switch (page) {
     case "about":
       aboutIcon = "text-yellow-200";
@@ -41,27 +43,29 @@
     <i class="fa-solid fa-house" />
     <div class="text-xs px-1">Home</div>
   </a>
-  <a
-    href="/watchlater"
-    class="block {clockIcon} mb-2 hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
-  >
-    <i class="fa-regular fa-clock" />
-    <div class="text-xs px-1">Watch later</div>
-  </a>
-  <a
-    href="/liked"
-    class="block {heartIcon} hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
-  >
-    <i class="fa-regular fa-heart" />
-    <div class="text-xs ">Favorite</div>
-  </a>
-  <a
-    href="/library"
-    class="block {libraryIcon} hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
-  >
-    <i class="fa-regular fa-folder-closed" />
-    <div class="text-xs ">Library</div>
-  </a>
+  {#if $user}
+    <a
+      href="/watchlater"
+      class="block {clockIcon} mb-2 hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
+    >
+      <i class="fa-regular fa-clock" />
+      <div class="text-xs px-1">Watch later</div>
+    </a>
+    <a
+      href="/liked"
+      class="block {heartIcon} hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
+    >
+      <i class="fa-regular fa-heart" />
+      <div class="text-xs ">Liked</div>
+    </a>
+    <a
+      href="/library"
+      class="block {libraryIcon} hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
+    >
+      <i class="fa-regular fa-folder-closed" />
+      <div class="text-xs ">Library</div>
+    </a>
+  {/if}
   <a
     href="/contact"
     class="block {envIcon} hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
