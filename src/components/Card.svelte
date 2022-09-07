@@ -12,6 +12,7 @@
   export let video_url;
   export let video_id;
   export let likes;
+  export let duration;
 
   const dispatch = createEventDispatcher();
   // THREE DOTS MENU
@@ -28,6 +29,15 @@
     buttonColor = "text-slate-600";
     likes =+ 1;
   }
+
+  const videoDuration = (duration) => {
+    let hours = Math.floor(duration/3600);
+    let minutes = Math.floor((duration - hours*3600)/60);
+    let seconds = Math.floor((duration - hours*60)%60);
+    let time = hours !== 0 ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`;
+    return time;
+  };
+  $: time = videoDuration(duration);
 </script>
 
 <div class="bg-green-300 {width} {height} ">
@@ -47,6 +57,7 @@
     <a href={video_url} target="_blank">
       <img src={img} alt="" class="absolute min-w-full top-0 left-0" />
     </a>
+    <span class="bg-black w-fit h-fit px-1 rounded-md absolute bottom-1 right-1 text-xs text-green-200">{time}</span>
   </div>
   <!-----------    VIDEO DESCRIPTION      ---------->
   <div class="bg-green-300 h-8 pt-1">

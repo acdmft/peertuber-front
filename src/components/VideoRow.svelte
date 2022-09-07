@@ -14,6 +14,7 @@
     video_url={ cardsData[0].url }
     video_id={ cardsData[0]._id}
     likes={cardsData[0].likes}
+    duration={cardsData[0].duration}
     on:like
   />
   <Card
@@ -26,6 +27,7 @@
     video_url={ cardsData[1].url }
     video_id={ cardsData[1]._id}
     likes={cardsData[1].likes}
+    duration={cardsData[1].duration}
     on:like
   />
   <Card
@@ -38,6 +40,7 @@
     video_url={ cardsData[2].url }
     video_id={ cardsData[2]._id}
     likes={cardsData[2].likes}
+    duration={cardsData[2].duration}
     on:like
   />
   <Card
@@ -50,6 +53,7 @@
     video_url={ cardsData[3].url }
     video_id={ cardsData[3]._id}
     likes={cardsData[3].likes}
+    duration={cardsData[3].duration}
     on:like
   />
 </div>

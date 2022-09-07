@@ -21,6 +21,7 @@
         url 
         thumbnailImg 
         likes
+        duration
       }}`
     };
     const res = await fetch(`${api_url}/data`, {
