@@ -9,4 +9,4 @@
 <!-----------      TOP SEPARATOR       ------------>
 <div class="h-20" />
 <!-----------       LEFT MENU       ------------>
-<LeftSidebar />
+<LeftSidebar page={"contact"} />
