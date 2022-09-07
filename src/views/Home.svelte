@@ -1,0 +1,71 @@
+<script lang="ts">
+  import VideoRow from "../components/VideoRow.svelte";
+  import Header from "../components/Header.svelte";
+  import LeftSidebar from "../components/LeftSidebar.svelte";
+  // onMount
+  import { onMount } from "svelte";
+
+  const api_url = import.meta.env.VITE_API_URL;
+  let videos = [];
+  // $: loadedVideos = videos.length;
+
+  onMount(async () => {
+    const query = { 
+      query: `{ videos { 
+        instance {
+          host
+          name
+        }
+        _id
+        name 
+        url 
+        thumbnailImg 
+        likes
+      }}`
+    };
+    const res = await fetch(`${api_url}/data`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(query),
+    });
+    const result = await res.json();
+    console.log(result);
+    // videos.push(result.data.videos);
+    videos = result.data.videos;
+  });
+
+  function handleLike(event) {
+    
+    let data = {videoId: event.detail.videoID};
+    fetch(`${api_url}/like`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    }).then((res)=>{
+      console.log("res.status",res.status);
+    });
+    console.log(event.detail.videoID);
+  }
+</script>
+
+<!---------       TOP MENU            ----------->
+<Header />
+<!-----------      TOP SEPARATOR       ------------>
+<div class="h-20" />
+<!-----------       LEFT MENU       ------------>
+<LeftSidebar page={"home"} />
+<!----------         LEFT SEPARATOR    ------------->
+<!-- <div class="h-screen w-16" ></div> -->
+<!-----------       VIDEOROWS       ------------->
+{#if videos.length !== 0}
+  <VideoRow cardsData={videos.slice(0, 4)} on:like={handleLike} />
+  <VideoRow cardsData={videos.slice(4, 8)} on:like={handleLike} />
+  <VideoRow cardsData={videos.slice(8, 12)} on:like={handleLike} />
+{:else}
+  <p class="mt-10">loading...</p>
+{/if}
