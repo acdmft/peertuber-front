@@ -1,19 +1,25 @@
 <script lang="ts">
-  import { Router, Link, Route } from "svelte-routing";
-  import Home from "../src/components/Home.svelte";
+  import router from "page";
+  // PAGES
+  import Home from "./components/Home.svelte";
+  import About from "./views/About.svelte";
+  import Library from "./views/Library.svelte";
+  import Liked from "./views/Liked.svelte";
+  import WatchLater from "./views/WatchLater.svelte";
 
-  export let url = "";
+  let page;
+  // ROUTES
+  router("/", () => (page = Home));
+  router("/about", () => (page = About));
+  router("/library", () => (page = Library));
+  router("/liked", () => (page = Liked));
+  router("/watchlater", () => (page = WatchLater));
+
+  router.start();
 </script>
 
-<main class="text-center p-4 mx-0">
-  <Router url="{url}">
-    <!-- <nav>
-      <Link to="/">Home</Link>
-    </nav> -->
-    <div>
-      <Route path="/"><Home /></Route>
-    </div>
-  </Router>
+<main class="text-center p-4 mx-0" >
+  <svelte:component this={page} />
 </main>
 
 <style>
@@ -21,5 +27,4 @@
     background-color: #181818;
     position: relative;
   }
-  
 </style>
