@@ -1,7 +1,7 @@
 <script lang="ts">
   import router from "page";
   // PAGES
-  import Home from "./components/Home.svelte";
+  import Home from "./views/Home.svelte";
   import About from "./views/About.svelte";
   import Library from "./views/Library.svelte";
   import Liked from "./views/Liked.svelte";
