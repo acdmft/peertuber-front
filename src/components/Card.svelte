@@ -26,6 +26,7 @@
     });
     likeIcon = "solid";
     buttonColor = "text-slate-600";
+    likes =+ 1;
   }
 </script>
 
