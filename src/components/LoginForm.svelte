@@ -17,6 +17,7 @@
     onSubmit: (values) => {
       fetch(`${api_url}/login`,{
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

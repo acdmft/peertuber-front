@@ -1,12 +1,6 @@
 <script lang="ts">
   import Card from "./Card.svelte";
   export let cardsData;
-  // export let imgUrl: String;
-  // export let instName: String;
-  // export let videoTitle: String;
-  // export let videoUrl: String;
-
-
 </script>
 
 <div class="flex justify-around h-62 mt-12 w-6/8 ml-12">
@@ -19,6 +13,7 @@
     video_title={ cardsData[0].name }
     video_url={ cardsData[0].url }
     video_id={ cardsData[0]._id}
+    likes={cardsData[0].likes}
     on:like
   />
   <Card
@@ -30,6 +25,7 @@
     video_title={ cardsData[1].name }
     video_url={ cardsData[1].url }
     video_id={ cardsData[1]._id}
+    likes={cardsData[1].likes}
     on:like
   />
   <Card
@@ -41,6 +37,7 @@
     video_title={ cardsData[2].name }
     video_url={ cardsData[2].url }
     video_id={ cardsData[2]._id}
+    likes={cardsData[2].likes}
     on:like
   />
   <Card
@@ -52,6 +49,7 @@
     video_title={ cardsData[3].name }
     video_url={ cardsData[3].url }
     video_id={ cardsData[3]._id}
+    likes={cardsData[3].likes}
     on:like
   />
 </div>

@@ -16,10 +16,11 @@
           host
           name
         }
-        id
+        _id
         name 
         url 
         thumbnailImg 
+        likes
       }}`
     };
     const res = await fetch(`${api_url}/data`, {
@@ -36,6 +37,18 @@
   });
 
   function handleLike(event) {
+    
+    let data = {videoId: event.detail.videoID};
+    fetch(`${api_url}/like`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    }).then((res)=>{
+      console.log("res.status",res.status);
+    });
     console.log(event.detail.videoID);
   }
 </script>

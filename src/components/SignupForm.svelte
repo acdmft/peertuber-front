@@ -19,6 +19,7 @@
     onSubmit: (values) => {
       fetch(`${api_url}/signup`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

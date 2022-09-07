@@ -11,6 +11,7 @@
   export let video_title;
   export let video_url;
   export let video_id;
+  export let likes;
 
   const dispatch = createEventDispatcher();
   // THREE DOTS MENU
@@ -74,6 +75,7 @@
       >
         <i class="fa-{likeIcon} fa-thumbs-up" />
       </button>
+      <span class="ml-2 {buttonColor}">{likes}</span>
     {/if}
   </div>
 </div>
