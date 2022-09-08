@@ -60,13 +60,15 @@
 <div class="h-20" />
 <!-----------       LEFT MENU       ------------>
 <LeftSidebar page={"home"} />
-<!----------         LEFT SEPARATOR    ------------->
-<!-- <div class="h-screen w-16" ></div> -->
-<!-----------       VIDEOROWS       ------------->
-{#if videos.length !== 0}
-  <VideoRow cardsData={videos.slice(0, 4)} on:like={handleLike} page={'home'} />
-  <VideoRow cardsData={videos.slice(4, 8)} on:like={handleLike} page={'home'}/>
-  <VideoRow cardsData={videos.slice(8, 12)} on:like={handleLike} page={'home'} />
-{:else}
-  <p class="mt-10">loading...</p>
-{/if}
+<!----------         CONTENT CONTAINER   ------------->
+<div class="min-h-screen" >
+  <!-----------       VIDEOROWS       ------------->
+  {#if videos.length !== 0}
+    <VideoRow cardsData={videos.slice(0, 4)} on:like={handleLike} page={'home'} />
+    <VideoRow cardsData={videos.slice(4, 8)} on:like={handleLike} page={'home'}/>
+    <VideoRow cardsData={videos.slice(8, 12)} on:like={handleLike} page={'home'} />
+  {:else}
+    <p class="mt-10">loading...</p>
+  {/if}
+
+</div>
