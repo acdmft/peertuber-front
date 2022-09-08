@@ -13,6 +13,8 @@
   export let video_id;
   export let likes;
   export let duration;
+  // property to display Card footer depending on the current page
+  export let enabled: boolean;
 
   const dispatch = createEventDispatcher();
   // THREE DOTS MENU
@@ -27,14 +29,15 @@
     });
     likeIcon = "solid";
     buttonColor = "text-slate-600";
-    likes =+ 1;
+    likes = +1;
   }
 
   const videoDuration = (duration) => {
-    let hours = Math.floor(duration/3600);
-    let minutes = Math.floor((duration - hours*3600)/60);
-    let seconds = Math.floor((duration - hours*60)%60);
-    let time = hours !== 0 ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`;
+    let hours = Math.floor(duration / 3600);
+    let minutes = Math.floor((duration - hours * 3600) / 60);
+    let seconds = Math.floor((duration - hours * 60) % 60);
+    let time =
+      hours !== 0 ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`;
     return time;
   };
   $: time = videoDuration(duration);
@@ -57,7 +60,10 @@
     <a href={video_url} target="_blank">
       <img src={img} alt="" class="absolute min-w-full top-0 left-0" />
     </a>
-    <span class="bg-black w-fit h-fit px-1 rounded-md absolute bottom-1 right-1 text-xs text-green-200">{time}</span>
+    <span
+      class="bg-black w-fit h-fit px-1 rounded-md absolute bottom-1 right-1 text-xs text-green-200"
+      >{time}</span
+    >
   </div>
   <!-----------    VIDEO DESCRIPTION      ---------->
   <div class="bg-green-300 h-8 pt-1">
@@ -80,14 +86,16 @@
   </div>
   <!-- CARD FOOTER -->
   <div class="h-6 text-sm text-slate-400 pt-1 flex justify-content-start">
-    {#if $user}
-      <button
-        class="hover:text-slate-600 ml-4 {buttonColor}"
-        on:click|once={like}
-      >
-        <i class="fa-{likeIcon} fa-thumbs-up" />
-      </button>
-      <span class="ml-2 {buttonColor}">{likes}</span>
-    {/if}
+    {#if $user && enabled}
+     
+        <button
+          class="hover:text-slate-600 ml-4 {buttonColor}"
+          on:click|once={like}
+        >
+          <i class="fa-{likeIcon} fa-thumbs-up" />
+        </button>
+        <span class="ml-2 {buttonColor}">{likes}</span>
+      {/if}
+    
   </div>
 </div>
