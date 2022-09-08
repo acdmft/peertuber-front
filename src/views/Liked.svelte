@@ -5,6 +5,8 @@
   import VideoRow from "../components/VideoRow.svelte";
   // UTILITY FUNCTIONS FROM LIB
   import { chunkArray } from "../lib/chunkArray";
+  // SPINNER (github.com/Schum123/svelte-loading-spinners)
+  import {Circle3} from 'svelte-loading-spinners';
 
   // onMount
   import { onMount } from "svelte";
@@ -40,14 +42,17 @@
 <!-----------       LEFT MENU       ------------>
 <LeftSidebar page={"liked"} />
 <!------       CONTENT CONTAINER     ------------>
-<div class="min-h-screen">
+<div class="min-h-screen " >
   <!-----------       VIDEOROWS       ------------->
   {#if videos.length !== 0}
     {#each videos as video}
       <VideoRow cardsData={video} page={"liked"} />
     {/each}
   {:else}
-    <p class="mt-10">loading...</p>
+    <div class="flex justify-center pt-40 w-full mb-40">
+      <Circle3 size="100"></Circle3>
+    </div>
+
   {/if}
 
 </div>
