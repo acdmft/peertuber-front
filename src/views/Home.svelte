@@ -4,13 +4,16 @@
   import LeftSidebar from "../components/LeftSidebar.svelte";
   // onMount
   import { onMount } from "svelte";
+  // SPINNER (github.com/Schum123/svelte-loading-spinners)
+  import {Circle3} from 'svelte-loading-spinners';
+
 
   const api_url = import.meta.env.VITE_API_URL;
   let videos = [];
   // $: loadedVideos = videos.length;
 
   onMount(async () => {
-    const query = { 
+    const query = {
       query: `{ videos { 
         instance {
           host
@@ -22,7 +25,7 @@
         thumbnailImg 
         likes
         duration
-      }}`
+      }}`,
     };
     const res = await fetch(`${api_url}/data`, {
       method: "POST",
@@ -39,7 +42,7 @@
   });
 
   function handleLike(event) {
-    let data = {videoId: event.detail.videoID};
+    let data = { videoId: event.detail.videoID };
     fetch(`${api_url}/like`, {
       method: "POST",
       credentials: "include",
@@ -47,8 +50,8 @@
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(data),
-    }).then((res)=>{
-      console.log("res.status",res.status);
+    }).then((res) => {
+      console.log("res.status", res.status);
     });
     console.log(event.detail.videoID);
   }
@@ -61,14 +64,27 @@
 <!-----------       LEFT MENU       ------------>
 <LeftSidebar page={"home"} />
 <!----------         CONTENT CONTAINER   ------------->
-<div class="min-h-screen" >
+<div class="min-h-screen">
   <!-----------       VIDEOROWS       ------------->
   {#if videos.length !== 0}
-    <VideoRow cardsData={videos.slice(0, 4)} on:like={handleLike} page={'home'} />
-    <VideoRow cardsData={videos.slice(4, 8)} on:like={handleLike} page={'home'}/>
-    <VideoRow cardsData={videos.slice(8, 12)} on:like={handleLike} page={'home'} />
+    <VideoRow
+      cardsData={videos.slice(0, 4)}
+      on:like={handleLike}
+      page={"home"}
+    />
+    <VideoRow
+      cardsData={videos.slice(4, 8)}
+      on:like={handleLike}
+      page={"home"}
+    />
+    <VideoRow
+      cardsData={videos.slice(8, 12)}
+      on:like={handleLike}
+      page={"home"}
+    />
   {:else}
-    <p class="mt-10">loading...</p>
+    <div class="flex justify-center pt-40 w-full mb-40">
+      <Circle3 size="100" />
+    </div>
   {/if}
-
 </div>
