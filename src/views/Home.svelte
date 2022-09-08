@@ -34,11 +34,11 @@
     const result = await res.json();
     console.log(result);
     // videos.push(result.data.videos);
+    // Svelte reacts on the assignment to the variable
     videos = result.data.videos;
   });
 
   function handleLike(event) {
-    
     let data = {videoId: event.detail.videoID};
     fetch(`${api_url}/like`, {
       method: "POST",
@@ -64,9 +64,9 @@
 <!-- <div class="h-screen w-16" ></div> -->
 <!-----------       VIDEOROWS       ------------->
 {#if videos.length !== 0}
-  <VideoRow cardsData={videos.slice(0, 4)} on:like={handleLike} />
-  <VideoRow cardsData={videos.slice(4, 8)} on:like={handleLike} />
-  <VideoRow cardsData={videos.slice(8, 12)} on:like={handleLike} />
+  <VideoRow cardsData={videos.slice(0, 4)} on:like={handleLike} page={'home'} />
+  <VideoRow cardsData={videos.slice(4, 8)} on:like={handleLike} page={'home'}/>
+  <VideoRow cardsData={videos.slice(8, 12)} on:like={handleLike} page={'home'} />
 {:else}
   <p class="mt-10">loading...</p>
 {/if}
