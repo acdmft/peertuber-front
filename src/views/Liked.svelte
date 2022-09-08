@@ -13,8 +13,9 @@
 
   const api_url = import.meta.env.VITE_API_URL;
 
-  let videos = [];
-  // $: recVideos = chunkArray(videos, 4);
+  const videos = {arr: [], downloaded: false};
+  // let fetchTerminated = false;
+  // $: recVideos = videos.length || null;
 
   onMount(async () => {
     fetch(`${api_url}/like`, {
@@ -22,12 +23,13 @@
     })
       .then((res) => res.json())
       .then((res) => {
-        videos = chunkArray(res, 4);
-        videos = videos.map((i) => {
-          return i.map((el) => {
-            return el.videoId;
+        let recVid = chunkArray(res, 4);
+        videos.arr = recVid.map((arr) => {
+          return arr.map((obj) => {
+            return obj.videoId;
           });
         });
+        videos.downloaded  = true;
         console.log("videos", videos);
       })
       .catch((err) => console.log("Error", err));
@@ -44,15 +46,18 @@
 <!------       CONTENT CONTAINER     ------------>
 <div class="min-h-screen " >
   <!-----------       VIDEOROWS       ------------->
-  {#if videos.length !== 0}
-    {#each videos as video}
-      <VideoRow cardsData={video} page={"liked"} />
-    {/each}
+  {#if !videos.downloaded}
+  <div class="flex justify-center pt-40 w-full mb-40">
+    <Circle3 size="100"></Circle3>
+  </div>
+  {:else if videos.arr.length !== 0}
+  {#each videos.arr as video}
+    <VideoRow cardsData={video} page={"liked"} />
+  {/each}
   {:else}
-    <div class="flex justify-center pt-40 w-full mb-40">
-      <Circle3 size="100"></Circle3>
+    <div class="pt-40">
+      <h2 class="text-blue-200">No liked videos yet.</h2>
     </div>
-
   {/if}
 
 </div>
