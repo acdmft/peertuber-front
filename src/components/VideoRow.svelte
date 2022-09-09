@@ -4,7 +4,8 @@ import Card from "./Card.svelte";
   export let cardsData;
   // display Card depending on the current page
   export let page: string;
-  // export let enabled: boolean;
+  // stripCards help to arrange Cards in the row 
+  $: stripCards = Array(4 - cardsData.length).fill("");
 
 </script>
 
@@ -41,5 +42,8 @@ import Card from "./Card.svelte";
       enabled={false}
     />
     {/if}
+  {/each}
+  {#each stripCards as strip}
+    <div class="w-1/5 min-h-full"></div>
   {/each}
 </div>

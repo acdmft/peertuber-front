@@ -1,5 +1,5 @@
 import { toast } from "@zerodevx/svelte-toast";
-
+// https://github.com/zerodevx/svelte-toast
 export const successToast = (m) => toast.push(m, {
   duration: 1500,
   theme: {
