@@ -122,16 +122,17 @@
       <div
         class="h-screen w-full opacity-75 bg-zinc-900 fixed top-0 left-10 z-10"
       />
-      <div class="form-wrapper bg-neutral-200 z-50 rounded-md fixed">
-        {#if signupForm}
-          <SignupForm on:click={handleCloseClick} />
-        {/if}
+        <div class="form-wrapper bg-neutral-200 z-50 rounded-md fixed">
+          {#if signupForm}
+            <SignupForm on:click={handleCloseClick} />
+          {/if}
 
-        {#if loginForm}
-          <LoginForm on:click={handleCloseClick} />
-        {/if}
+          {#if loginForm}
+            <LoginForm on:click={handleCloseClick} />
+          {/if}
+        </div>
       </div>
-    </div>
+    <!-- </div> -->
   {/if}
 </div>
 

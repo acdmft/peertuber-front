@@ -58,6 +58,7 @@
   <h2 class="bg-gray-400 py-6 text-white text-xl font-semibold rounded-t-md">
     Join Peertuber
   </h2>
+  <!----    CLOSE ICON   ---->
   <button
     on:click
     class="absolute top-1 right-2 text-neutral-200 hover:text-red-200"

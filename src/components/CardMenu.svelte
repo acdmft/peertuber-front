@@ -3,6 +3,8 @@
   import { user } from "../lib/stores";
   // TOASTS
   import { successToast, warningToast } from "../lib/toast-themes";
+  // LIBRARY MENU 
+  import LibraryMenu from "./LibraryMenu.svelte";
 
   export let threeDotsMenu: String;
   export let video_id: String;
@@ -10,7 +12,7 @@
   let api_url =  import.meta.env.VITE_API_URL;
   let show: boolean = false; //menu state
   let menu = null; // menu wrapper DOM reference
-  // ADD TO WATCH LATER
+  // ADD VIDEO TO WATCH LATER
   const wlClick = () => {
     let data = {videoId: video_id};
     fetch(`${api_url}/sched`, {
@@ -25,12 +27,17 @@
         successToast('Saved to Watch Later!');
       } else {
         warningToast('Video already saved');
-
+        
       }
-
+      
       show = false;
       console.log("res.status", res.status);
     }).catch((err) => warningToast(err));
+  };
+  // LIBRARY MENU
+  let libMenu = false;
+  const libClick = () => {
+    libMenu = true;
   };
 
   onMount(() => {
@@ -69,26 +76,32 @@
   {#if show}
     <div class="relative">
       <div
-        class="absolute bottom-2 z-10 right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md text-left text-sm"
+        class="absolute bottom-2 z-10 right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md text-sm"
       >
-        <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
-          ><i class="fa-solid fa-share mr-4" />Copy URL</a
+        <button href={"#"} class="block w-full px-4 text-slate-200 py-2 hover:bg-gray-600 text-left"
+          ><i class="fa-solid fa-share mr-4" />Copy URL</button
         >
         {#if $user}
-          <button on:click|once={wlClick} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
+          <button on:click|once={wlClick} class="block w-full px-4 text-slate-200 py-2 hover:bg-gray-600 text-left"
             ><i class="fa-solid fa-clock mr-4" />Add to Watch later</button
           >
-          <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
-            ><i class="fa-solid fa-folder-plus mr-4" />Add to Library</a
+          <button on:click={libClick} class="block w-full px-4 text-slate-200 py-2 hover:bg-gray-600 text-left"
+            ><i class="fa-solid fa-folder-plus mr-4" />Add to Library</button
           >
-          <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
-            ><i class="fa-solid fa-flag mr-4" />Report</a
+          <button href={"#"} class="block w-full px-4 text-slate-200 py-2 hover:bg-gray-600 text-left"
+            ><i class="fa-solid fa-flag mr-4" />Report</button
           >
         {/if}
       </div>
     </div>
   {/if}
 </div>
+{#if libMenu}
+<div class="fixed z-20">
+  <LibraryMenu /> 
+
+</div>
+ {/if}
 <!-- TOAST -->
 <!-- <div class="">
   <SvelteToast />
