@@ -10,8 +10,8 @@
 
   const api_url = import.meta.env.VITE_API_URL;
   let videos = [];
-  // $: loadedVideos = ;
-
+  
+  // fetch videos from the server
   onMount(async () => {
     const query = {
       query: `{ videos { 

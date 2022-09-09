@@ -3,8 +3,26 @@
   import { user } from "../lib/stores";
 
   export let threeDotsMenu: String;
+  export let video_id: String;
+
+  let api_url =  import.meta.env.VITE_API_URL;
   let show: boolean = false; //menu state
   let menu = null; // menu wrapper DOM reference
+  // ADD TO WATCH LATER
+  const wlClick = () => {
+    let data = {videoId: video_id};
+    fetch(`${api_url}/sched`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      show = false;
+      console.log("res.status", res.status);
+    }).catch((err) => console.log(err));
+  };
 
   onMount(() => {
     const handleOutsideClick = (e) => {
@@ -48,8 +66,8 @@
           ><i class="fa-solid fa-share mr-4" />Copy URL</a
         >
         {#if $user}
-          <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
-            ><i class="fa-solid fa-clock mr-4" />Add to Watch later</a
+          <button on:click|once={wlClick} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
+            ><i class="fa-solid fa-clock mr-4" />Add to Watch later</button
           >
           <a href={"#"} class="block px-4 text-slate-200 py-2 hover:bg-gray-600"
             ><i class="fa-solid fa-folder-plus mr-4" />Add to Library</a

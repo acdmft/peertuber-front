@@ -17,7 +17,7 @@
   export let enabled: boolean;
 
   const dispatch = createEventDispatcher();
-  // THREE DOTS MENU
+  // THREE DOTS MENU STATE
   let threeDotsMenu = "hidden";
   // Like icon
   let likeIcon: string = "regular";
@@ -81,7 +81,7 @@
         {video_title}
       </a>
       <!-- TRHEEDOTS MENU ICON -->
-      <CardMenu {threeDotsMenu} />
+      <CardMenu {threeDotsMenu} {video_id} />
     </div>
   </div>
   <!-- CARD FOOTER -->
