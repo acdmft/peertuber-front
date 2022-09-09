@@ -1,6 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { user } from "../lib/stores";
+  // TOASTS
+  import { successToast, warningToast } from "../lib/toast-themes";
 
   export let threeDotsMenu: String;
   export let video_id: String;
@@ -19,9 +21,16 @@
       },
       body: JSON.stringify(data),
     }).then((res) => {
+      if (res.ok) {
+        successToast('Saved to Watch Later!');
+      } else {
+        warningToast('Video already saved');
+
+      }
+
       show = false;
       console.log("res.status", res.status);
-    }).catch((err) => console.log(err));
+    }).catch((err) => warningToast(err));
   };
 
   onMount(() => {
@@ -80,3 +89,15 @@
     </div>
   {/if}
 </div>
+<!-- TOAST -->
+<!-- <div class="">
+  <SvelteToast />
+</div> -->
+<style>
+  :root {
+    --toastContainerTop: auto;
+    --toastContainerRight: auto;
+    --toastContainerBottom: 0;
+    --toastContainerLeft: 0;
+  }
+</style>
