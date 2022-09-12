@@ -45,6 +45,7 @@
   <!-----------       VIDEOROWS       ------------->
   {#if !videos.downloaded}
   <div class="flex justify-center pt-40 w-full mb-40">
+    <!-- SPINNER -->
     <Circle3 size="100"></Circle3>
   </div>
   {:else if videos.arr.length !== 0}
