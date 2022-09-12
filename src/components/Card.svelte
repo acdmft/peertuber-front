@@ -2,7 +2,7 @@
   import CardMenu from "./CardMenu.svelte";
   import { createEventDispatcher } from "svelte";
   import { user } from "../lib/stores";
-
+  // EXPORTS
   export let width;
   export let height;
   export let img;
@@ -74,7 +74,7 @@
       on:mouseleave={() => (threeDotsMenu = "hidden")}
     >
       <a
-        href={"#"}
+        href={video_url}
         target="_blank"
         class="text-xs font-semibold w-11/12 border-2 border-transparent overflow-hidden max-h-9"
       >

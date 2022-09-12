@@ -7,15 +7,12 @@
   import { chunkArray } from "../lib/chunkArray";
   // SPINNER (github.com/Schum123/svelte-loading-spinners)
   import {Circle3} from 'svelte-loading-spinners';
-
   // onMount
   import { onMount } from "svelte";
 
   const api_url = import.meta.env.VITE_API_URL;
 
   const videos = {arr: [], downloaded: false};
-  // let fetchTerminated = false;
-  // $: recVideos = videos.length || null;
 
   onMount(async () => {
     fetch(`${api_url}/like`, {

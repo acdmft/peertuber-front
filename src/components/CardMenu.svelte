@@ -35,8 +35,10 @@
       })
       .catch((err) => warningToast(err));
   };
-  // LIBRARY MENU
+  // LIBRARY MENU STATE 
   let libMenu = false;
+  $: showMenu = libMenu;
+
   const libClick = () => {
     // close card menu
     show = false;
@@ -108,9 +110,9 @@
   {/if}
 </div>
 <!----       LIBRARY MENU      ------>
-{#if libMenu}
+{#if showMenu}
   <div class="fixed z-20">
-    <LibraryMenu on:click={()=> {libMenu = false;}}/>
+    <LibraryMenu {video_id} on:click={()=> {libMenu = false;}}/>
   </div>
 {/if}
 <!-- TOAST -->
