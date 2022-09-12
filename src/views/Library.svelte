@@ -4,6 +4,7 @@
   import Header from "../components/Header.svelte";
   import LeftSidebar from "../components/LeftSidebar.svelte";
   import VideoRow from "../components/VideoRow.svelte";
+  import Playlist from "../components/Playlist.svelte";
   // SPINNER
   import { Circle3 } from "svelte-loading-spinners";
 
@@ -50,6 +51,7 @@
 <LeftSidebar page={"library"} />
 <!------       CONTENT CONTAINER     ------------>
 <div class="min-h-screen ">
+  <Playlist />
   <!-----------       VIDEOROWS       ------------->
   {#if !videos.downloaded}
     <div class="flex justify-center pt-40 w-full mb-40">
@@ -58,7 +60,7 @@
     </div>
   {:else if videos.arr.length !== 0}
     {#each videos.arr as video}
-      <VideoRow cardsData={video} page={"liked"} />
+      <VideoRow cardsData={video} page={"library"} />
     {/each}
   {:else}
     <div class="pt-40">
