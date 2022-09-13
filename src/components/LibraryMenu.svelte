@@ -96,10 +96,10 @@
           <ul class="my-1 w-full text-center">
             {#each playlists.arr as playlist}
               <li
-                on:click|once = {()=>{addToLib(playlist)}}
+                on:click|once = {()=>{addToLib(playlist.title)}}
                 class="font-medium hover:bg-slate-200 my-1 hover:cursor-pointer"
               >
-                {playlist}
+                {playlist.title}
               </li>
             {/each}
           </ul>
