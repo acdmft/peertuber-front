@@ -1,0 +1,76 @@
+<script lang="ts">
+  import { createEventDispatcher, onMount } from "svelte";
+  // TOASTS
+  import { successToast, warningToast } from "../lib/toast-themes";
+  // UTILITY FUNCTIONS FROM LIB
+  import { chunkArray } from "../lib/chunkArray";
+  const dispatch = createEventDispatcher();
+
+  
+  // HIGHLIGHT MENU ITEM
+  const highlightMenuItem = (e) => {
+    let ul = document.querySelector("ul.playlist");
+    for (let i = 0; i < ul.childElementCount; i++) {
+      ul.children[i].classList.remove("underline");
+    }
+    e.target.classList.add("underline");
+  };
+  const plClick = (e, title) => {
+    highlightMenuItem(e)
+    dispatch('plClick', {
+      title: title
+    })
+  } 
+
+  const api_url = import.meta.env.VITE_API_URL;
+  let playlists = { arr: [], recieved: false };
+  // GET PLAYLIST VIDEOS
+  const handleClick = (e, pl) => {
+    highlightMenuItem(e);
+    console.log(pl);
+    
+  };
+  onMount(async () => {
+    let result = await fetch(`${api_url}/playlists`, {
+      credentials: "include",
+    });
+    if (!result.ok) {
+      playlists.recieved = false;
+      return;
+    }
+    let res = await result.json();
+    playlists.arr = res; //["cats", "dogs", "cuisine"]; //res;
+    playlists.recieved = true;
+  });
+</script>
+
+<div
+  class="flex flex-col border-2 border-solid border-red-200 w-1/5 h-[70%] rounded-md fixed top-30 right-6"
+>
+  <p class="text-xl text-neutral-200 font-semibold">Playlists</p>
+  {#if !playlists.recieved}
+    <p class="text-neutral-200 mt-2">Loading ...</p>
+  {:else if playlists.arr.length === 0}
+    <p class="text-neutral-200 font-semibold">No playlists yet</p>
+  {:else}
+    <ul
+      class="text-neutral-200 font-semibold text-left ml-2 h-3/4 my-auto playlist"
+    >
+      <!-- FIRST ITEM ("ALL") -->
+      <li
+        on:click={(e) => plClick(e, "")}
+        class="underline hover:underline decoration-2 decoration-red-400 hover:cursor-pointer"
+      >
+        all
+      </li>
+      {#each playlists.arr as pl, i}
+        <li
+          on:click={(e)=> plClick(e, pl.title)}
+          class="hover:underline decoration-2 decoration-red-400 hover:cursor-pointer"
+        >
+          {pl.title} <span class="ml-4">{pl.num}</span>
+        </li>
+      {/each}
+    </ul>
+  {/if}
+</div>
