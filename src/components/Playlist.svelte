@@ -1,7 +1,5 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
-  // TOASTS
-  import { successToast, warningToast } from "../lib/toast-themes";
   // UTILITY FUNCTIONS FROM LIB
   import { chunkArray } from "../lib/chunkArray";
   const dispatch = createEventDispatcher();
@@ -15,6 +13,7 @@
     }
     e.target.classList.add("underline");
   };
+  // GET PLAYLIST VIDEOS
   const plClick = (e, title) => {
     highlightMenuItem(e)
     dispatch('plClick', {
@@ -24,12 +23,7 @@
 
   const api_url = import.meta.env.VITE_API_URL;
   let playlists = { arr: [], recieved: false };
-  // GET PLAYLIST VIDEOS
-  const handleClick = (e, pl) => {
-    highlightMenuItem(e);
-    console.log(pl);
-    
-  };
+  
   onMount(async () => {
     let result = await fetch(`${api_url}/playlists`, {
       credentials: "include",
@@ -39,7 +33,7 @@
       return;
     }
     let res = await result.json();
-    playlists.arr = res; //["cats", "dogs", "cuisine"]; //res;
+    playlists.arr = chunkArray(res,3);
     playlists.recieved = true;
   });
 </script>
