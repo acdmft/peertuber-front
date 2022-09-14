@@ -40,6 +40,25 @@
     videos.arr = chunkArray(result.data.videos, 3);
     videos.downloaded = true;
   });
+  const handleClick = (e) => {
+    console.log(e.detail.title)
+    const query = e.detail.title === "" ? "/all" : `?pl=${e.detail.title}`;
+    fetch(`${api_url}/playlists${query}`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        let recVid = chunkArray(res.videos, 3);
+        videos.arr = recVid.map((arr) => {
+          return arr.map((obj) => {
+            return obj.videoId;
+          });
+        });
+        videos.downloaded = true;
+        console.log("videos", videos);
+      })
+      .catch((err) => console.log("Error", err));
+  }
 </script>
 
 <h1>Library</h1>
@@ -51,7 +70,7 @@
 <LeftSidebar page={"library"} />
 <!------       CONTENT CONTAINER     ------------>
 <div class="min-h-screen ">
-  <Playlist />
+  <Playlist on:plClick={handleClick} />
   <!-----------       VIDEOROWS       ------------->
   {#if !videos.downloaded}
     <div class="flex justify-center pt-40 w-full mb-40">
