@@ -3,8 +3,9 @@
   import { user } from "../lib/stores";
   // TOASTS
   import { successToast, warningToast } from "../lib/toast-themes";
-  // LIBRARY MENU
+  // LIBRARY MENU, REPORT FORM
   import LibraryMenu from "./LibraryMenu.svelte";
+  import ReportForm from "./ReportForm.svelte";
 
   export let threeDotsMenu: String;
   export let video_id: String;
@@ -38,6 +39,9 @@
   // LIBRARY MENU STATE 
   let libMenu = false;
   $: showMenu = libMenu;
+  // REPORT FORM STATE 
+  let reportMenu = false;
+  $: repFormEnabled = reportMenu;
 
   const libClick = () => {
     // close card menu
@@ -100,7 +104,10 @@
             ><i class="fa-solid fa-folder-plus mr-4" />Add to Library</button
           >
           <button
-            href={"#"}
+            on:click={()=>{
+              show=false;
+reportMenu = true;
+            }}
             class="block w-full px-4 text-slate-200 py-2 hover:bg-gray-600 text-left"
             ><i class="fa-solid fa-flag mr-4" />Report</button
           >
@@ -114,6 +121,10 @@
   <div class="fixed z-20">
     <LibraryMenu {video_id} on:click={()=> {libMenu = false;}}/>
   </div>
+{/if}
+<!-----      REPORT FORM      ------>
+{#if repFormEnabled}
+<ReportForm {video_id} on:click={()=>{ reportMenu = false;}} />
 {/if}
 <!-- TOAST -->
 
