@@ -5,14 +5,14 @@
   // onMount
   import { onMount } from "svelte";
   // SPINNER (github.com/Schum123/svelte-loading-spinners)
-  import {Circle3} from 'svelte-loading-spinners';
+  import { Circle3 } from "svelte-loading-spinners";
+  import { chunkArray } from "../lib/chunkArray";
 
-
+  let loadingNextPage = false;
   const api_url = import.meta.env.VITE_API_URL;
-  let videos = [];
-  
-  // fetch videos from the server
-  onMount(async () => {
+  let videos = {arr: [], recieved: false};
+  // FETCH VIDEOS
+  async function retrVideos() {
     const query = {
       query: `{ videos { 
         instance {
@@ -38,9 +38,30 @@
     console.log(result);
     // videos.push(result.data.videos);
     // Svelte reacts on the assignment to the variable
-    videos = result.data.videos;
-  });
+    let recVid = result.data.videos;
+    recVid = chunkArray(recVid, 4);
+    videos.arr.push(...recVid);
+    videos.recieved = true;
+    // videos = result.data.videos;
+  }
 
+  // fetch videos from the server
+  onMount(async () => {
+    retrVideos();
+  });
+  function scrollHandler() {
+    const scrolledToBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight; 
+    if (!loadingNextPage && scrolledToBottom) {
+      const previousScrollY = window.scrollY;
+      loadingNextPage = true;
+      setTimeout(()=> {
+        window.scroll(0, previousScrollY)
+        retrVideos();
+        loadingNextPage = false;
+      })
+    }
+  }
+  // ADD LIKE
   function handleLike(event) {
     let data = { videoId: event.detail.videoID };
     fetch(`${api_url}/like`, {
@@ -56,7 +77,7 @@
     console.log(event.detail.videoID);
   }
 </script>
-
+<svelte:window on:scroll={scrollHandler} />
 <!---------       TOP MENU            ----------->
 <Header />
 <!-----------      TOP SEPARATOR       ------------>
@@ -65,23 +86,18 @@
 <LeftSidebar page={"home"} />
 <!----------         CONTENT CONTAINER   ------------->
 <div class="min-h-screen">
+  <!-- TEST BUTTON  -->
+  <button on:click={retrVideos} class="fixed top-0 left-10 font-bold text-neutral-200 z-40">Load more</button>
   <!-----------       VIDEOROWS       ------------->
-  {#if videos.length !== 0}
-    <VideoRow
-      cardsData={videos.slice(0, 4)}
-      on:like={handleLike}
-      page={"home"}
-    />
-    <VideoRow
-      cardsData={videos.slice(4, 8)}
-      on:like={handleLike}
-      page={"home"}
-    />
-    <VideoRow
-      cardsData={videos.slice(8, 12)}
-      on:like={handleLike}
-      page={"home"}
-    />
+  {#if videos.recieved}
+    {#each videos.arr as video}
+      <VideoRow cardsData={video} on:like={handleLike} page={"home"} />
+    {/each}
+    
+    <div class="flex justify-center pt-10 w-full mb-10">
+      <Circle3 size="40" />
+    </div>
+    
   {:else}
     <div class="flex justify-center pt-40 w-full mb-40">
       <Circle3 size="100" />
