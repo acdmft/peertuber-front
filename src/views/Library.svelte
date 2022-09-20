@@ -70,6 +70,7 @@
 <LeftSidebar page={"library"} />
 <!------       CONTENT CONTAINER     ------------>
 <div class="min-h-screen ">
+  <!-----      PLAYLIST     ----->
   <Playlist on:plClick={handleClick} />
   <!-----------       VIDEOROWS       ------------->
   {#if !videos.downloaded}

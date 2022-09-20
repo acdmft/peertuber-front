@@ -1,8 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
-  // UTILITY FUNCTIONS FROM LIB
-  import { chunkArray } from "../lib/chunkArray";
   const dispatch = createEventDispatcher();
+  // TOASTS
+  import { warningToast } from "../lib/toast-themes";
 
   
   // HIGHLIGHT MENU ITEM
@@ -29,12 +29,14 @@
       credentials: "include",
     });
     if (!result.ok) {
-      playlists.recieved = false;
+      warningToast("Something went wrong during retrieving playlists.")
+      playlists.recieved = true;
       return;
     }
     let res = await result.json();
-    playlists.arr = chunkArray(res,3);
+    playlists.arr = res;
     playlists.recieved = true;
+    console.log(playlists.arr)
   });
 </script>
 
@@ -57,7 +59,7 @@
       >
         all
       </li>
-      {#each playlists.arr as pl, i}
+      {#each playlists.arr as pl}
         <li
           on:click={(e)=> plClick(e, pl.title)}
           class="hover:underline decoration-2 decoration-red-400 hover:cursor-pointer"

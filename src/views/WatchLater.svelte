@@ -52,7 +52,7 @@
   {/each}
   {:else}
     <div class="pt-40">
-      <h2 class="text-blue-200">No liked videos yet.</h2>
+      <h2 class="text-blue-200">No scheduled videos yet.</h2>
     </div>
   {/if}
 
