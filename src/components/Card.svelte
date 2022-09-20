@@ -66,7 +66,7 @@
     >
   </div>
   <!-----------    VIDEO DESCRIPTION      ---------->
-  <div class="bg-green-300 h-8 pt-1">
+  <div class="bg-green-300 h-8 pt-1.5">
     <div
       class="flex justify-between text-left relative text-gray-600 hover:text-gray-800 text-base px-2"
       on:focus={() => (threeDotsMenu = "")}
@@ -85,7 +85,7 @@
     </div>
   </div>
   <!-- CARD FOOTER -->
-  <div class="h-6 text-sm text-slate-400 pt-1 flex justify-content-start">
+  <div class="h-6 text-sm text-slate-400 mt-0.5 pt-1 flex justify-content-start">
     {#if $user && enabled}
      
         <button
