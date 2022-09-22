@@ -17,6 +17,6 @@
     </div>
   </div> 
   <!-------     BOTTOM PART OF HEADER (CATEGORIES)    -------->
-  <VideoFilter />
+  <VideoFilter on:selFitler />
 </div>
 

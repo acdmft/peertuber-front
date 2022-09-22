@@ -8,6 +8,7 @@
   import { Circle3 } from "svelte-loading-spinners";
   import { chunkArray } from "../lib/chunkArray";
 
+  let selectedCat = 'all';
   let loadingNextPage = false;
   const api_url = import.meta.env.VITE_API_URL;
   let videos = {arr: [], recieved: false};
@@ -76,10 +77,14 @@
     });
     console.log(event.detail.videoID);
   }
+  function handleFilterSelect(e) {
+    selectedCat = e.detail.category;
+    console.log(e.detail.category)
+  }
 </script>
 <svelte:window on:scroll={scrollHandler} />
 <!---------       TOP MENU            ----------->
-<Header />
+<Header on:selFitler={handleFilterSelect}/>
 <!-----------      TOP SEPARATOR       ------------>
 <div class="h-20" />
 <!-----------       LEFT MENU       ------------>
