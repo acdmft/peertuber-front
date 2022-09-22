@@ -7,8 +7,8 @@
   import LibraryMenu from "./LibraryMenu.svelte";
   import ReportForm from "./ReportForm.svelte";
 
-  export let threeDotsMenu: String;
-  export let video_id: String;
+  export let threeDotsMenu: string;
+  export let video_id: string;
 
   let api_url = import.meta.env.VITE_API_URL;
   let show: boolean = false; //menu state
