@@ -50,28 +50,34 @@
       body: JSON.stringify(query),
     });
     const result = await res.json();
-    console.log(result);
-    // videos.push(result.data.videos);
+    // console.log(result);
     // Svelte reacts on the assignment to the variable
     let recVid = result.data.videos;
-    recVid = chunkArray(recVid, 4);
-    videos.arr.push(...recVid);
+    // recVid = chunkArray(recVid, 4);
+    // videos.arr.push(...recVid);
+
     videos.recieved = true;
+    return recVid;
     // videos = result.data.videos;
   }
 
   // fetch videos from the server
   onMount(async () => {
-    retrVideos();
+    let recVid = await retrVideos();
+    recVid = chunkArray(recVid, 4);
+    videos.arr.push(...recVid);
+    videos.recieved = true;
   });
   function scrollHandler() {
     const scrolledToBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight; 
     if (!loadingNextPage && scrolledToBottom) {
       const previousScrollY = window.scrollY;
       loadingNextPage = true;
-      setTimeout(()=> {
+      setTimeout(async ()=> {
         window.scroll(0, previousScrollY)
-        retrVideos();
+        let recVid = await retrVideos();
+        recVid = chunkArray(recVid, 4);
+        videos.arr.push(...recVid);
         loadingNextPage = false;
       })
     }
@@ -91,9 +97,14 @@
     });
     console.log(event.detail.videoID);
   }
-  function handleFilterSelect(e) {
+  async function handleFilterSelect(e) {
     selectedCat = e.detail.category;
-    console.log(e.detail.category)
+    let recVid = await retrVideos();
+    console.log('handleFilterSelect recVid', recVid);
+    
+    videos.arr = chunkArray(recVid, 4);
+    videos.recieved = true;
+
   }
 </script>
 <svelte:window on:scroll={scrollHandler} />
