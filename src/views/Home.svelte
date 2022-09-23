@@ -8,14 +8,28 @@
   import { Circle3 } from "svelte-loading-spinners";
   import { chunkArray } from "../lib/chunkArray";
 
-  let selectedCat = 'all';
+  let selectedCat = "Music";//'all';
   let loadingNextPage = false;
   const api_url = import.meta.env.VITE_API_URL;
   let videos = {arr: [], recieved: false};
   // FETCH VIDEOS
   async function retrVideos() {
+    // const query = {
+    //   query: `{ videos { 
+    //     instance {
+    //       host
+    //       name
+    //     }
+    //     _id
+    //     name 
+    //     url 
+    //     thumbnailImg 
+    //     likes
+    //     duration
+    //   }}`,
+    // };
     const query = {
-      query: `{ videos { 
+      query: `{ videos(category: "${selectedCat}") { 
         instance {
           host
           name
