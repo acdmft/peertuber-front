@@ -67,7 +67,7 @@
   <div>
     <button
       on:click={() => (show = !show)}
-      class="menu focus:outline-none focus:shadow-solid text-slate-200 hover:text-slate-400 text-2xl cursor-pointer mr-4"
+      class="menu w-full focus:outline-none focus:shadow-solid text-slate-200 hover:text-slate-400 text-2xl cursor-pointer mr-4"
     >
       {#if $user}
         <i class="fa-solid fa-user" />
@@ -79,38 +79,39 @@
       <div
         in:scale={{ duration: 100, start: 0.95 }}
         out:scale={{ duration: 75, start: 0.95 }}
-        class="origin-top-right absolute right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md divide-y divide-gray-500"
+        class="origin-top-right absolute right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md divide-y divide-gray-500 "
       >
         {#if $user}
-          <a
-            href={"#"}
-            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 ">Profile</a
+        <!-- PROFILE ITEM -->
+          <a href="/profile"
+            class="block px-4 w-full text-left text-slate-200 py-2 hover:bg-gray-600"
+            >Profile</a
           >
-          <a
-            href={"#"}
-            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
-            on:click={logout}>Logout</a
+          <!-- LOGOUT -->
+          <button
+            class="block px-4 w-full text-left text-slate-200 py-2 hover:bg-gray-600 "
+            on:click={logout}>Logout</button
           >
         {:else}
-          <a
-            href={"#"}
+          <button
             on:click={() => {
               show = false;
               $accForms = true;
               loginForm = true;
               signupForm = false;
             }}
-            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 ">Login</a
+            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
+            >Login</button
           >
-          <a
-            href={"#"}
+          <button
             on:click={() => {
               show = false;
               $accForms = true;
               loginForm = false;
               signupForm = true;
             }}
-            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 ">Signup</a
+            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
+            >Signup</button
           >
         {/if}
       </div>
@@ -122,16 +123,16 @@
       <div
         class="h-screen w-full opacity-75 bg-zinc-900 fixed top-0 left-10 z-10"
       />
-        <div class="form-wrapper bg-neutral-200 z-50 rounded-md fixed">
-          {#if signupForm}
-            <SignupForm on:click={handleCloseClick} />
-          {/if}
+      <div class="form-wrapper bg-neutral-200 z-50 rounded-md fixed">
+        {#if signupForm}
+          <SignupForm on:click={handleCloseClick} />
+        {/if}
 
-          {#if loginForm}
-            <LoginForm on:click={handleCloseClick} />
-          {/if}
-        </div>
+        {#if loginForm}
+          <LoginForm on:click={handleCloseClick} />
+        {/if}
       </div>
+    </div>
     <!-- </div> -->
   {/if}
 </div>
