@@ -6,64 +6,18 @@
   import { onMount } from "svelte";
   // SPINNER (github.com/Schum123/svelte-loading-spinners)
   import { Circle3 } from "svelte-loading-spinners";
+  // LIB
+  import { retrVideos } from "../lib/videos"; 
   import { chunkArray } from "../lib/chunkArray";
 
-  let selectedCat = "Music";//'all';
+  let selectedCat = "all";
   let loadingNextPage = false;
   const api_url = import.meta.env.VITE_API_URL;
   let videos = {arr: [], recieved: false};
-  // FETCH VIDEOS
-  async function retrVideos() {
-    // const query = {
-    //   query: `{ videos { 
-    //     instance {
-    //       host
-    //       name
-    //     }
-    //     _id
-    //     name 
-    //     url 
-    //     thumbnailImg 
-    //     likes
-    //     duration
-    //   }}`,
-    // };
-    const query = {
-      query: `{ videos(category: "${selectedCat}") { 
-        instance {
-          host
-          name
-        }
-        _id
-        name 
-        url 
-        thumbnailImg 
-        likes
-        duration
-      }}`,
-    };
-    const res = await fetch(`${api_url}/data`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(query),
-    });
-    const result = await res.json();
-    // console.log(result);
-    // Svelte reacts on the assignment to the variable
-    let recVid = result.data.videos;
-    // recVid = chunkArray(recVid, 4);
-    // videos.arr.push(...recVid);
-
-    videos.recieved = true;
-    return recVid;
-    // videos = result.data.videos;
-  }
-
+  
   // fetch videos from the server
   onMount(async () => {
-    let recVid = await retrVideos();
+    let recVid = await retrVideos(api_url, selectedCat);
     recVid = chunkArray(recVid, 4);
     videos.arr.push(...recVid);
     videos.recieved = true;
@@ -75,9 +29,10 @@
       loadingNextPage = true;
       setTimeout(async ()=> {
         window.scroll(0, previousScrollY)
-        let recVid = await retrVideos();
+        let recVid = await retrVideos(api_url, selectedCat);
         recVid = chunkArray(recVid, 4);
         videos.arr.push(...recVid);
+        videos.recieved = true;
         loadingNextPage = false;
       })
     }
@@ -99,7 +54,7 @@
   }
   async function handleFilterSelect(e) {
     selectedCat = e.detail.category;
-    let recVid = await retrVideos();
+    let recVid = await retrVideos(api_url, selectedCat);
     console.log('handleFilterSelect recVid', recVid);
     
     videos.arr = chunkArray(recVid, 4);
@@ -108,16 +63,14 @@
   }
 </script>
 <svelte:window on:scroll={scrollHandler} />
-<!---------       TOP MENU            ----------->
+<!---------          TOP MENU            ----------->
 <Header on:selFitler={handleFilterSelect}/>
 <!-----------      TOP SEPARATOR       ------------>
 <div class="h-20" />
-<!-----------       LEFT MENU       ------------>
+<!-----------        LEFT MENU       ------------>
 <LeftSidebar page={"home"} />
-<!----------         CONTENT CONTAINER   ------------->
+<!----------       CONTENT CONTAINER   ------------->
 <div class="min-h-screen">
-  <!-- TEST BUTTON  -->
-  <button on:click={retrVideos} class="fixed top-0 left-10 font-bold text-neutral-200 z-40">Load more</button>
   <!-----------       VIDEOROWS       ------------->
   {#if videos.recieved}
     {#each videos.arr as video}
