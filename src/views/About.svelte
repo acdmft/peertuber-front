@@ -1,6 +1,11 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import Header from "../components/Header.svelte";
   import LeftSidebar from "../components/LeftSidebar.svelte";
+
+  onMount(() => {
+    window.scroll(0,0);
+  })
 </script>
 
 <h1>About</h1>
