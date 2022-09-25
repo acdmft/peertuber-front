@@ -12,33 +12,26 @@
   const api_url = import.meta.env.VITE_API_URL;
 
   onMount(async () => {
-    const query = {
-      query: `{ videos { 
-        instance {
-          host
-          name
-        }
-        _id
-        name 
-        url 
-        thumbnailImg 
-        likes
-        duration
-      }}`,
-    };
-    const res = await fetch(`${api_url}/data`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(query),
-    });
-    const result = await res.json();
-    console.log(result);
+    fetch(`${api_url}/playlists/all`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        let recVid = chunkArray(res.videos, 4);
+        videos.arr = recVid.map((arr) => {
+          return arr.map((obj) => {
+            return obj.videoId;
+          });
+        });
+        videos.downloaded  = true;
+        console.log("videos", videos);
+      })
+      .catch((err) => console.log("Error", err));
+  
     // videos.push(result.data.videos);
     // Svelte reacts on the assignment to the variable
-    videos.arr = chunkArray(result.data.videos, 3);
-    videos.downloaded = true;
+    // videos.arr = chunkArray(result.data.videos, 3);
+    // videos.downloaded = true;
   });
   const handleClick = (e) => {
     console.log(e.detail.title)
@@ -84,7 +77,7 @@
     {/each}
   {:else}
     <div class="pt-40">
-      <h2 class="text-blue-200">No liked videos yet.</h2>
+      <h2 class="text-blue-200">No videos in playlists.</h2>
     </div>
   {/if}
 </div>
