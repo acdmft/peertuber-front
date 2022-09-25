@@ -32,13 +32,17 @@ import { onMount } from "svelte";
 <div class="min-h-screen " >
 <h1 class="text-left text-neutral-200 text-xl font-bold fixed top-40 left-40">Profile</h1>
 
-<div class="text-left text-neutral-200 font-bold absolute top-52 left-40">
+<div class="text-left text-neutral-200 font-bold fixed top-52 left-40">
 {#if dataRecieved}
 <p class="mb-2">Name: {userData['name']}</p>
 <p class="mb-2">Email: {userData['email']}</p>
-<p class="mb-2"> Playlists: <a href="/library" class="text-blue-400 hover:text-blue-500">{userData.playlists.length}</a></p>
+<p class="mb-2"> Playlists:  <a href="/library" class="ml-2 text-blue-400 hover:text-blue-500">{userData.playlists.length}</a></p>
 {:else}
 <p>Loading ... </p>
 {/if}
+<div class="pt-4">
+  <a href="/" class="mt-6 bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text">Home</a>
+
+</div>
 </div>
 </div>
