@@ -32,7 +32,6 @@
   });
 </script>
 
-<h1>Watch Later</h1>
 <!---------       TOP MENU            ----------->
 <Header />
 <!-----------      TOP SEPARATOR       ------------>

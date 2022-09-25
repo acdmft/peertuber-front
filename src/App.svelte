@@ -7,6 +7,7 @@
   import Liked from "./views/Liked.svelte";
   import WatchLater from "./views/WatchLater.svelte";
   import Contact from "./views/Contact.svelte";
+  import Profile from "./views/Profile.svelte";
 
   let page;
   // ROUTES
@@ -16,6 +17,7 @@
   router("/liked", () => (page = Liked));
   router("/watchlater", () => (page = WatchLater));
   router("/contact", () => (page = Contact));
+  router("/profile", () => (page = Profile));
 
   router.start();
 </script>

@@ -100,7 +100,7 @@
               loginForm = true;
               signupForm = false;
             }}
-            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
+            class="block px-4 w-full text-slate-200 py-2 hover:bg-gray-600 "
             >Login</button
           >
           <button
@@ -110,7 +110,7 @@
               loginForm = false;
               signupForm = true;
             }}
-            class="block px-4 text-slate-200 py-2 hover:bg-gray-600 "
+            class="block px-4 w-full text-slate-200 py-2 hover:bg-gray-600 "
             >Signup</button
           >
         {/if}

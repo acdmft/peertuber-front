@@ -33,7 +33,6 @@
   });
 </script>
 
-<h1>Liked</h1>
 <!---------       TOP MENU            ----------->
 <Header />
 <!-----------      TOP SEPARATOR       ------------>
