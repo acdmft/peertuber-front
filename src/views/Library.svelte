@@ -27,11 +27,6 @@
         console.log("videos", videos);
       })
       .catch((err) => console.log("Error", err));
-  
-    // videos.push(result.data.videos);
-    // Svelte reacts on the assignment to the variable
-    // videos.arr = chunkArray(result.data.videos, 3);
-    // videos.downloaded = true;
   });
   const handleClick = (e) => {
     console.log(e.detail.title)

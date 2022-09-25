@@ -36,7 +36,7 @@ import { onMount } from "svelte";
 {#if dataRecieved}
 <p class="mb-2">Name: {userData['name']}</p>
 <p class="mb-2">Email: {userData['email']}</p>
-<p class="mb-2"> Playlists: {userData.playlists.length}</p>
+<p class="mb-2"> Playlists: <a href="/library" class="text-blue-400 hover:text-blue-500">{userData.playlists.length}</a></p>
 {:else}
 <p>Loading ... </p>
 {/if}
