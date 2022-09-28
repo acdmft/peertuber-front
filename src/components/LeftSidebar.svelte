@@ -29,6 +29,8 @@
     case "watchlater":
       clockIcon = "text-yellow-200";
       break;
+    default:
+      break;
   }
 </script>
 

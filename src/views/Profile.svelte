@@ -27,7 +27,7 @@ import { onMount } from "svelte";
 <!-----------      TOP SEPARATOR       ------------>
 <div class="h-20" />
 <!-----------       LEFT MENU       ------------>
-<LeftSidebar page={"watchlater"}/>
+<LeftSidebar page={"profile"}/>
 <!-----------      CONTENT CONTAINER     ------------>
 <div class="min-h-screen " >
 <h1 class="text-left text-neutral-200 text-xl font-bold fixed top-40 left-40">Profile</h1>
