@@ -81,7 +81,7 @@
         {video_title}
       </a>
       <!-- TRHEEDOTS MENU ICON -->
-      <CardMenu {threeDotsMenu} {video_id} />
+      <CardMenu {threeDotsMenu} {video_url} {video_id} />
     </div>
   </div>
   <!-- CARD FOOTER -->

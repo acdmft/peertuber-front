@@ -9,6 +9,7 @@
 
   export let threeDotsMenu: string;
   export let video_id: string;
+  export let video_url: string;
 
   let api_url = import.meta.env.VITE_API_URL;
   let show: boolean = false; //menu state
@@ -48,7 +49,11 @@
     show = false;
     libMenu = true;
   };
-
+  const copyUrl = () => {
+    navigator.clipboard.writeText(video_url);
+    successToast("Link is copied");
+    show = false;
+  }
   onMount(() => {
     const handleOutsideClick = (e) => {
       if (show && !menu.contains(e.target)) {
@@ -88,7 +93,7 @@
         class="absolute bottom-2 z-10 right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md text-sm"
       >
         <button
-          href={"#"}
+          on:click={copyUrl}
           class="block w-full px-4 text-slate-200 py-2 hover:bg-gray-600 text-left"
           ><i class="fa-solid fa-share mr-4" />Copy URL</button
         >
