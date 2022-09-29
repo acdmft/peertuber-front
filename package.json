@@ -6,7 +6,8 @@
     "build": "vite build",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "start": "sirv public --no-clear -c"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.37",
