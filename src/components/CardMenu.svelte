@@ -89,6 +89,7 @@
   </button>
   {#if show}
     <div class="relative">
+      <!----        MENU BUTTONS     ---->
       <div
         class="absolute bottom-2 z-10 right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md text-sm"
       >

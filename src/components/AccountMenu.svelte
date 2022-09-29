@@ -67,8 +67,9 @@
   <div>
     <button
       on:click={() => (show = !show)}
-      class="menu w-full focus:outline-none focus:shadow-solid text-slate-200 hover:text-slate-400 text-2xl cursor-pointer mr-4"
+      class="menu w-full focus:outline-none focus:shadow-solid text-slate-200 hover:text-slate-400 text-2xl cursor-pointer"
     >
+    <!----           USER ICON        ------------>
       {#if $user}
         <i class="fa-solid fa-user" />
       {:else}

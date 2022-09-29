@@ -43,10 +43,10 @@
   $: time = videoDuration(duration);
 </script>
 
-<div class="bg-green-300 {width} {height} ">
+<div class="bg-green-300 {width} {height} rounded-md">
   <!----------    CHANNEL NAME AND URL    ----------->
   <div
-    class="h-12 bg-amber-300 text-left px-2 leading-none flex justify-center font-black overflow-hidden text-ellipsis"
+    class="h-12 bg-amber-300 text-left px-2 leading-none rounded-t-md flex justify-center font-black overflow-hidden text-ellipsis"
   >
     <a
       href={`https://${channel_url}`}
