@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "page": "^1.11.6",
+    "sirv-cli": "^2.0.2",
     "svelte-forms-lib": "^2.0.1",
     "yup": "^0.32.11"
   }
