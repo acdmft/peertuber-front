@@ -27,7 +27,7 @@
           });
         });
         videos.downloaded  = true;
-        console.log("videos", videos);
+        console.log("recVid, videos", recVid, videos);
       })
       .catch((err) => console.log("Error", err));
   });

@@ -38,49 +38,55 @@
   <!-- STRIP BLOCK (GAP) -->
   <div class="h-32" />
   <!-- ICONS -->
-  <a
-    href="/"
-    class="block {homeIcon}  hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
+  <div
+    class="text-xs px-1 mb-1 leading-none hover:bg-zinc-700 hover:cursor-pointer"
   >
-    <i class="fa-solid fa-house" />
-    <div class="text-xs px-1">Home</div>
-  </a>
-  {#if $user}
-    <a
-      href="/watchlater"
-      class="block {clockIcon} mb-2 hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
-    >
-      <i class="fa-regular fa-clock" />
-      <div class="text-xs px-1">Watch later</div>
+    <a href="/" class="block {homeIcon} text-xl ">
+      <i class="fa-solid fa-house" />
+      <span class="text-xs ">Home</span>
     </a>
-    <a
-      href="/liked"
-      class="block {heartIcon} hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
-    >
-      <i class="fa-regular fa-heart" />
-      <div class="text-xs ">Liked</div>
-    </a>
-    <a
-      href="/library"
-      class="block {libraryIcon} hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
-    >
-      <i class="fa-regular fa-folder-closed" />
-      <div class="text-xs ">Library</div>
-    </a>
-  {/if}
-  <a
-    href="/contact"
-    class="block {envIcon} hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
-  >
-    <i class="fa-regular fa-envelope" />
-    <div class="text-xs ">Contact</div>
-  </a>
+  </div>
 
-  <a
-    href="/about"
-    class="block {aboutIcon} mb-2 hover:bg-zinc-700 hover:cursor-pointer text-2xl h-16"
+  {#if $user}
+    <div
+      class="text-xs px-1 py-1 leading-none hover:bg-zinc-700 hover:cursor-pointer"
+    >
+      <a href="/watchlater" class="block leading-none {heartIcon} text-xl h-16">
+        <i class="fa-regular fa-clock" />
+        <span class="text-xs ">Watch later</span>
+      </a>
+    </div>
+    <div
+      class="text-xs px-1 mb-1 py-2 leading-none hover:bg-zinc-700 hover:cursor-pointer h-14"
+    >
+      <a href="/liked" class="block leading-none {clockIcon} text-xl ">
+        <i class="fa-regular fa-heart" /><br>
+        <span class="text-xs ">Liked</span>
+      </a>
+    </div>
+    <div
+      class="text-xs px-1 mb-1 py-2 leading-none hover:bg-zinc-700 hover:cursor-pointer h-14"
+    >
+      <a href="/library" class="block leading-none {libraryIcon} text-xl ">
+        <i class="fa-regular fa-folder-closed" />
+        <span class="text-xs ">Library</span>
+      </a>
+    </div>
+  {/if}
+  <div
+    class="text-xs px-1 py-2 leading-none hover:bg-zinc-700 hover:cursor-pointer h-16"
   >
-    <i class="fa-solid fa-info" />
-    <div class="text-xs ">About</div>
-  </a>
+    <a href="/contact" class="block leading-none {envIcon} text-xl">
+      <i class="fa-regular fa-envelope" />
+      <span class="text-xs ">Contact</span>
+    </a>
+  </div>
+  <div
+    class="text-xs px-1 mb-1 py-2 leading-none hover:bg-zinc-700 hover:cursor-pointer h-16"
+  >
+    <a href="/about" class="block leading-none {aboutIcon} text-xl">
+      <i class="fa-solid fa-info" /><br>
+      <span class="text-xs ">About</span>
+    </a>
+  </div>
 </div>

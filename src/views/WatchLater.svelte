@@ -24,9 +24,10 @@
           return arr.map((obj) => {
             return obj.videoId;
           });
+
+          console.log("videos", videos.arr);
         });
         videos.downloaded  = true;
-        console.log("videos", videos);
       })
       .catch((err) => console.log("Error", err));
   });
