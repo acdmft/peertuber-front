@@ -14,19 +14,23 @@
 
   const videos = {arr: [], downloaded: false};
   onMount(async () => {
+    console.log('sched')
     fetch(`${api_url}/sched`, {
       credentials: "include",
     })
       .then((res) => res.json())
       .then((res) => {
+        // let result = res.map((obj)=> obj.videoId);
         let recVid = chunkArray(res, 4);
+        // videos.arr = recVid;
         videos.arr = recVid.map((arr) => {
           return arr.map((obj) => {
             return obj.videoId;
           });
-
-          console.log("videos", videos.arr);
+          
         });
+        
+        console.log("recvideos", videos.arr);
         videos.downloaded  = true;
       })
       .catch((err) => console.log("Error", err));

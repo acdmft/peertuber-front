@@ -2,7 +2,7 @@
   import Card from "./Card.svelte";
   export let cardsData;
   // display Card depending on the current page
-  export let page: string;
+  export let page: string = "";
   // stripCards help to arrange Cards in the row
   $: stripCards = Array(4 - cardsData.length).fill("");
 </script>
@@ -13,7 +13,7 @@
       <Card
         width={"w-1/5"}
         height={"min-h-full"}
-        img={`http://${card.instance.host}${card.thumbnailImg}`}
+        img={`https://${card.instance.host}${card.thumbnailImg}`}
         channel_name={card.instance.name}
         channel_url={card.instance.host}
         video_title={card.name}
@@ -28,7 +28,7 @@
       <Card
         width={"w-1/5"}
         height={"min-h-full"}
-        img={`http://${card.instance}${card.thumbnailImg}`}
+        img={`https://${card.instance}${card.thumbnailImg}`}
         channel_name={card.instance}
         channel_url={card.instance}
         video_title={card.name}

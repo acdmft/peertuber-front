@@ -51,7 +51,7 @@
     <div
       class="text-xs px-1 py-1 leading-none hover:bg-zinc-700 hover:cursor-pointer"
     >
-      <a href="/watchlater" class="block leading-none {heartIcon} text-xl h-16">
+      <a href="/watchlater" class="block leading-none {clockIcon} text-xl h-16">
         <i class="fa-regular fa-clock" />
         <span class="text-xs ">Watch later</span>
       </a>
@@ -59,7 +59,7 @@
     <div
       class="text-xs px-1 mb-1 py-2 leading-none hover:bg-zinc-700 hover:cursor-pointer h-14"
     >
-      <a href="/liked" class="block leading-none {clockIcon} text-xl ">
+      <a href="/liked" class="block leading-none {heartIcon} text-xl ">
         <i class="fa-regular fa-heart" /><br>
         <span class="text-xs ">Liked</span>
       </a>
