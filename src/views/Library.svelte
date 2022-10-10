@@ -25,13 +25,13 @@
             return obj.videoId;
           });
         });
-        videos.downloaded  = true;
+        videos.downloaded = true;
         console.log("videos", videos);
       })
       .catch((err) => console.log("Error", err));
   });
   const handleClick = (e) => {
-    console.log(e.detail.title)
+    console.log(e.detail.title);
     const query = e.detail.title === "" ? "/all" : `?pl=${e.detail.title}`;
     fetch(`${api_url}/playlists${query}`, {
       credentials: "include",
@@ -48,7 +48,7 @@
         console.log("videos", videos);
       })
       .catch((err) => console.log("Error", err));
-  }
+  };
 </script>
 
 <h1>Library</h1>
@@ -63,18 +63,21 @@
   <!-----      PLAYLIST     ----->
   <Playlist on:plClick={handleClick} />
   <!-----------       VIDEOROWS       ------------->
-  {#if !videos.downloaded}
+ 
+  {#if videos.downloaded}
+    {#if videos.arr.length !== 0}
+      {#each videos.arr as video}
+        <VideoRow cardsData={video} page={"library"} />
+      {/each}
+    {:else}
+      <div class="pt-40">
+        <h2 class="text-blue-200">No videos in playlists.</h2>
+      </div>
+    {/if}
+  {:else}
     <div class="flex justify-center pt-40 w-full mb-40">
       <!-- SPINNER -->
       <Circle3 size="100" />
-    </div>
-  {:else if videos.arr.length !== 0}
-    {#each videos.arr as video}
-      <VideoRow cardsData={video} page={"library"} />
-    {/each}
-  {:else}
-    <div class="pt-40">
-      <h2 class="text-blue-200">No videos in playlists.</h2>
     </div>
   {/if}
 </div>
