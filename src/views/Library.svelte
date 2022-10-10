@@ -11,34 +11,22 @@
   const videos = { arr: [], downloaded: false };
   const api_url = import.meta.env.VITE_API_URL;
 
-  onMount(async () => {
-    fetch(`${api_url}/playlists/all`, {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("Library, res", res);
-        let recVid = chunkArray(res, 3);
-        console.log("Library, recVid", recVid);
-        videos.arr = recVid.map((arr) => {
-          return arr.map((obj) => {
-            return obj.videoId;
-          });
-        });
-        videos.downloaded = true;
-        console.log("videos", videos);
-      })
-      .catch((err) => console.log("Error", err));
+  onMount(() => {
+    retrVideos(`${api_url}/playlists/all`);
+    
   });
   const handleClick = (e) => {
     console.log(e.detail.title);
     const query = e.detail.title === "" ? "/all" : `?pl=${e.detail.title}`;
-    fetch(`${api_url}/playlists${query}`, {
+    retrVideos(`${api_url}/playlists${query}`);
+  };
+  function retrVideos(url) {
+    fetch(url, {
       credentials: "include",
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log('handleClick', res);
+        console.log('retrVideos', res);
         let recVid = chunkArray(res, 3);
         videos.arr = recVid.map((arr) => {
           return arr.map((obj) => {
@@ -46,10 +34,10 @@
           });
         });
         videos.downloaded = true;
-        console.log("videos", videos);
+        console.log("retrVideos, videos", videos);
       })
       .catch((err) => console.log("Error", err));
-  };
+  }
 </script>
 
 <h1>Library</h1>
