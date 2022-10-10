@@ -17,7 +17,7 @@
     })
       .then((res) => res.json())
       .then((res) => {
-        let recVid = chunkArray(res, 4);
+        let recVid = chunkArray(res, 3);
         videos.arr = recVid.map((arr) => {
           return arr.map((obj) => {
             return obj.videoId;

@@ -13,7 +13,7 @@
   const api_url = import.meta.env.VITE_API_URL;
 
   const videos = {arr: [], downloaded: false};
-  onMount(async () => {
+  onMount( () => {
     console.log('sched')
     fetch(`${api_url}/sched`, {
       credentials: "include",
