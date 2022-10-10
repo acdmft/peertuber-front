@@ -38,7 +38,8 @@
     })
       .then((res) => res.json())
       .then((res) => {
-        let recVid = chunkArray(res.videos, 3);
+        console.log('handleClick', res);
+        let recVid = chunkArray(res, 3);
         videos.arr = recVid.map((arr) => {
           return arr.map((obj) => {
             return obj.videoId;
