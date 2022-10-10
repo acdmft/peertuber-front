@@ -14,7 +14,7 @@
 
   const videos = {arr: [], downloaded: false};
 
-  onMount( () => {
+  onMount(() => {
     fetch(`${api_url}/like`, {
       credentials: "include",
     })
