@@ -28,13 +28,13 @@
     const query = e.detail.title === "" ? "/all" : `?pl=${e.detail.title}`;
     let recArr = await retrVideos(`${api_url}/playlists${query}`);
     console.log('handleClick recArr', recArr);
-    let vid = chunkArray(recArr, 3);
-    console.log('handleClick vid', vid);
-    videos.arr = vid.map((arr) => {
-      return arr.map((obj) => {
-        return obj.videoId;
-      });
-    });
+    // let vid = chunkArray(recArr, 3);
+    // console.log('handleClick vid', vid);
+    // videos.arr = vid.map((arr) => {
+    //   return arr.map((obj) => {
+    //     return obj.videoId;
+    //   });
+    // });
     videos.downloaded = true;
   };
   async function retrVideos(url) {
