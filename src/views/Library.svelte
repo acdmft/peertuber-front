@@ -41,18 +41,11 @@
     let result = await fetch(url, {
       credentials: "include",
     });
+    console.log('retrVideos result', result);
     let res = await result.json();
     
     console.log("retrVideos", res);
     return res;
-    let recVid = chunkArray(res, 3);
-    videos.arr = recVid.map((arr) => {
-      return arr.map((obj) => {
-        return obj.videoId;
-      });
-    });
-    videos.downloaded = true;
-    console.log("retrVideos, videos", videos);
   }
 </script>
 
