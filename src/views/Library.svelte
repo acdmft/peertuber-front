@@ -11,23 +11,20 @@
   const videos = { arr: [], downloaded: false };
   const api_url = import.meta.env.VITE_API_URL;
 
-  onMount(() => {
-    retrVideos(`${api_url}/playlists/all`);
+  onMount(async () => {
+    await retrVideos(`${api_url}/playlists/all`);
     
   });
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     console.log(e.detail.title);
     const query = e.detail.title === "" ? "/all" : `?pl=${e.detail.title}`;
-    retrVideos(`${api_url}/playlists${query}`);
+    await retrVideos(`${api_url}/playlists${query}`);
   };
-  function retrVideos(url) {
+  async function retrVideos(url) {
     fetch(url, {
       credentials: "include",
     })
-      .then((res) => {
-        console.log('retrVideos res',res)
-        res.json()
-      })
+      .then((res) => res.json())
       .then((res) => {
         console.log('retrVideos', res);
         let recVid = chunkArray(res, 3);
