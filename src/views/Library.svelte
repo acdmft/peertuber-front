@@ -13,7 +13,6 @@
 
   onMount(async () => {
     await retrVideos(`${api_url}/playlists/all`);
-    
   });
   const handleClick = async (e) => {
     console.log(e.detail.title);
@@ -21,22 +20,19 @@
     await retrVideos(`${api_url}/playlists${query}`);
   };
   async function retrVideos(url) {
-    fetch(url, {
+    let result = await fetch(url, {
       credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log('retrVideos', res);
-        let recVid = chunkArray(res, 3);
-        videos.arr = recVid.map((arr) => {
-          return arr.map((obj) => {
-            return obj.videoId;
-          });
-        });
-        videos.downloaded = true;
-        console.log("retrVideos, videos", videos);
-      })
-      .catch((err) => console.log("Error", err));
+    });
+    let res = await result.json();
+    console.log("retrVideos", res);
+    let recVid = chunkArray(res, 3);
+    videos.arr = recVid.map((arr) => {
+      return arr.map((obj) => {
+        return obj.videoId;
+      });
+    });
+    videos.downloaded = true;
+    console.log("retrVideos, videos", videos);
   }
 </script>
 
@@ -52,7 +48,7 @@
   <!-----      PLAYLIST     ----->
   <Playlist on:plClick={handleClick} />
   <!-----------       VIDEOROWS       ------------->
- 
+
   {#if videos.downloaded}
     {#if videos.arr.length !== 0}
       {#each videos.arr as video}
