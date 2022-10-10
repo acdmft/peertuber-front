@@ -23,7 +23,7 @@
     });
     videos.downloaded = true;
   });
-  const handleClick = async (e) => {
+  async function handleClick(e) {
     console.log(e.detail.title);
     const query = e.detail.title === "" ? "/all" : `?pl=${e.detail.title}`;
     let recArr = await retrVideos(`${api_url}/playlists${query}`);
