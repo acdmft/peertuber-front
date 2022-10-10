@@ -42,8 +42,9 @@
       credentials: "include",
     });
     let res = await result.json();
-    return res;
+    
     console.log("retrVideos", res);
+    return res;
     let recVid = chunkArray(res, 3);
     videos.arr = recVid.map((arr) => {
       return arr.map((obj) => {
