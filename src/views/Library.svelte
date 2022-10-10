@@ -12,18 +12,37 @@
   const api_url = import.meta.env.VITE_API_URL;
 
   onMount(async () => {
-    await retrVideos(`${api_url}/playlists/all`);
+    let recArr = await retrVideos(`${api_url}/playlists/all`);
+    console.log('recArr',recArr);
+    let vid = chunkArray(recArr, 3);
+    console.log('vid', vid);
+    videos.arr = vid.map((arr) => {
+      return arr.map((obj) => {
+        return obj.videoId;
+      });
+    });
+    videos.downloaded = true;
   });
   const handleClick = async (e) => {
     console.log(e.detail.title);
     const query = e.detail.title === "" ? "/all" : `?pl=${e.detail.title}`;
-    await retrVideos(`${api_url}/playlists${query}`);
+    let recArr = await retrVideos(`${api_url}/playlists${query}`);
+    console.log('handleClick recArr', recArr);
+    let vid = chunkArray(recArr, 3);
+    console.log('handleClick vid', vid);
+    videos.arr = vid.map((arr) => {
+      return arr.map((obj) => {
+        return obj.videoId;
+      });
+    });
+    videos.downloaded = true;
   };
   async function retrVideos(url) {
     let result = await fetch(url, {
       credentials: "include",
     });
     let res = await result.json();
+    return res;
     console.log("retrVideos", res);
     let recVid = chunkArray(res, 3);
     videos.arr = recVid.map((arr) => {
