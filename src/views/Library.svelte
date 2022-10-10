@@ -13,21 +13,21 @@
 
   onMount(async () => {
     let recArr = await retrVideos(`${api_url}/playlists/all`);
-    console.log('recArr',recArr);
-    let vid = chunkArray(recArr, 3);
-    console.log('vid', vid);
-    videos.arr = vid.map((arr) => {
-      return arr.map((obj) => {
-        return obj.videoId;
-      });
-    });
-    videos.downloaded = true;
+    // console.log('recArr',recArr);
+    // let vid = chunkArray(recArr, 3);
+    // console.log('vid', vid);
+    // videos.arr = vid.map((arr) => {
+    //   return arr.map((obj) => {
+    //     return obj.videoId;
+    //   });
+    // });
+    // videos.downloaded = true;
   });
   async function handleClick(e) {
     console.log(e.detail.title);
     const query = e.detail.title === "" ? "/all" : `?pl=${e.detail.title}`;
-    let recArr = await retrVideos(`${api_url}/playlists${query}`);
-    console.log('handleClick recArr', recArr);
+    // let recArr = await retrVideos(`${api_url}/playlists${query}`);
+    // console.log('handleClick recArr', recArr);
     // let vid = chunkArray(recArr, 3);
     // console.log('handleClick vid', vid);
     // videos.arr = vid.map((arr) => {
@@ -42,10 +42,10 @@
       credentials: "include",
     });
     console.log('retrVideos result', result);
-    let res = await result.json();
+    // let res = await result.json();
     
-    console.log("retrVideos", res);
-    return res;
+    // console.log("retrVideos", res);
+    // return res;
   }
 </script>
 
