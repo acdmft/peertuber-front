@@ -24,7 +24,10 @@
     fetch(url, {
       credentials: "include",
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.log('retrVideos res',res)
+        res.json()
+      })
       .then((res) => {
         console.log('retrVideos', res);
         let recVid = chunkArray(res, 3);
