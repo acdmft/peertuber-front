@@ -1,9 +1,9 @@
 <div align="center">
-  <h1 align="center">Peertuber front</h1>
-  <h2 align="center"><a href="https://peertuber.vercel.app/projects">Peertube index page</h2>
+  <h2 align="center">Peertuber front</h2>
+  <h3 align="center"><a href="https://peertuber.vercel.app/projects">Project Site</h3>
 </div>
 
-## About the project
+<h3>About the project</h3>
 
 This project is based on the API of the <a href="https://instances.joinpeertube.org/instances" target="_blank">official Peertube index.</a>
 
@@ -13,14 +13,14 @@ Current repo is the front-end part of the project. It is based on <a href="https
 
 The back-end part repository could be found <a href="https://github.com/acdmft/peertuber-back" target="_blank">here.</a>
 
-## Dependencies
+<h3>Dependencies</h3>
 
 * [Node.js] (https://nodejs.org/)
 * [Svelte] (https://svelte.dev/)
 * [Tailwindcss] (https://tailwindcss.com/) 
 * [Page] (https://github.com/visionmedia/page.js)
 
-## Getting started
+<h3>Getting started</h3>
 ------------
 
 ```
@@ -29,6 +29,6 @@ cd peertuber-front
 npm install
 npm run dev
 ```
-## Contact me
+<h3> Contact me</h3>
 Linked In : https://www.linkedin.com/in/andrei-zheksim/
 
