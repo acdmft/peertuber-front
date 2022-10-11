@@ -20,12 +20,16 @@ The back-end part repository could be found <a href="https://github.com/acdmft/p
 * [Tailwindcss] (https://tailwindcss.com/) 
 * [Page] (https://github.com/visionmedia/page.js)
 
-<h3>Getting started</h3>
+<h3>Getting started on local computer</h3>
 
 ```
 git clone https://github.com/acdmft/peertuber-front.git
 cd peertuber-front
 npm install
+// to run front-end client you need to connect to back-end server, to do this you need to create .env file and add URL of the server
+touch .env
+echo "VITE_API_URL=http://localhost:<port number of backend-server>" >> .env
+// to start client type following command
 npm run dev
 ```
 <h3> Contact me</h3>
