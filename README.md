@@ -26,7 +26,8 @@ The back-end part repository could be found <a href="https://github.com/acdmft/p
 git clone https://github.com/acdmft/peertuber-front.git
 cd peertuber-front
 npm install
-// to run front-end client you need to connect to back-end server, to do this you need to create .env file and add URL of the server
+// to run front-end client you need to connect to back-end server, 
+// to do this you need to create .env file and add URL of the server
 touch .env
 echo "VITE_API_URL=http://localhost:<port number of backend-server>" >> .env
 // to start client type following command
