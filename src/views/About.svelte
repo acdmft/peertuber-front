@@ -19,7 +19,7 @@
 <div class="min-h-screen">
   <div class="mt-20 w-4/5 mx-auto text-neutral-200 text-lg font-semibold text-left">
     <h1 class="text-2xl font-bold">About project: </h1>
-    <p class="mt-4"><a class="text-blue-400 hover:text-blue-500" href="https://joinpeertube.org/Peertube" target="_blank">Peertube</a> is open source software for hosting videos, it is based on p2p technology that reduces load on individual servers while they distribute the videos.
+    <p class="mt-4"><a class="text-blue-400 hover:text-blue-500" href="https://joinpeertube.org" target="_blank">Peertube</a> is open source software for hosting videos, it is based on p2p technology that reduces load on individual servers while they distribute the videos.
       Development started in 2017 by the programmer known as Chocobozzz. Now it is supported by the french non-profit organization <a class="text-blue-400 hover:text-blue-500" href="https://framasoft.org/en/" target="_blank">Framasoft.</a>
     </p>
     <p class="mt-4">
