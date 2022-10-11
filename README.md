@@ -1,6 +1,6 @@
 <div align="center">
   <h2 align="center">Peertuber front</h2>
-  <h3 align="center"><a href="https://peertuber.vercel.app/projects">Project Site</h3>
+  <h3>Visit the <a href="https://peertuber.vercel.app/projects">project site</h3>
 </div>
 
 <h3>About the project</h3>
@@ -21,7 +21,6 @@ The back-end part repository could be found <a href="https://github.com/acdmft/p
 * [Page] (https://github.com/visionmedia/page.js)
 
 <h3>Getting started</h3>
-------------
 
 ```
 git clone https://github.com/acdmft/peertuber-front.git
