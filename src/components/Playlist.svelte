@@ -36,7 +36,6 @@
     let res = await result.json();
     playlists.arr = res;
     playlists.recieved = true;
-    console.log(playlists.arr)
   });
 </script>
 
