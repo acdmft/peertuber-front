@@ -1,6 +1,6 @@
-<div align="center">
+<div>
   <h2 align="center">Peertuber front</h2>
-  <h3>Visit the <a href="https://peertuber.vercel.app/projects">project site</h3>
+  <h3>Visit the <a href="https://peertuber.vercel.app">project site</h3>
 </div>
 
 <h3>About the project</h3>
