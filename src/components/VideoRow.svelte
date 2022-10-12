@@ -10,7 +10,7 @@
   
 </script>
 
-<div class="flex justify-around h-62 mt-12 w-6/8 ml-12 border-2 border-solid border-green-200">
+<div class="flex justify-around justify-self-center z-10 w-full h-62 mt-12 md:w-11/12 md:ml-12 border-2 border-solid border-orange-200">
   {#each cardsData as card}
     {#if page === "home"}
       <Card

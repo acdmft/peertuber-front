@@ -2,18 +2,13 @@
 export function getRowCardsNum() {
   const screenWidth = window.innerWidth;
   console.log('screenWidth', screenWidth);
-  if (screenWidth <= 640) {
+  if (screenWidth <= 424) {
     return 1;
-  } else if (screenWidth <= 768) {
+  } else if (screenWidth <= 764) {
     return 2;
   } else if (screenWidth <= 1024) {
     return 3;
   } else {
     return 4;
   }
-}
-// get difference between downloaded cards and maximum possible in a row
-// number of Strip (empty) Cards in a row
-export function getStripCardsNum(cardNum, arrLength) {
-  return cardNum - arrLength;
 }

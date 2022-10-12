@@ -9,14 +9,13 @@
   // LIB
   import { retrVideos } from "../lib/videos"; 
   import { chunkArray } from "../lib/chunkArray";
-  import { getRowCardsNum, getStripCardsNum } from "../lib/cardsRow";
+  import { getRowCardsNum } from "../lib/cardsRow";
 
   let selectedCat = "all";
   let loadingNextPage = false;
   const api_url = import.meta.env.VITE_API_URL;
   let videos = {arr: [], recieved: false};
   const cardNum = getRowCardsNum();
-  let stripCards;
   
   // fetch videos from the server
   onMount(async () => {
@@ -24,7 +23,6 @@
     let recVid = await retrVideos(api_url, selectedCat);
     recVid = chunkArray(recVid, cardNum);
     videos.arr.push(...recVid);
-    stripCards = getStripCardsNum(cardNum, videos.arr[0].length);
     videos.recieved = true;
   });
   function scrollHandler() {
@@ -75,11 +73,11 @@
 <!-----------        LEFT MENU       ------------>
 <LeftSidebar page={"home"} />
 <!----------       CONTENT CONTAINER   ------------->
-<div class="min-h-screen">
+<div class="min-h-screen grid grid-cols-1">
   <!-----------       VIDEOROWS       ------------->
   {#if videos.recieved}
     {#each videos.arr as video}
-      <VideoRow cardsData={video} {stripCards} on:like={handleLike} page={"home"} />
+      <VideoRow cardsData={video} stripCards={cardNum - video.length} on:like={handleLike} page={"home"} />
     {/each}
     
     <div class="flex justify-center pt-10 w-full mb-10">
