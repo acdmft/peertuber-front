@@ -1,13 +1,18 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  // LIB
+  import { getRowCardsNum, getStripCardsNum } from "../lib/cardsRow";
   import { chunkArray } from "../lib/chunkArray";
+  // COMPONENTS
   import Header from "../components/Header.svelte";
   import LeftSidebar from "../components/LeftSidebar.svelte";
   import VideoRow from "../components/VideoRow.svelte";
   import Playlist from "../components/Playlist.svelte";
   // SPINNER
   import { Circle3 } from "svelte-loading-spinners";
-
+  const cardNum = getRowCardsNum();
+  const maxCardNum = cardNum >= 4 ? 3 : cardNum; 
+  
   const videos = { arr: [], downloaded: false };
   const api_url = import.meta.env.VITE_API_URL;
 
@@ -55,9 +60,13 @@
   <!-----------       VIDEOROWS       ------------->
 
   {#if videos.downloaded}
+  
     {#if videos.arr.length !== 0}
       {#each videos.arr as video}
-        <VideoRow cardsData={video} page={"library"} />
+      <div>
+        <VideoRow cardsData={video} stripCards={maxCardNum - video.length} page={"library"} />
+
+      </div>
       {/each}
     {:else}
       <div class="pt-40">

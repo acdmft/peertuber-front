@@ -5,11 +5,12 @@
   import LeftSidebar from "../components/LeftSidebar.svelte";
   // UTILITY FUNCTIONS FROM LIB
   import { chunkArray } from "../lib/chunkArray";
+  import { getRowCardsNum } from "../lib/cardsRow";
    // onMount
    import { onMount } from "svelte";
   // SPINNER (github.com/Schum123/svelte-loading-spinners)
   import {Circle3} from 'svelte-loading-spinners';
-
+  const cardNum = getRowCardsNum();
   const api_url = import.meta.env.VITE_API_URL;
 
   const videos = {arr: [], downloaded: false};
@@ -52,7 +53,7 @@
   </div>
   {:else if videos.arr.length !== 0}
   {#each videos.arr as video}
-    <VideoRow cardsData={video} page={"watchlater"} />
+    <VideoRow cardsData={video} stripCards={cardNum - video.length} page={"watchlater"} />
   {/each}
   {:else}
     <div class="pt-40">

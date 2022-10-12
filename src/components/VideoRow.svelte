@@ -1,13 +1,16 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import Card from "./Card.svelte";
   export let cardsData;
   // display Card depending on the current page
   export let page: string = "";
   // stripCards help to arrange Cards in the row
-  $: stripCards = Array(4 - cardsData.length).fill("");
+  export let stripCards;
+  $: stripCardsArr = Array(stripCards).fill("");
+  
 </script>
 
-<div class="flex justify-around h-62 mt-12 w-6/8 ml-12">
+<div class="flex justify-around h-62 mt-12 w-6/8 ml-12 border-2 border-solid border-green-200">
   {#each cardsData as card}
     {#if page === "home"}
       <Card
@@ -41,7 +44,7 @@
       />
     {/if}
   {/each}
-  {#each stripCards as strip}
-    <div class="w-1/5 min-h-full" />
+  {#each stripCardsArr as strip}
+    <div class="w-1/5 min-h-full border-2 border-solid border-blue-500 " />
   {/each}
 </div>
