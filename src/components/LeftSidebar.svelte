@@ -8,6 +8,8 @@
   let envIcon = "text-slate-200";
   let aboutIcon = "text-slate-200";
 
+  let width;
+
   export let page: string;
   // highlight the icon depending on the current page
   switch (page) {
@@ -34,7 +36,7 @@
   }
 </script>
 
-<div class="h-screen w-16 fixed left-0 top-0 bg-zinc-800">
+<div class="hidden md:block h-screen w-16 fixed left-0 top-0 bg-zinc-800">
   <!-- STRIP BLOCK (GAP) -->
   <div class="h-32" />
   <!-- ICONS -->

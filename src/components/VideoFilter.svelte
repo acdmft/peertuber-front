@@ -24,15 +24,15 @@
   };
 </script>
 
-<div id="categories" class="h-14 grid content-center justify-items-center">
-  <nav class="flex justify-around  w-5/6">
-    <ul>
+<div id="categories" class="h-fit grid content-center justify-items-center">
+  <nav class="my-2 lg:w-5/6">
+    <ul class="flex flex-wrap justify-center">
       {#each catFilters as catFilter}
         <li
           on:click={(e) => handleClick(e)}
           id={catFilter}
           class:active={catFilter === activeFilter}
-          class="float-left ml-4 hover:cursor-pointer hover:text-neutral-400 w-fit h-fit rounded-lg text-neutral-200 my-auto px-2 py-1 outline outline-1 outline-gray-200 "
+          class="lg:ml-4 ml-1.5 mt-1 text-xs md:text-base hover:cursor-pointer hover:text-neutral-400 w-fit h-fit rounded-lg text-neutral-200 my-auto md:px-2 px-1 md:py-1 py-0.5 outline outline-1 outline-gray-200 "
         >
           {catFilter}
         </li>
