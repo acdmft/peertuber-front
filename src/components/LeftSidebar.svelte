@@ -36,7 +36,7 @@
   }
 </script>
 
-<div class="hidden md:block h-screen w-16 fixed left-0 top-0 bg-zinc-800">
+<div class="hidden md:block h-screen w-14 lg:w-16 fixed left-0 top-0 bg-zinc-800">
   <!-- STRIP BLOCK (GAP) -->
   <div class="h-32" />
   <!-- ICONS -->

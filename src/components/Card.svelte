@@ -16,9 +16,8 @@
   // property to display Card footer depending on the current page
   export let enabled: boolean;
 
+  console.log("width, height", width, height);
   const dispatch = createEventDispatcher();
-  // THREE DOTS MENU STATE
-  let threeDotsMenu = "hidden";
   // Like icon
   let likeIcon: string = "regular";
   let buttonColor: string = "";
@@ -43,59 +42,61 @@
   $: time = videoDuration(duration);
 </script>
 
-<div class="bg-green-300 {width} {height} rounded-md">
-  <!----------    CHANNEL NAME AND URL    ----------->
+<div class="flex flex-col {width} mx-1.5 ">
+  <!-- CARD IMAGE -->
   <div
-    class="h-12 bg-amber-300 text-left px-2 leading-none rounded-t-md flex justify-center font-black overflow-hidden text-ellipsis"
+    class="relative grow text-5xl overflow-hidden  {width} {height} border border-slate-400 border-b-0"
   >
-    <a
-      href={`https://${channel_url}`}
-      class="self-center max-h-full text-gray-600 hover:text-gray-800"
-      >{channel_name}</a
-    >
-  </div>
-  <!-------      IMAGE OF VIDEO PREVIEW    ------->
-  <div class="h-32 z-0 text-slate-600 flex relative text-5xl">
-    <i class="fa-solid fa-film mx-auto self-center" />
-    <a href={video_url} target="_blank">
-      <img src={img} alt="" class="absolute min-w-full top-0 left-0" />
+    <!-- VIDEO ICON -->
+    <p class="text-center pt-10 absolute h-full w-full ">
+      <i class="fa-solid fa-film" />
+    </p>
+    <a href={video_url} target="_blank" class="">
+      <img src={img} class="w-full overflow-hidden absolute top-0 left-0" alt="" />
     </a>
+    <!-----           TIMER       ------>
     <span
-      class="bg-black w-fit h-fit px-1 rounded-md absolute bottom-1 right-1 text-xs text-green-200"
+      class="bg-black w-fit h-fit px-1 rounded-md absolute bottom-2 sm:bottom-1 right-1 text-xs text-slate-200"
       >{time}</span
     >
   </div>
-  <!-----------    VIDEO DESCRIPTION      ---------->
-  <div class="bg-green-300 h-8 pt-1.5">
-    <div
-      class="flex justify-between text-left relative text-gray-600 hover:text-gray-800 text-base px-2"
-      on:focus={() => (threeDotsMenu = "")}
-      on:mouseover={() => (threeDotsMenu = "")}
-      on:mouseleave={() => (threeDotsMenu = "hidden")}
+  <!-- VIDEO TITLE -->
+  <div
+    class="h-1/5 relative z-20 px-1 pt-0.5 border border-slate-400 border-y-0 text-left text-xs sm:text-sm text-ellipsis "
+  >
+    <h2
+      class="w-9/12 max-h-full overflow-hidden sm:font-normal font-semibold text-slate-400 hover:text-slate-300"
     >
-      <a
-        href={video_url}
-        target="_blank"
-        class="text-xs font-semibold w-11/12 border-2 border-transparent overflow-hidden max-h-9"
-      >
-        {video_title}
-      </a>
-      <!-- TRHEEDOTS MENU ICON -->
-      <CardMenu {threeDotsMenu} {video_url} {video_id} />
+      <a href={video_url} target="_blank">{video_title}</a>
+    </h2>
+    <!-- TRHEEDOTS MENU ICON -->
+    <div
+      class="absolute top-2 right-0 text-neutral-200 pr-0.5"
+    >
+      <CardMenu {video_url} {video_id} />
     </div>
   </div>
+  <!-- INSTANCE URL -->
+  <div
+    class="h-1/12 px-1 py-0.5 border border-slate-400 border-y-0 text-left text-xs"
+  >
+    <h2 class="truncate text-slate-500 hover:text-slate-400">
+      <a href={`https://${channel_url}`} target="_blank">{channel_name}</a>
+    </h2>
+  </div>
+
   <!-- CARD FOOTER -->
-  <div class="h-6 text-sm text-slate-400 mt-0.5 pt-1 flex justify-content-start">
+  <div
+    class="h-6 pb-1 border border-slate-400 border-t-0 rounded-b-md  justify-self-end text-sm text-slate-400 flex justify-content-start"
+  >
     {#if $user && enabled}
-     
-        <button
-          class="hover:text-slate-600 ml-4 {buttonColor}"
-          on:click|once={like}
-        >
-          <i class="fa-{likeIcon} fa-thumbs-up" />
-        </button>
-        <span class="ml-2 {buttonColor}">{likes}</span>
-      {/if}
-    
+      <button
+        class="hover:text-slate-600 ml-2 {buttonColor}"
+        on:click|once={like}
+      >
+        <i class="fa-{likeIcon} fa-thumbs-up" />
+      </button>
+      <span class="ml-2 {buttonColor}">{likes}</span>
+    {/if}
   </div>
 </div>

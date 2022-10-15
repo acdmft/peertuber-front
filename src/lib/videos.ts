@@ -1,6 +1,6 @@
 // functions that retrieve video previews from the server 
 
-// called from Home page 
+// called from Home page,returns 12 video previews
 export async function retrVideos(url, cat) {
   const query = {
     query: `{ videos(category: "${cat}") { 

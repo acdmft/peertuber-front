@@ -53,7 +53,7 @@
   </div>
   {:else if videos.arr.length !== 0}
   {#each videos.arr as video}
-    <VideoRow cardsData={video} stripCards={cardNum - video.length} page={"watchlater"} />
+    <VideoRow cardsData={video} {cardNum} stripCards={cardNum - video.length} page={"watchlater"} />
   {/each}
   {:else}
     <div class="pt-40">

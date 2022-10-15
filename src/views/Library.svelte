@@ -63,7 +63,7 @@
     {#if videos.arr.length !== 0}
       {#each videos.arr as video}
       <div>
-        <VideoRow cardsData={video} stripCards={cardNum - video.length} page={"library"} />
+        <VideoRow cardsData={video} {cardNum} stripCards={cardNum - video.length} page={"library"} />
 
       </div>
       {/each}

@@ -7,7 +7,6 @@
   import LibraryMenu from "./LibraryMenu.svelte";
   import ReportForm from "./ReportForm.svelte";
 
-  export let threeDotsMenu: string;
   export let video_id: string;
   export let video_url: string;
 
@@ -83,8 +82,9 @@
       show = !show;
     }}
   >
+  <!-- THREEDOTS ICON -->
     <i
-      class="{threeDotsMenu} fa-solid fa-ellipsis-vertical hover:text-gray-900 cursor-pointer p-0.5 hover:outline hover:outline-slate-400 hover:outline-2 "
+      class="fa-solid fa-ellipsis-vertical hover:text-gray-400 cursor-pointer p-0.5 hover:outline hover:outline-slate-400 hover:outline-2 "
     />
   </button>
   {#if show}

@@ -1,21 +1,25 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import Card from "./Card.svelte";
+  import { getCardProps } from "../lib/cardsRow";
   export let cardsData;
+
+  export let cardNum;
   // display Card depending on the current page
   export let page: string = "";
   // stripCards help to arrange Cards in the row
   export let stripCards;
   $: stripCardsArr = Array(stripCards).fill("");
+  // let widthVars = {1: "11/12", 3: ""}
+  const {width, height} = getCardProps(cardNum);
   
 </script>
 
-<div class="flex justify-around justify-self-center z-10 w-full h-62 mt-12 md:w-11/12 md:ml-12 border-2 border-solid border-orange-200">
+<div class="flex justify-around justify-self-center w-full mt-4 md:mt-12 lg:w-11/12 md:ml-12">
   {#each cardsData as card}
     {#if page === "home"}
       <Card
-        width={"w-1/5"}
-        height={"min-h-full"}
+        {height}
+        {width}
         img={`https://${card.instance.host}${card.thumbnailImg}`}
         channel_name={card.instance.name}
         channel_url={card.instance.host}
@@ -29,8 +33,8 @@
       />
     {:else}
       <Card
-        width={"w-1/5"}
-        height={"min-h-full"}
+        {width}
+        {height}
         img={`https://${card.instance}${card.thumbnailImg}`}
         channel_name={card.instance}
         channel_url={card.instance}
@@ -45,6 +49,6 @@
     {/if}
   {/each}
   {#each stripCardsArr as strip}
-    <div class="w-1/5 min-h-full border-2 border-solid border-blue-500 " />
+    <div class="{width} mx-1.5 min-h-full" />
   {/each}
 </div>

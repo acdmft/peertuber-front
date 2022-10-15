@@ -15,6 +15,7 @@
   let loadingNextPage = false;
   const api_url = import.meta.env.VITE_API_URL;
   let videos = {arr: [], recieved: false};
+  // maximum possible number of cards in a row (depend on a screen width)
   const cardNum = getRowCardsNum();
   
   // fetch videos from the server
@@ -77,7 +78,7 @@
   <!-----------       VIDEOROWS       ------------->
   {#if videos.recieved}
     {#each videos.arr as video}
-      <VideoRow cardsData={video} stripCards={cardNum - video.length} on:like={handleLike} page={"home"} />
+      <VideoRow cardsData={video} {cardNum} stripCards={cardNum - video.length} on:like={handleLike} page={"home"} />
     {/each}
     
     <div class="flex justify-center pt-10 w-full mb-10">
