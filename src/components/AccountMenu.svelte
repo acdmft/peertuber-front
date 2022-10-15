@@ -67,7 +67,7 @@
   <div>
     <button
       on:click={() => (show = !show)}
-      class="menu w-full focus:outline-none focus:shadow-solid text-slate-200 hover:text-slate-400 text-2xl cursor-pointer"
+      class="menu w-full focus:outline-none focus:shadow-solid text-slate-200 hover:text-slate-400 text-lg md:text-2xl cursor-pointer"
     >
     <!----           USER ICON        ------------>
       {#if $user}
