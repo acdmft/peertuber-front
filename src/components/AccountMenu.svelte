@@ -80,7 +80,7 @@
       <div
         in:scale={{ duration: 100, start: 0.95 }}
         out:scale={{ duration: 75, start: 0.95 }}
-        class="origin-top-right absolute right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md divide-y divide-gray-500 "
+        class="origin-top-right absolute right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md divide-y divide-gray-500"
       >
         {#if $user}
         <!-- PROFILE ITEM -->
@@ -90,7 +90,7 @@
           >
           <!-- LOGOUT -->
           <button
-            class="block px-4 w-full text-left text-slate-200 py-2 hover:bg-gray-600 "
+            class="block px-4 w-full text-left text-slate-200 py-2 hover:bg-gray-600"
             on:click={logout}>Logout</button
           >
         {:else}
@@ -101,7 +101,7 @@
               loginForm = true;
               signupForm = false;
             }}
-            class="block px-4 w-full text-slate-200 py-2 hover:bg-gray-600 "
+            class="block px-4 w-full text-slate-200 py-2 hover:bg-gray-600"
             >Login</button
           >
           <button
@@ -111,7 +111,7 @@
               loginForm = false;
               signupForm = true;
             }}
-            class="block px-4 w-full text-slate-200 py-2 hover:bg-gray-600 "
+            class="block px-4 w-full text-slate-200 py-2 hover:bg-gray-600"
             >Signup</button
           >
         {/if}

@@ -62,7 +62,7 @@
   </div>
   <!-----          VIDEO TITLE   ------->
   <div
-    class="h-1/5 relative z-20 px-1 pt-0.5 border border-slate-400 border-y-0 text-left text-xs sm:text-sm text-ellipsis"
+    class="h-1/5 relative px-1 pt-0.5 border border-slate-400 border-y-0 text-left text-xs sm:text-sm text-ellipsis"
   >
     <h2
       class="w-11/12 max-h-full overflow-hidden sm:font-normal font-semibold text-slate-400 hover:text-slate-300"

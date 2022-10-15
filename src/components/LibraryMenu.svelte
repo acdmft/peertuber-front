@@ -67,7 +67,7 @@
 {#if showMenu}
 
 <div
-  class="menu_wrapper flex justify-center h-screen w-full fixed top-0 left-10 z-10"
+  class="menu_wrapper flex justify-center h-screen w-full fixed top-0 left-10 z-20"
 >
   <div class="flex items-center">
     <!-------         MENU         ------>
@@ -87,7 +87,7 @@
       </div>
 
       <!----         MENU BODY     ------->
-      <div class="flex justify-center h-4/6 overflow-scroll">
+      <div class="flex justify-center h-4/6 overflow-scroll z-10">
         {#if !playlists.recieved}
           <h3 class="self-center">loading ...</h3>
         {:else if playlists.arr.length === 0}
