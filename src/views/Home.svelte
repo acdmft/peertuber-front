@@ -33,7 +33,8 @@
     videos.recieved = true;
   });
   function scrollHandler() {
-    const scrolledToBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight; 
+    const scrolledToBottom = true;
+    // const scrolledToBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight; 
     scrH =  window.innerHeight;
     scrY = window.scrollY;
     offsH = document.body.offsetHeight;
@@ -77,7 +78,7 @@
 
   }
 </script>
-<svelte:window on:scroll={scrollHandler} />
+<!-- <svelte:window on:scroll={scrollHandler} /> -->
 <!---------          TOP MENU            ----------->
 <Header on:selFitler={handleFilterSelect}/>
 <!-----------      TOP SEPARATOR       ------------>
@@ -99,7 +100,7 @@
     </div>
     
   {:else}
-    <div class="flex justify-center pt-40 w-full mb-40">
+    <div on:focus={scrollHandler} class="flex justify-center pt-40 w-full mb-40">
       <Circle3 size="100" />
     </div>
   {/if}
