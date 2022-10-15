@@ -60,14 +60,14 @@
       >{time}</span
     >
   </div>
-  <!-- VIDEO TITLE -->
+  <!-----          VIDEO TITLE   ------->
   <div
-    class="h-1/5 relative z-20 px-1 pt-0.5 border border-slate-400 border-y-0 text-left text-xs sm:text-sm text-ellipsis "
+    class="h-1/5 relative z-20 px-1 pt-0.5 border border-slate-400 border-y-0 text-left text-xs sm:text-sm text-ellipsis"
   >
     <h2
-      class="w-9/12 max-h-full overflow-hidden sm:font-normal font-semibold text-slate-400 hover:text-slate-300"
+      class="w-11/12 max-h-full overflow-hidden sm:font-normal font-semibold text-slate-400 hover:text-slate-300"
     >
-      <a href={video_url} target="_blank">{video_title}</a>
+      <a href={video_url} class="block" target="_blank">{video_title}</a>
     </h2>
     <!-- TRHEEDOTS MENU ICON -->
     <div
@@ -81,7 +81,7 @@
     class="h-1/12 px-1 py-0.5 border border-slate-400 border-y-0 text-left text-xs"
   >
     <h2 class="truncate text-slate-500 hover:text-slate-400">
-      <a href={`https://${channel_url}`} target="_blank">{channel_name}</a>
+      <a href={`https://${channel_url}`} class="block" target="_blank">{channel_name} </a>
     </h2>
   </div>
 

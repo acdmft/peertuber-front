@@ -10,8 +10,9 @@
   <!------      TOP PART OF HEADER     ------->
   <div id="top-menu" class="h-14 px-2 md:px-8 grid grid-cols-3 gap-4">
     <div></div>
-    <!-----        LOGO      ---->
+    <!-----          LOGO      ---->
     <h1 class="text-neutral-200 font-semibold text-lg md:text-2xl mt-3"><a href="/">Peertuber</a></h1>
+    <!-----     ACCOUNT MENU    ------>
     <div class="justify-self-end mt-3">
       <AccountMenu />
     </div>
