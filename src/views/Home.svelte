@@ -17,7 +17,13 @@
   let videos = {arr: [], recieved: false};
   // maximum possible number of cards in a row (depend on a screen width)
   const cardNum = getRowCardsNum();
-  
+  let scrH =  window.innerHeight;
+  let scrY = window.scrollY;
+  let offsH = document.body.offsetHeight;
+  let scrolled2bot = false;
+  $: scrollHeight = scrH;
+  $: scroll_y = scrY;
+  $: offsetHeight = offsH;
   // fetch videos from the server
   onMount(async () => {
     console.log(cardNum);
@@ -28,9 +34,14 @@
   });
   function scrollHandler() {
     const scrolledToBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight; 
+    scrH =  window.innerHeight;
+    scrY = window.scrollY;
+    offsH = document.body.offsetHeight;
+    scrolled2bot = false;
     if (!loadingNextPage && scrolledToBottom) {
       const previousScrollY = window.scrollY;
       loadingNextPage = true;
+      scrolled2bot = true;
       setTimeout(async ()=> {
         window.scroll(0, previousScrollY)
         let recVid = await retrVideos(api_url, selectedCat);
@@ -75,6 +86,8 @@
 <LeftSidebar page={"home"} />
 <!----------       CONTENT CONTAINER   ------------->
 <div class="min-h-screen grid grid-cols-1">
+  <p class="mt-14 fixed top-0 left-0 z-30 text-green-300">innerHeight- {scrollHeight} scrollY-{scroll_y} docHeight={offsH}</p>
+  <p class="mt-14 fixed top-6 left-0 z-30 text-green-300">scr2bot: {scrolled2bot}</p>
   <!-----------       VIDEOROWS       ------------->
   {#if videos.recieved}
     {#each videos.arr as video}

@@ -4,7 +4,7 @@
   import {fly} from 'svelte/transition';
   // menu state 
   let menuOpened: boolean = false;
-
+  
   let menu = null; // menu wrapper DOM reference
   onMount(() => {
     const handleOutsideClick = (e) => {
@@ -37,6 +37,7 @@
 
     <i class="fa-solid fa-bars"></i>
   </span>
+ 
 </div>
 {#if menuOpened}
   <div transition:fly="{{ x: -200, delay: 200, duration: 700 }}" class="bg-gray-800 fixed top-0 left-0 flex-none h-72 w-44 md:w-36 px-2">
