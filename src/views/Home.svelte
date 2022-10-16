@@ -98,7 +98,7 @@
       <VideoRow cardsData={video} {cardNum} stripCards={cardNum - video.length} on:like={handleLike} page={"home"} />
     {/each}
     
-    <div class="flex justify-center pt-10 w-full mb-10">
+    <div class="flex justify-center pt-10 w-full mb-10 flex items-center h-36 spinner-cont">
       <Circle3 size="40" />
     </div>
     
