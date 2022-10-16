@@ -36,7 +36,7 @@
   });
   function scrollHandler() {
     // const scrolledToBottom = true;
-    const scrolledToBottom = (window.innerHeight + window.scrollY) >= cltH;//document.body.offsetHeight; 
+    const scrolledToBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 10); 
     scrH =  window.innerHeight;
     scrY = window.scrollY;
     offsH = document.body.offsetHeight;
@@ -98,7 +98,7 @@
       <VideoRow cardsData={video} {cardNum} stripCards={cardNum - video.length} on:like={handleLike} page={"home"} />
     {/each}
     
-    <div class="flex justify-center pt-10 w-full mb-10 flex items-center h-40 spinner-cont">
+    <div class="flex justify-center pt-10 w-full mb-10 flex items-center spinner-cont">
       <Circle3 size="40" />
     </div>
     
