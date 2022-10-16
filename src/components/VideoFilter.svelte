@@ -25,8 +25,8 @@
 </script>
 
 <div id="categories" class="h-fit grid content-center justify-items-center">
-  <nav class="my-2 overflow-scroll lg:w-5/6">
-    <ul class="flex max-h-14 py-2  flex-nowrap justify-center">
+  <nav class="my-2 lg:w-5/6">
+    <ul class="flex max-h-14 flex-nowrap justify-center">
       {#each catFilters as catFilter}
         <li
           on:click={(e) => handleClick(e)}

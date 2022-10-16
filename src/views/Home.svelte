@@ -10,7 +10,6 @@
   import { retrVideos } from "../lib/videos"; 
   import { chunkArray } from "../lib/chunkArray";
   import { getRowCardsNum } from "../lib/cardsRow";
-  import { HtmlTag } from "svelte/internal";
 
   let selectedCat = "all";
   let loadingNextPage = false;
@@ -81,7 +80,7 @@
       <VideoRow cardsData={video} {cardNum} stripCards={cardNum - video.length} on:like={handleLike} page={"home"} />
     {/each}
     
-    <div class="flex justify-center pt-10 w-full mb-10 flex items-center spinner-cont">
+    <div class="flex justify-center pt-10 w-full mb-10">
       <Circle3 size="40" />
     </div>
     
