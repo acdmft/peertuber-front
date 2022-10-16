@@ -10,6 +10,7 @@
   import { retrVideos } from "../lib/videos"; 
   import { chunkArray } from "../lib/chunkArray";
   import { getRowCardsNum } from "../lib/cardsRow";
+  import { HtmlTag } from "svelte/internal";
 
   let selectedCat = "all";
   let loadingNextPage = false;
@@ -21,6 +22,7 @@
   let scrY = window.scrollY;
   let offsH = document.body.offsetHeight;
   let scrolled2bot = false;
+  let cltH = document.body.clientHeight;
   $: scrollHeight = scrH;
   $: scroll_y = scrY;
   $: offsetHeight = offsH;
@@ -33,11 +35,12 @@
     videos.recieved = true;
   });
   function scrollHandler() {
-    const scrolledToBottom = true;
-    // const scrolledToBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight; 
+    // const scrolledToBottom = true;
+    const scrolledToBottom = (window.innerHeight + window.scrollY) >= cltH;//document.body.offsetHeight; 
     scrH =  window.innerHeight;
     scrY = window.scrollY;
     offsH = document.body.offsetHeight;
+    cltH = document.body.clientHeight;
     scrolled2bot = false;
     if (!loadingNextPage && scrolledToBottom) {
       const previousScrollY = window.scrollY;
@@ -78,7 +81,7 @@
 
   }
 </script>
-<!-- <svelte:window on:scroll={scrollHandler} /> -->
+<svelte:window on:scroll={scrollHandler} />
 <!---------          TOP MENU            ----------->
 <Header on:selFitler={handleFilterSelect}/>
 <!-----------      TOP SEPARATOR       ------------>
@@ -88,7 +91,7 @@
 <!----------       CONTENT CONTAINER   ------------->
 <div class="min-h-screen grid grid-cols-1">
   <p class="mt-14 fixed top-0 left-0 z-30 text-green-300">innerHeight- {scrollHeight} scrollY-{scroll_y} docHeight={offsH}</p>
-  <p class="mt-14 fixed top-6 left-0 z-30 text-green-300">scr2bot: {scrolled2bot}</p>
+  <p class="mt-14 fixed top-6 left-0 z-30 text-green-300">    scr2bot: {scrolled2bot} cltH: {cltH}</p>
   <!-----------       VIDEOROWS       ------------->
   {#if videos.recieved}
     {#each videos.arr as video}
@@ -100,7 +103,7 @@
     </div>
     
   {:else}
-    <div on:focus={scrollHandler} class="flex justify-center pt-40 w-full mb-40">
+    <div class="flex justify-center pt-40 w-full mb-40">
       <Circle3 size="100" />
     </div>
   {/if}
