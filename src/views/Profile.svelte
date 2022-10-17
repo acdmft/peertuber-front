@@ -1,6 +1,9 @@
 <script lang="ts">
-import { onMount } from "svelte";
-
+  import { onMount } from "svelte";
+  import page from "page";
+  import { user } from "../lib/stores";
+  // TOASTS
+  import { warningToast } from "../lib/toast-themes";
   // COMPONENTS
   import Header from "../components/Header.svelte";
   import LeftSidebar from "../components/LeftSidebar.svelte";
@@ -17,6 +20,11 @@ import { onMount } from "svelte";
       userData = data;
       dataRecieved = true;
       console.log('userData', userData)
+    } else {
+      $user = false;
+      warningToast("You need to be logged in!");
+      page.redirect("/");
+      return;
     }
     
 

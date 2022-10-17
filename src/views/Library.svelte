@@ -1,8 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import page from "page";
   // LIB
   import { getRowCardsNum } from "../lib/cardsRow";
   import { chunkArray } from "../lib/chunkArray";
+  import { warningToast } from "../lib/toast-themes";
+  import { user } from "../lib/stores";
   // COMPONENTS
   import Header from "../components/Header.svelte";
   import LeftSidebar from "../components/LeftSidebar.svelte";
@@ -12,7 +15,7 @@
   import { Circle3 } from "svelte-loading-spinners";
   const cardNum = getRowCardsNum();
   // maximum possible amount of Cards in rows (less because of playlist menu)
-  const maxCards = cardNum >=4 ? cardNum - 1 : cardNum;
+  const maxCards = cardNum >= 4 ? cardNum - 1 : cardNum;
 
   const videos = { arr: [], downloaded: false };
   const api_url = import.meta.env.VITE_API_URL;
@@ -46,6 +49,13 @@
     let result = await fetch(url, {
       credentials: "include",
     });
+    if (result.status === 401) {
+      // TOASTS
+      $user = false;
+      warningToast("You need to be logged in!");
+      page.redirect("/");
+      return;
+    }
     let res = await result.json();
     return res;
   }
@@ -66,28 +76,26 @@
   <Playlist on:plClick={handleClick} />
   <!-----------       VIDEOROWS       ------------->
   {#if videos.downloaded}
-  {#if videos.arr.length !== 0}
-  {#each videos.arr as video}
-  <div>
-    <VideoRow
-    cardsData={video}
-    {cardNum}
-    stripCards={cardNum - video.length}
-    page={"library"}
-    />
-  </div>
-  {/each}
-  {:else}
-  <div class="hidden sm:block pt-40">
-    <h2 class="text-blue-200">No videos in playlists.</h2>
-  </div>
-  {/if}
-  {:else}
-  
-      <div class="hidden sm:flex justify-center pt-40 w-full mb-40">
-        <!-- SPINNER -->
-        <Circle3 size="100" />
+    {#if videos.arr.length !== 0}
+      {#each videos.arr as video}
+        <div>
+          <VideoRow
+            cardsData={video}
+            {cardNum}
+            stripCards={cardNum - video.length}
+            page={"library"}
+          />
+        </div>
+      {/each}
+    {:else}
+      <div class="hidden sm:block pt-40">
+        <h2 class="text-blue-200">No videos in playlists.</h2>
       </div>
-    
+    {/if}
+  {:else}
+    <div class="hidden sm:flex justify-center pt-40 w-full mb-40">
+      <!-- SPINNER -->
+      <Circle3 size="100" />
+    </div>
   {/if}
 </div>

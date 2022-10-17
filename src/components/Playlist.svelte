@@ -29,7 +29,7 @@
       credentials: "include",
     });
     if (!result.ok) {
-      warningToast("Something went wrong during retrieving playlists.")
+      // warningToast("Something went wrong during retrieving playlists.")
       playlists.recieved = true;
       return;
     }
