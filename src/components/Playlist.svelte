@@ -40,7 +40,7 @@
 </script>
 
 <div
-  class="flex flex-col border-2 border-solid border-red-200 w-1/5 h-[70%] rounded-md fixed top-30 right-6"
+  class="flex flex-col border border-solid border-blue-200 w-11/12 sm:w-1/5 h-[70%] rounded-md sm:fixed top-30 sm:right-6"
 >
   <p class="text-xl text-neutral-200 font-semibold">Playlists</p>
   {#if !playlists.recieved}

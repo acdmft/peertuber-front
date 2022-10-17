@@ -11,31 +11,37 @@
   // SPINNER
   import { Circle3 } from "svelte-loading-spinners";
   const cardNum = getRowCardsNum();
-  
+  // maximum possible amount of Cards in rows (less because of playlist menu)
+  const maxCards = cardNum >=4 ? cardNum - 1 : cardNum;
+
   const videos = { arr: [], downloaded: false };
   const api_url = import.meta.env.VITE_API_URL;
 
+  let screenWidth;
   onMount(async () => {
-    let recArr = await retrVideos(`${api_url}/playlists/all`);
-    let vid = chunkArray(recArr, 3);
-    videos.arr = vid.map((arr) => {
-      return arr.map((obj) => {
-        return obj.videoId;
+    if (screenWidth >= 640) {
+      let recArr = await retrVideos(`${api_url}/playlists/all`);
+      let vid = chunkArray(recArr, maxCards);
+      videos.arr = vid.map((arr) => {
+        return arr.map((obj) => {
+          return obj.videoId;
+        });
       });
-    });
-    videos.downloaded = true;
+      videos.downloaded = true;
+    }
   });
   async function handleClick(e) {
     const query = e.detail.title === "" ? "/all" : `?pl=${e.detail.title}`;
     let recArr = await retrVideos(`${api_url}/playlists${query}`);
-    let vid = chunkArray(recArr, 3);
+    let vid = chunkArray(recArr, maxCards);
     videos.arr = vid.map((arr) => {
       return arr.map((obj) => {
         return obj.videoId;
       });
     });
+    console.log("library videos ", videos.arr);
     videos.downloaded = true;
-  };
+  }
   async function retrVideos(url) {
     let result = await fetch(url, {
       credentials: "include",
@@ -44,6 +50,8 @@
     return res;
   }
 </script>
+
+<svelte:window bind:innerWidth={screenWidth} />
 
 <h1>Library</h1>
 <!---------       TOP MENU            ----------->
@@ -57,25 +65,29 @@
   <!-----      PLAYLIST     ----->
   <Playlist on:plClick={handleClick} />
   <!-----------       VIDEOROWS       ------------->
-
   {#if videos.downloaded}
-  
-    {#if videos.arr.length !== 0}
-      {#each videos.arr as video}
-      <div>
-        <VideoRow cardsData={video} {cardNum} stripCards={cardNum - video.length} page={"library"} />
-
-      </div>
-      {/each}
-    {:else}
-      <div class="pt-40">
-        <h2 class="text-blue-200">No videos in playlists.</h2>
-      </div>
-    {/if}
+  {#if videos.arr.length !== 0}
+  {#each videos.arr as video}
+  <div>
+    <VideoRow
+    cardsData={video}
+    {cardNum}
+    stripCards={cardNum - video.length}
+    page={"library"}
+    />
+  </div>
+  {/each}
   {:else}
-    <div class="flex justify-center pt-40 w-full mb-40">
-      <!-- SPINNER -->
-      <Circle3 size="100" />
-    </div>
+  <div class="hidden sm:block pt-40">
+    <h2 class="text-blue-200">No videos in playlists.</h2>
+  </div>
+  {/if}
+  {:else}
+  
+      <div class="hidden sm:flex justify-center pt-40 w-full mb-40">
+        <!-- SPINNER -->
+        <Circle3 size="100" />
+      </div>
+    
   {/if}
 </div>
