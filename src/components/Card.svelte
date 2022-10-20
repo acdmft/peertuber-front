@@ -48,7 +48,7 @@
     class="relative grow text-5xl overflow-hidden  {width} {height} border border-slate-400 border-b-0"
   >
     <!-- VIDEO ICON -->
-    <p class="text-center pt-10 absolute h-full w-full ">
+    <p class="text-center pt-10 absolute h-full w-full text-slate-400">
       <i class="fa-solid fa-film" />
     </p>
     <a href={video_url} target="_blank" class="">
