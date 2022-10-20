@@ -29,7 +29,7 @@
     }
     let res = await result.json();
     // let result = res.map((obj)=> obj.videoId);
-    let recVid = chunkArray(res, 4);
+    let recVid = chunkArray(res, cardNum);
     // videos.arr = recVid;
     videos.arr = recVid.map((arr) => {
       return arr.map((obj) => {

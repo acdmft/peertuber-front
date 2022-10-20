@@ -1,6 +1,7 @@
 <script lang="ts">
   // based on tutorial: https://codechips.me/tailwind-ui-react-vs-svelte/
   import { user, accForms } from "../lib/stores";
+  import page from "page";
   import { onMount } from "svelte";
   import { scale } from "svelte/transition";
   import LoginForm from "./LoginForm.svelte";
@@ -26,11 +27,12 @@
   const logout = () => {
     fetch(`${api_url}/logout`).then((res) => {
       if (res.ok) {
+        $user = false;
+        page.redirect("/");
         successToast("You are logged out!");
       } else {
         warningToast("Oops! Something went wrong!");
       }
-      $user = false;
     });
     show = false;
   };

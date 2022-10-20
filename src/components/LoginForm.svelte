@@ -24,7 +24,6 @@
         body: JSON.stringify(values),
       })
       .then((res)=>{
-        console.log(res)
         if (res.ok) {
           successToast("You are logged in!");
           $user=true;

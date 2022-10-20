@@ -26,7 +26,7 @@
       </h1>
       <div class="text-neutral-200 text-lg mt-4">
         <i class="fa-solid fa-envelope" />
-        <span class="ml-2">peertuber@email.com</span>
+        <span class="ml-2">andrewsanser@gmail.com</span>
       </div>
       <div class="text-neutral-200 text-2xl mt-4 text-center">
         <a href="https://www.linkedin.com/in/andrei-zheksim/" target="_blank">
