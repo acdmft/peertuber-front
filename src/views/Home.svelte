@@ -60,7 +60,7 @@
     let recVid = await retrVideos(api_url, selectedCat);
     console.log('handleFilterSelect recVid', recVid);
     
-    videos.arr = chunkArray(recVid, 4);
+    videos.arr = chunkArray(recVid, cardNum);
     videos.recieved = true;
 
   }
