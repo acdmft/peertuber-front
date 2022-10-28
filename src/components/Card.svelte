@@ -1,7 +1,6 @@
 <script lang="ts">
   import CardMenu from "./CardMenu.svelte";
   import { createEventDispatcher } from "svelte";
-  import { user } from "../lib/stores";
   // EXPORTS
   export let width;
   export let height;
@@ -15,20 +14,21 @@
   export let duration;
   // property to display Card footer depending on the current page
   export let enabled: boolean;
-
-  console.log("width, height", width, height);
+  // LIB functions
+  import { user } from '../lib/stores';
   const dispatch = createEventDispatcher();
   // Like icon
   let likeIcon: string = "regular";
   let buttonColor: string = "";
   // LIKE DISPATCHER
   function like() {
-    dispatch("like", {
-      videoID: video_id,
-    });
-    likeIcon = "solid";
-    buttonColor = "text-slate-600";
-    likes = +1;
+    if ($user){
+      dispatch("like", {
+        videoID: video_id,
+      });
+      likeIcon = "solid";
+      buttonColor = "text-slate-400";
+    }
   }
 
   const videoDuration = (duration) => {
@@ -87,16 +87,17 @@
 
   <!-- CARD FOOTER -->
   <div
-    class="h-6 pb-1 border border-slate-400 border-t-0 rounded-b-md  justify-self-end text-sm text-slate-400 flex justify-content-start"
+    class="h-6 pb-1 border border-slate-400 border-t-0 rounded-b-md  justify-self-end text-sm text-slate-500 flex justify-content-start"
+    id="p{video_id}" 
   >
-    {#if $user && enabled}
+    {#if enabled}
       <button
-        class="hover:text-slate-600 ml-2 {buttonColor}"
+        class="{$user === true ? 'hover:text-slate-400' : 'cursor-default'} {buttonColor} ml-2"
         on:click|once={like}
       >
         <i class="fa-{likeIcon} fa-thumbs-up" />
       </button>
-      <span class="ml-2 {buttonColor}">{likes}</span>
+      <span class="ml-2 cursor-default">{likes}</span>
     {/if}
   </div>
 </div>

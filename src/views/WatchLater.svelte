@@ -7,6 +7,7 @@
   // UTILITY FUNCTIONS FROM LIB
   import { warningToast } from "../lib/toast-themes";
   import { user } from "../lib/stores";
+  import { incrLikes } from "../lib/videos";
   import { chunkArray } from "../lib/chunkArray";
   import { getRowCardsNum } from "../lib/cardsRow";
   // onMount
@@ -15,8 +16,19 @@
   import { Circle3 } from "svelte-loading-spinners";
   const cardNum = getRowCardsNum();
   const api_url = import.meta.env.VITE_API_URL;
-
+  // VIDEOS ARRAY
   const videos = { arr: [], downloaded: false };
+  // ADD LIKE
+  async function handleLike(event) {
+    let result = await incrLikes(event.detail.videoID, api_url);
+    if (result === "401 error") {
+      $user = false;
+      warningToast("You need to be logged in!");
+      page.redirect("/");
+      return;
+    }  
+  }
+  // ONMOUNT
   onMount(async () => {
     let result = await fetch(`${api_url}/sched`, {
       credentials: "include",
@@ -30,12 +42,12 @@
     let res = await result.json();
     // let result = res.map((obj)=> obj.videoId);
     let recVid = chunkArray(res, cardNum);
-    // videos.arr = recVid;
     videos.arr = recVid.map((arr) => {
       return arr.map((obj) => {
         return obj.videoId;
       });
     });
+    console.log(videos.arr);
     videos.downloaded = true;
   });
 </script>
@@ -60,6 +72,7 @@
         {cardNum}
         stripCards={cardNum - video.length}
         page={"watchlater"}
+        on:like={handleLike}
       />
     {/each}
   {:else}

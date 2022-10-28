@@ -4,13 +4,16 @@
   import LeftSidebar from "../components/LeftSidebar.svelte";
   // onMount
   import { onMount } from "svelte";
+  // page ROUTING
+  import page from 'page';
   // SPINNER (github.com/Schum123/svelte-loading-spinners)
   import { Circle3 } from "svelte-loading-spinners";
   // LIB
-  import { retrVideos } from "../lib/videos"; 
+  import { retrVideos, incrLikes } from "../lib/videos"; 
+  import { user } from "../lib/stores";
+  import { warningToast } from "../lib/toast-themes";
   import { chunkArray } from "../lib/chunkArray";
   import { getRowCardsNum } from "../lib/cardsRow";
-
   let selectedCat = "all";
   let loadingNextPage = false;
   const api_url = import.meta.env.VITE_API_URL;
@@ -19,11 +22,11 @@
   const cardNum = getRowCardsNum();
   // fetch videos from the server
   onMount(async () => {
-    console.log(cardNum);
     let recVid = await retrVideos(api_url, selectedCat);
     recVid = chunkArray(recVid, cardNum);
     videos.arr.push(...recVid);
     videos.recieved = true;
+    console.log(videos.arr);
   });
   function scrollHandler() {
     const scrolledToBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 10); 
@@ -41,25 +44,18 @@
     }
   }
   // ADD LIKE
-  function handleLike(event) {
-    let data = { videoId: event.detail.videoID };
-    fetch(`${api_url}/like`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(data),
-    }).then((res) => {
-      console.log("res.status", res.status);
-    });
-    console.log(event.detail.videoID);
+  async function handleLike(event) {
+    let result = await incrLikes(event.detail.videoID, api_url);
+    if (result === "401 error") {
+      $user = false;
+      warningToast("You need to be logged in!");
+      page.redirect("/");
+      return;
+    }  
   }
   async function handleFilterSelect(e) {
     selectedCat = e.detail.category;
-    let recVid = await retrVideos(api_url, selectedCat);
-    console.log('handleFilterSelect recVid', recVid);
-    
+    let recVid = await retrVideos(api_url, selectedCat);    
     videos.arr = chunkArray(recVid, cardNum);
     videos.recieved = true;
 

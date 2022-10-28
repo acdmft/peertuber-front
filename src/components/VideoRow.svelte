@@ -27,7 +27,7 @@
         video_title={card.name}
         video_url={card.url}
         video_id={card._id}
-        likes={card.likes}
+        likes={card.likes || 0}
         duration={card.duration}
         on:like
         enabled={true}
@@ -42,10 +42,10 @@
         video_title={card.name}
         video_url={card.url}
         video_id={card._id}
-        likes={card.likes}
+        likes={card.likes || 0}
         duration={card.duration}
         on:like
-        enabled={false}
+        enabled={page === 'liked' ? false: true}
       />
     {/if}
   {/each}

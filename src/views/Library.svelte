@@ -6,6 +6,7 @@
   import { chunkArray } from "../lib/chunkArray";
   import { warningToast } from "../lib/toast-themes";
   import { user } from "../lib/stores";
+  import { incrLikes } from "../lib/videos";
   // COMPONENTS
   import Header from "../components/Header.svelte";
   import LeftSidebar from "../components/LeftSidebar.svelte";
@@ -44,6 +45,16 @@
     });
     console.log("library videos ", videos.arr);
     videos.downloaded = true;
+  }
+  // ADD LIKE
+  async function handleLike(event) {
+    let result = await incrLikes(event.detail.videoID, api_url);
+    if (result === "401 error") {
+      $user = false;
+      warningToast("You need to be logged in!");
+      page.redirect("/");
+      return;
+    }  
   }
   async function retrVideos(url) {
     let result = await fetch(url, {
@@ -84,6 +95,7 @@
             {cardNum}
             stripCards={cardNum - video.length}
             page={"library"}
+            on:like={handleLike}
           />
         </div>
       {/each}
