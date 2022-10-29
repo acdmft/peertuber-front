@@ -52,13 +52,16 @@
       page.redirect("/");
       return;
     }  
+    if (result === "400 error") {
+      warningToast("You already liked the video!")
+    }
   }
   async function handleFilterSelect(e) {
     selectedCat = e.detail.category;
     let recVid = await retrVideos(api_url, selectedCat);    
     videos.arr = chunkArray(recVid, cardNum);
     videos.recieved = true;
-
+    console.log('handleFilterSelect videos', videos.arr);
   }
 </script>
 <svelte:window on:scroll={scrollHandler} />

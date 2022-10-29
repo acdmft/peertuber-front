@@ -25,6 +25,7 @@ export async function retrVideos(url, cat) {
   });
   const result = await res.json();
   let recVid = result.data.videos;
+  console.log('recVid', recVid);
   return recVid;
 }
 
@@ -40,6 +41,7 @@ export async function incrLikes(videoId, url) {
   })
   if (res.ok) {
     let cardLikes = document.querySelector(`#p${videoId}`);
+    console.log('increLikes cardLikes', cardLikes)
     let likesNum = (parseInt(cardLikes.querySelector('span').textContent) + 1);
     let likesNumStr = likesNum.toString();
     cardLikes.querySelector('span').textContent = likesNumStr;
@@ -47,5 +49,8 @@ export async function incrLikes(videoId, url) {
   };
   if (res.status === 401) {
     return "401 error";
+  }
+  if (res.status === 400) {
+    return "400 error";
   }
 }
