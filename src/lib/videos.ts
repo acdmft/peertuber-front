@@ -2,31 +2,16 @@
 
 // called from Home page,returns 12 video previews
 export async function retrVideos(url, cat) {
-  const query = {
-    query: `{ videos(category: "${cat}") { 
-      instance {
-        host
-        name
-      }
-      _id
-      name 
-      url 
-      thumbnailImg 
-      likes
-      duration
-    }}`,
-  };
-  const res = await fetch(`${url}/videos?category=${cat}`, {
+  let category = encodeURIComponent(cat);
+  console.log('category',category)
+  const res = await fetch(`${url}/videos?category=${category}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },
-    // body: JSON.stringify(query),
   });
   const result = await res.json();
-  let recVid = result;
-  console.log('recVid', recVid);
-  return recVid;
+  return result;
 }
 
 export async function incrLikes(videoId, url) {

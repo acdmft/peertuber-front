@@ -30,7 +30,7 @@
       {#each catFilters as catFilter}
         <li
           on:click={(e) => handleClick(e)}
-          id={catFilter}
+          id="{catFilter}"
           class:active={catFilter === activeFilter}
           class="lg:ml-4 ml-1.5 sm:my-1 w-max text-xs md:text-base hover:cursor-pointer hover:text-neutral-400 rounded-lg text-neutral-200 my-auto md:px-2 px-1 md:py-1 py-0.5 outline outline-1 outline-gray-200 "
         >

@@ -45,6 +45,7 @@
   }
   // ADD LIKE
   async function handleLike(event) {
+    console.log('handleLike', event.detail.videoID);
     let result = await incrLikes(event.detail.videoID, api_url);
     if (result === "401 error") {
       $user = false;

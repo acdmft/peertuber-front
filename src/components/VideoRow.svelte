@@ -17,28 +17,12 @@
   class="flex justify-around justify-self-center w-11/12 mt-4 md:mt-12 lg:w-11/12 md:ml-12"
 >
   {#each cardsData as card}
-    {#if page === "home"}
       <Card
-        {height}
         {width}
+        {height}
         img={`https://${card.host}${card.thumbnailImg}`}
         channel_name={card.instance.name}
-        channel_url={card.instance.host}
-        video_title={card.name}
-        video_url={card.url}
-        video_id={card._id}
-        likes={card.likes || 0}
-        duration={card.duration}
-        on:like
-        enabled={true}
-      />
-    {:else}
-      <Card
-        {width}
-        {height}
-        img={`https://${card.instance}${card.thumbnailImg}`}
-        channel_name={card.instance}
-        channel_url={card.instance}
+        channel_url={card.host}
         video_title={card.name}
         video_url={card.url}
         video_id={card._id}
@@ -47,7 +31,6 @@
         on:like
         enabled={page === 'liked' ? false: true}
       />
-    {/if}
   {/each}
   {#each stripCardsArr as strip}
     <div class="{width} mx-1.5 min-h-full" />
