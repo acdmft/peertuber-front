@@ -21,7 +21,7 @@
       <Card
         {height}
         {width}
-        img={`https://${card.instance.host}${card.thumbnailImg}`}
+        img={`https://${card.host}${card.thumbnailImg}`}
         channel_name={card.instance.name}
         channel_url={card.instance.host}
         video_title={card.name}

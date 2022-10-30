@@ -16,15 +16,15 @@ export async function retrVideos(url, cat) {
       duration
     }}`,
   };
-  const res = await fetch(`${url}/data`, {
-    method: "POST",
+  const res = await fetch(`${url}/videos?category=${cat}`, {
+    method: "GET",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },
-    body: JSON.stringify(query),
+    // body: JSON.stringify(query),
   });
   const result = await res.json();
-  let recVid = result.data.videos;
+  let recVid = result;
   console.log('recVid', recVid);
   return recVid;
 }
