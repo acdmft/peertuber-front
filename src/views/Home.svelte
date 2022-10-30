@@ -26,7 +26,6 @@
     recVid = chunkArray(recVid, cardNum);
     videos.arr.push(...recVid);
     videos.recieved = true;
-    console.log(videos.arr);
   });
   function scrollHandler() {
     const scrolledToBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 10); 
@@ -45,7 +44,6 @@
   }
   // ADD LIKE
   async function handleLike(event) {
-    console.log('handleLike', event.detail.videoID);
     let result = await incrLikes(event.detail.videoID, api_url);
     if (result === "401 error") {
       $user = false;
@@ -62,7 +60,6 @@
     let recVid = await retrVideos(api_url, selectedCat);    
     videos.arr = chunkArray(recVid, cardNum);
     videos.recieved = true;
-    console.log('handleFilterSelect videos', videos.arr);
   }
 </script>
 <svelte:window on:scroll={scrollHandler} />

@@ -37,7 +37,6 @@
     let emailIsValid = validateEmail();
     let subjectIsValid = validateSubject();
     let message = document.getElementById("message")["value"];
-    console.log(message, email, subject, name);
     if (emailIsValid && subjectIsValid) {
       let data = {
         email: email,

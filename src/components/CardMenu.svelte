@@ -32,7 +32,6 @@
         }
 
         show = false;
-        console.log("res.status", res.status);
       })
       .catch((err) => warningToast(err));
   };

@@ -46,7 +46,6 @@
         return obj.videoId;
       });
     });
-    console.log(videos.arr);
     videos.downloaded = true;
   });
 </script>

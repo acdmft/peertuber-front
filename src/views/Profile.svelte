@@ -19,7 +19,6 @@
       let data = await result.json();
       userData = data;
       dataRecieved = true;
-      console.log('userData', userData)
     } else {
       $user = false;
       warningToast("You need to be logged in!");

@@ -43,7 +43,6 @@
         return obj.videoId;
       });
     });
-    console.log("library videos ", videos.arr);
     videos.downloaded = true;
   }
   // ADD LIKE

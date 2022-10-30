@@ -3,7 +3,6 @@
 // called from Home page,returns 12 video previews
 export async function retrVideos(url, cat) {
   let category = encodeURIComponent(cat);
-  console.log('category',category)
   const res = await fetch(`${url}/videos?category=${category}`, {
     method: "GET",
     headers: {
@@ -26,7 +25,6 @@ export async function incrLikes(videoId, url) {
   })
   if (res.ok) {
     let cardLikes = document.querySelector(`#p${videoId}`);
-    console.log('increLikes cardLikes', cardLikes)
     let likesNum = (parseInt(cardLikes.querySelector('span').textContent) + 1);
     let likesNumStr = likesNum.toString();
     cardLikes.querySelector('span').textContent = likesNumStr;

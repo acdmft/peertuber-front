@@ -36,7 +36,6 @@
       });
     });
     videos.downloaded = true;
-    console.log("recVid, videos", recVid, videos);
   });
 </script>
 
