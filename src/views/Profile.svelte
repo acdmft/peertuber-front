@@ -3,7 +3,7 @@
   import page from "page";
   import { user } from "../lib/stores";
   // TOASTS
-  import { warningToast } from "../lib/toast-themes";
+  import { successToast, warningToast } from "../lib/toast-themes";
   // COMPONENTS
   import Header from "../components/Header.svelte";
   import LeftSidebar from "../components/LeftSidebar.svelte";
@@ -26,8 +26,26 @@
       return;
     }
     
-
   });
+  async function deleteAccount() {
+    let result = await fetch(`${api_url}/profile`, {
+      method: "DELETE",
+      credentials: "include"
+    });
+    if (result.ok) {
+      successToast("Account was deleted!")
+      $user = false;
+      page.redirect("/");
+      return;
+    }
+    if (!result.ok){
+      $user = false;
+      page.redirect("/");
+      warningToast("Something went wrong!");
+      return;
+    }
+
+  }
 </script>
 <!---------       TOP MENU            ----------->
 <Header />
@@ -44,6 +62,7 @@
 <p class="mb-2">Name: {userData['name']}</p>
 <p class="mb-2">Email: {userData['email']}</p>
 <p class="mb-2"> Playlists:  <a href="/library" class="ml-2 text-blue-400 hover:text-blue-500">{userData.playlists.length}</a></p>
+<button on:click={deleteAccount}>Delete account</button>
 {:else}
 <p>Loading ... </p>
 {/if}
