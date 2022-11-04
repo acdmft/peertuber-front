@@ -1,0 +1,20 @@
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.9">
+  <url>
+    <loc>https://peertuber.vercel.app</loc>
+    <lastmod>2022-04-11</lastmod>
+  </url>
+  <url>
+    <loc>https://peertuber.vercel.app/about</loc>
+    <lastmod>2022-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://peertuber.vercel.app/contact</loc>
+    <lastmod>2022-20-10</lastmod>
+  </url>
+  <url>
+    <loc>https://website.tld/</loc>
+    <image:image>
+      <image:loc>https://peertuber.vercel.app/tv.png</image:loc>
+    </image:image>
+  </url>
+</urlset>
