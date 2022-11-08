@@ -33,6 +33,7 @@
 
 <div bind:this={menu}>
   <span
+  on:keypress={()=>{menuOpened=true}}
     on:click={() => {
       menuOpened = true;
     }}
