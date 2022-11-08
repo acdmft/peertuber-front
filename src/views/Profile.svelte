@@ -82,16 +82,16 @@
 <!---------       TOP MENU            ----------->
 <Header />
 <!-----------      TOP SEPARATOR       ------------>
-<div class="h-20" />
+<div class="h-20"></div>
 <!-----------       LEFT MENU       ------------>
 <LeftSidebar page={"profile"} />
 <!-----------      CONTENT CONTAINER     ------------>
 <div class="min-h-screen ">
-  <h1 class="text-left text-neutral-200 text-xl font-bold fixed top-40 left-40">
+  <h1 class="text-left text-neutral-200 md:text-xl font-bold fixed top-24 left-4 md:top-40 md:left-40">
     Profile
   </h1>
 
-  <div class="text-left text-neutral-200 font-bold fixed top-52 left-40">
+  <div class="text-left text-neutral-200 text-sm md:text-lg font-bold fixed top-32 left-4 md:top-40 md:left-40">
     {#if dataRecieved}
       <p class="mb-2">Name: {userData["name"]}</p>
       <p class="mb-2">Email: {userData["email"]}</p>
@@ -102,25 +102,25 @@
           >{userData.playlists.length}</a
         >
       </p>
-      <button bind:this={openMenuBtn} on:click={handleOutsideClick} class="mt-3 mb-2 bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md font-semibold">Delete account</button>
+      <button bind:this={openMenuBtn} on:click={handleOutsideClick} class="mt-3 mb-2 bg-red-500 hover:bg-red-600 md:px-3 px-2 py-1 md:py-2 rounded-md text-xs md:text-regular font-semibold">Delete account</button>
     {:else}
       <p>Loading ...</p>
     {/if}
     <div class="pt-4">
       <a
         href="/"
-        class="mt-6 bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md"
+        class="mt-6 bg-blue-500 hover:bg-blue-600 md:px-3 md:py-2 px-2 py-1 md:text-regular text-xs rounded-md"
         >Home</a
       >
     </div>
   </div>
-  // REMOVE ACCOUNT MENU 
+  <!-- REMOVE ACCOUNT MENU  -->  
   {#if menuOpened }
-  <div bind:this={menu} class="bg-gray-600 w-60 top-[50vh] left-[50vw] fixed min-h-32 rounded-md">
-    <h2 class="text-neutral-200 font-semibold my-4">Are you sure you want to delete your account?</h2>
+  <div bind:this={menu} class="bg-gray-600 w-52 sm:w-60 fixed top-36 left-10 md:top-[50vh] md:left-[50vw] min-h-32 rounded-md">
+    <h2 class="text-neutral-200 md:text-regular text-sm font-semibold my-4">Are you sure you want to delete your account?</h2>
     <div class="flex justify-center h-full w-full my-4">
-      <button class="bg-red-300 self-end px-2 mb-2 rounded-md hover:bg-red-400 mr-2" on:click={deleteAccount} >Ok</button>
-      <button class="bg-blue-300 self-end px-2 mb-2 rounded-md hover:bg-blue-400" on:click={()=>menuOpened=false}>Cancel</button>
+      <button class="bg-red-300 self-end  md:text-regular text-sm font-semibold px-2 mb-2 rounded-md hover:bg-red-400 mr-2" on:click={deleteAccount} >Ok</button>
+      <button class="bg-blue-300 self-end  md:text-regular text-sm font-semibold px-2 mb-2 rounded-md hover:bg-blue-400" on:click={()=>menuOpened=false}>Cancel</button>
     </div>
   </div>
   {/if}
