@@ -18,9 +18,9 @@
 <LeftSidebar page={"contact"} />
 <!------       CONTENT CONTAINER     ------------>
 <div class="min-h-screen">
-  <div class="flex justify-center mt-20">
+  <div class="flex justify-center flex-wrap mt-8 md:mt-20">
     <!-- CONTACT INFO  -->
-    <div class="w-1/3">
+    <div class="w-5/6 md:w-1/4 md:ml-8">
       <h1 class="text-neutral-200 text-center font-bold text-xl">
         Contact info:
       </h1>
@@ -29,16 +29,16 @@
         <span class="ml-2">andrewsanser@gmail.com</span>
       </div>
       <div class="text-neutral-200 text-2xl mt-4 text-center">
-        <a href="https://www.linkedin.com/in/andrei-zheksim/" target="_blank">
+        <a href="https://www.linkedin.com/in/andrei-zheksim/" target="_blank" rel="noreferrer">
           <i class="fa-brands fa-linkedin mr-2 hover:text-neutral-100" />
         </a>
-        <a href="https://github.com/acdmft" target="_blank">
+        <a href="https://github.com/acdmft" target="_blank" rel="noreferrer">
           <i class="fa-brands fa-square-github hover:text-neutral-100" />
         </a>
       </div>
     </div>
     <!-- CONTACT FORM -->
-    <div class="w-2/3 flex justify-center">
+    <div class="w-62 md:w-2/3 mt-3 flex justify-center">
       <ContactForm />
     </div>
   </div>

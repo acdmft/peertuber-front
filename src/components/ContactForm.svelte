@@ -65,7 +65,7 @@
 
 <form
   on:submit|preventDefault={handleSubmit}
-  class="flex flex-col justify-around text-neutral-200 w-1/2 min-h-[400px] font-bold  border-2 border-solid border-neutral-400 rounded-lg"
+  class="flex flex-col justify-around text-neutral-200 w-full md:w-1/2 min-h-[400px] font-bold  border-2 py-4 border-solid border-neutral-400 rounded-lg"
 >
   <h1 class="font-bold text-xl my-2">Contact us</h1>
   <!-- EMAIL INPUT -->
