@@ -27,6 +27,6 @@
       <p class="mt-4">
         Instances are independent, athough they can put the link on the video stored by another instance. There is no central server and so there is no moderation or recommendation system. In order to navigate through channels and videos there are index pages. </p>
 
-        <p class="mt-4">Current project is one of such index pages. It is based on the <a class="text-blue-400 hover:text-blue-500" href="https://instances.joinpeertube.org/instances" target="_blank" rel="noreferrer">official list</a> of instances maintained by Framasoft. Peertuber is an open source project, collaboration is appreciated. The working repository could be found <a class="text-blue-400 hover:text-blue-500" href="https://github.com/acdmft/peertuber-front" target="_blank">here.</a></p>
+        <p class="mt-4">Current project is one of such index pages. It is based on the <a class="text-blue-400 hover:text-blue-500" href="https://instances.joinpeertube.org/instances" target="_blank" rel="noreferrer">official list</a> of instances maintained by Framasoft. Peertuber is an open source project, collaboration is appreciated. The working repository could be found <a class="text-blue-400 hover:text-blue-500" href="https://github.com/acdmft/peertuber-front" target="_blank" rel="noreferrer">here.</a></p>
   </div>
 </div>

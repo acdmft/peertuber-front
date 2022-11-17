@@ -19,7 +19,7 @@
     dispatch('plClick', {
       title: title
     })
-  } 
+  }; 
 
   const api_url = import.meta.env.VITE_API_URL;
   let playlists = { arr: [], recieved: false };
@@ -53,17 +53,22 @@
     >
       <!-- FIRST ITEM ("ALL") -->
       <li
-        on:click={(e) => plClick(e, "")}
+        
         class="underline hover:underline decoration-2 decoration-red-400 hover:cursor-pointer"
       >
+      <button on:click={(e) => plClick(e, "")}  class="underline hover:underline decoration-2 decoration-red-400 hover:cursor-pointer">
         all
+      </button>
       </li>
       {#each playlists.arr as pl}
         <li
-          on:click={(e)=> plClick(e, pl.title)}
-          class="hover:underline decoration-2 decoration-red-400 hover:cursor-pointer"
+          
         >
+        <button on:click={(e)=> plClick(e, pl.title)}
+          class="hover:underline decoration-2 decoration-red-400 hover:cursor-pointer">
+
           {pl.title} <span class="ml-4">{pl.num}</span>
+        </button>
         </li>
       {/each}
     </ul>
