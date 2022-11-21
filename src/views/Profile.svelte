@@ -87,11 +87,11 @@
 <LeftSidebar page={"profile"} />
 <!-----------      CONTENT CONTAINER     ------------>
 <div class="min-h-screen ">
-  <h1 class="text-left text-neutral-200 md:text-xl font-bold fixed top-24 left-4 md:top-40 md:left-40">
+  <h1 class="text-left text-blue-300 md:text-xl font-bold fixed top-24 left-4 md:top-40 md:left-40">
     Profile
   </h1>
 
-  <div class="text-left text-neutral-200 text-sm md:text-lg font-bold fixed top-32 left-4 md:top-40 md:left-40">
+  <div class="text-left text-neutral-200 text-sm md:text-lg font-bold fixed top-32 left-4 md:top-48 md:left-40">
     {#if dataRecieved}
       <p class="mb-2">Name: {userData["name"]}</p>
       <p class="mb-2">Email: {userData["email"]}</p>
