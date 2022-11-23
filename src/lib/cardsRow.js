@@ -24,7 +24,7 @@ export function getCardProps(cardNum) {
       return {width: "w-56", height: "h-24"}
     case 4:
       // width: 16rem; /* 256px */
-      return {width: "w-64", height: "h-28"}
+      return {width: "w-80", height: "h-40"}
     default:
       return  {width:"w-72", height: "h-40"};
   }
