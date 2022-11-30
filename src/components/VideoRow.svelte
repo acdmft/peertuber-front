@@ -1,15 +1,15 @@
 <script lang="ts">
+  // IMPORTS
   import Card from "./Card.svelte";
   import { getCardProps } from "../lib/cardsRow";
+  // EXPORTS
   export let cardsData;
-
   export let cardNum;
   // display Card depending on the current page
   export let page: string = "";
   // stripCards help to arrange Cards in the row
   export let stripCards;
   $: stripCardsArr = Array(stripCards).fill("");
-  // let widthVars = {1: "11/12", 3: ""}
   const { width, height } = getCardProps(cardNum);
 </script>
 
