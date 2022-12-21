@@ -38,7 +38,6 @@
             {catFilter}
           </button>
         </li>
-        >
       {/each}
     </ul>
   </nav>
