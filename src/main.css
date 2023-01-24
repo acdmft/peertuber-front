@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .card-video-title {
+        @apply h-1/5 relative px-1 pt-0.5 border border-slate-400 border-y-0 text-left text-xs sm:text-sm text-ellipsis;
+    }
+}
