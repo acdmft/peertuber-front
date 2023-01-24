@@ -45,7 +45,7 @@
 {#if menuOpened}
   <div
     transition:fly={{ x: -200, delay: 200, duration: 700 }}
-    class="bg-gray-800 fixed top-0 left-0 flex-none h-72 w-44 md:w-36 px-2"
+    class="bg-gray-800 fixed top-0 left-0 flex-none h-fit w-44 md:w-36 px-2"
   >
     <!------       X icon    ------>
     <div>
@@ -59,7 +59,7 @@
       </button>
     </div>
     <div
-      class="text-gray-300 text-sm md:text-base text-left h-5/6 flex flex-col justify-around pl-2"
+      class="text-gray-300 text-sm md:text-base text-left h-5/6 flex flex-col  pl-2"
     >
       <a
         href="/"
@@ -103,7 +103,7 @@
         on:click={() => {
           menuOpened = false;
         }}
-        class="block py-2 px-2  hover:bg-gray-700">About</a
+        class="block py-2 px-2 mb-8 hover:bg-gray-700">About</a
       >
     </div>
   </div>
