@@ -62,6 +62,7 @@
     videos.arr = chunkArray(recVid, cardNum);
     videos.recieved = true;
   }
+  
 </script>
 <svelte:window on:scroll={scrollHandler} />
 <!---------          TOP MENU            ----------->
