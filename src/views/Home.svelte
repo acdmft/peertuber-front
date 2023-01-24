@@ -42,7 +42,7 @@
       })
     }
   }
-  // ADD LIKE
+  // ADD LIKE 
   async function handleLike(event) {
     let result = await incrLikes(event.detail.videoID, api_url);
     if (result === "401 error") {
@@ -55,6 +55,7 @@
       warningToast("You already liked the video!")
     }
   }
+  // SELECT CATEGORY
   async function handleFilterSelect(e) {
     selectedCat = e.detail.category;
     let recVid = await retrVideos(api_url, selectedCat);    
