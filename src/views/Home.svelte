@@ -2,12 +2,15 @@
   import VideoRow from "../components/VideoRow.svelte";
   import Header from "../components/Header.svelte";
   import LeftSidebar from "../components/LeftSidebar.svelte";
+  import PreviewMessage from "../components/PreviewMessage.svelte";
   // onMount
   import { onMount } from "svelte";
   // page ROUTING
   import page from 'page';
   // SPINNER (github.com/Schum123/svelte-loading-spinners)
   import { Circle3 } from "svelte-loading-spinners";
+  // isAppLoaded
+  import { isAppLoaded } from "../lib/stores";
   // LIB
   import { retrVideos, incrLikes } from "../lib/videos"; 
   import { user } from "../lib/stores";
@@ -15,6 +18,10 @@
   import { chunkArray } from "../lib/chunkArray";
   import { getRowCardsNum } from "../lib/cardsRow";
   let selectedCat = "all";
+  let showPreview = true;
+  isAppLoaded.subscribe((val) => {
+    showPreview = !val;
+  })
   let loadingNextPage = false;
   const api_url = import.meta.env.VITE_API_URL;
   let videos = {arr: [], recieved: false};
@@ -22,10 +29,12 @@
   const cardNum = getRowCardsNum();
   // fetch videos from the server
   onMount(async () => {
-    let recVid = await retrVideos(api_url, selectedCat);
+    let recVid
+    recVid = await retrVideos(api_url, selectedCat);
     recVid = chunkArray(recVid, cardNum);
     videos.arr.push(...recVid);
     videos.recieved = true;
+    isAppLoaded.update((n)=> n = true);    
   });
   function scrollHandler() {
     const scrolledToBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 10); 
@@ -85,7 +94,11 @@
     
   {:else}
     <div class="flex justify-center pt-40 w-full mb-40">
+      {#if showPreview}
+      <PreviewMessage />
+      {:else}
       <Circle3 size="100" />
+      {/if}
     </div>
-  {/if}
+    {/if}
 </div>
