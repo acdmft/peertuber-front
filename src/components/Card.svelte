@@ -45,14 +45,14 @@
 <div class="flex flex-col {width} mx-1.5 ">
   <!-- CARD IMAGE -->
   <div
-    class="relative grow text-5xl overflow-hidden  {width} {height} border border-slate-400 border-b-0"
+    class="relative grow text-5xl overflow-hidden  {width} {height} border border-slate-400 border-b-0 flex flex-row"
   >
     <!-- VIDEO ICON -->
     <p class="text-center pt-10 absolute h-full w-full text-slate-400">
       <i class="fa-solid fa-film" />
     </p>
-    <a href={video_url} target="_blank" rel="noreferrer" >
-      <img src={img} class="w-full overflow-hidden absolute top-0 left-0" alt="{video_title}" />
+    <a href={video_url} target="_blank" rel="noreferrer" class="h-full border-2 border-red-200 w-full flex items-stretch">
+      <img src={img} class="image-descr w-full overflow-hidden absolute top-0 left-0 text-purple-700 font-bold leading-18 text-4xl self-end" alt="{video_title}" />
     </a>
     <!-----           TIMER       ------>
     <span
@@ -101,3 +101,12 @@
     {/if}
   </div>
 </div>
+
+<style>
+  .image-descr {
+    border: 2px solid green;
+    height: 100%;
+    background: rgb(231,194,232);
+background: linear-gradient(40deg, rgba(231,194,232,1) 0%, rgba(229,214,240,1) 39%, rgba(155,238,255,1) 78%); 
+  }
+</style>
