@@ -96,8 +96,13 @@
     <div class="flex justify-center pt-40 w-full mb-40">
       {#if showPreview}
       <PreviewMessage />
+      <div class="my-auto">
+        <Circle3 size="100" />
+      </div>
       {:else}
-      <Circle3 size="100" />
+      <div class="my-auto">
+        <Circle3 size="100" />
+      </div>
       {/if}
     </div>
     {/if}
