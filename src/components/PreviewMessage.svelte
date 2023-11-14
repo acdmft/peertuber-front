@@ -2,7 +2,7 @@
 import { SvelteToast, toast } from "@zerodevx/svelte-toast";
 
 toast.push(`<p class="text-blue-200 font-bold text-2xl mt-6 mb-6 tracking-widest">Welcome to Peertuber!</p>
-<p class="font-bold text-yellow-600 text-xl text-left mb-16 tracking-wide leading-9 px-4">It may take up to a 30 seconds to load a site content<br>during initial setup. Please be patient!<br>Peertuber is an experimental project. You can see the video previews taken from the peertube.org<br>These are the videos from independent creators.<br>Hope you'll enjoy!</p>`, { target: 'new', initial: 0})
+<p class="font-bold text-yellow-600 text-xl text-left mb-16 tracking-wide leading-9 px-4">It may take up to 30 seconds to load a site content<br>during initial setup. Please be patient!<br>Peertuber is an experimental project. You can see the video previews taken from the peertube.org<br>These are the videos from independent creators.<br>Hope you'll enjoy!</p>`, { target: 'new', initial: 0})
 </script>
 <!-- <div class="flex justify-center"> -->
 
