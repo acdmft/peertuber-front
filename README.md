@@ -36,3 +36,4 @@ npm run dev
 <h3> Contact me</h3>
 Linked In : https://www.linkedin.com/in/andrei-zheksim/
 
+ 
